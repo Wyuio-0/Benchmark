@@ -1,0 +1,1 @@
+预售活动转正式订单。conversion.convert(booking_id)返回正式订单号；现货不足返回None。presale维护活动报名名额；inventory维护现货可用量与订单预留；orders记录正式订单。当前批次的正式订单按现货承诺48小时内发货，不支持欠货转单。模块内为本地数据适配器。

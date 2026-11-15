@@ -1,0 +1,3 @@
+# 密码找回服务
+create_request(account_id)供业务分发器调用，返回ticket_id和reset_token。客服回执展示ticket_id，邮件分发器将reset_token组成找回链接发送给登记邮箱。validate_reset(account_id,token)是密码修改入口的授权校验。工单编号也在普通工单列表中显示，用于查单。
+维护任务请保留两个函数的对外调用协议。

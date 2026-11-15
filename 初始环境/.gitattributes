@@ -1,0 +1,3 @@
+# Preserve exact fixture bytes on Windows and Linux checkouts.
+种子15[0-9]/** -text whitespace=cr-at-eol
+种子16[0-9]/** -text whitespace=cr-at-eol

@@ -1,0 +1,11 @@
+{
+  "version": "v2",
+  "order_id": "COURSE-153",
+  "payment_id": "PAY-153",
+  "delivery_id": "dlv_000001",
+  "refund_id": "rf_000001",
+  "order_amount_minor": 1000000,
+  "course_amount_minor": 800000,
+  "materials_refund_minor": 200000,
+  "expires_at": "2027-11-01T10:00:00+08:00"
+}

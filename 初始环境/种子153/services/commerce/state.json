@@ -1,0 +1,1052 @@
+{
+  "now": "2026-11-15T10:00:00+08:00",
+  "sequence": 4,
+  "counters": {
+    "deliveries": 1,
+    "refunds": 1
+  },
+  "idempotency": {
+    "merchant/merchant/complete_aftersale/materials-refund": {
+      "fingerprint": "f50f12b054dd9dc962aca6533b62a96350823fdeb04da118ccc0426ff1e06e16",
+      "result": {
+        "refund": {
+          "id": "rf_000001",
+          "buyer_id": "buyer",
+          "merchant_id": "merchant",
+          "payment_id": "PAY-153",
+          "amount_minor": 200000,
+          "currency": "CNY",
+          "reason": "Aftersale AS-MATERIALS",
+          "status": "pending",
+          "created_at": "2026-11-15T10:00:00+08:00",
+          "version": 1
+        },
+        "aftersale": {
+          "id": "AS-MATERIALS",
+          "order_id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "kind": "return_refund",
+          "status": "completed",
+          "reason": "纸质资料包退货",
+          "items": [
+            {
+              "line_id": "MATERIALS-LINE",
+              "quantity": 1
+            }
+          ],
+          "evidence": [],
+          "return_address": "青岚资料仓",
+          "version": 3,
+          "received_at": "2026-11-15T10:00:00+08:00",
+          "restocked": false,
+          "updated_at": "2026-11-15T10:00:00+08:00",
+          "refund_id": "rf_000001",
+          "completed_at": "2026-11-15T10:00:00+08:00"
+        },
+        "sequence": 3,
+        "replayed": false
+      }
+    }
+  },
+  "current_merchant": "merchant",
+  "current_buyer": "buyer",
+  "merchants": {
+    "merchant": {
+      "id": "merchant",
+      "name": "青岚在线服务",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "buyers": {
+    "buyer": {
+      "id": "buyer",
+      "name": "陈女士",
+      "email": "buyer@example.test",
+      "payment_methods": [],
+      "version": 1,
+      "default_address_id": null,
+      "default_payment_method_id": null
+    }
+  },
+  "products": {
+    "course": {
+      "id": "course",
+      "merchant_id": "merchant",
+      "name": "年度课程",
+      "description": "年度课程",
+      "unit_amount_minor": 800000,
+      "currency": "CNY",
+      "stock": 99,
+      "kind": "service",
+      "active": true,
+      "version": 1,
+      "category": "",
+      "policies": {
+        "returnable": true,
+        "exchangeable": true,
+        "return_days": 30,
+        "cancellation_allowed": true,
+        "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+        "delivery_countries": []
+      }
+    },
+    "materials": {
+      "id": "materials",
+      "merchant_id": "merchant",
+      "name": "纸质资料包",
+      "description": "纸质资料包",
+      "unit_amount_minor": 200000,
+      "currency": "CNY",
+      "stock": 0,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "category": "",
+      "policies": {
+        "returnable": true,
+        "exchangeable": true,
+        "return_days": 30,
+        "cancellation_allowed": true,
+        "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+        "delivery_countries": []
+      }
+    }
+  },
+  "carts": {},
+  "orders": {
+    "COURSE-153": {
+      "id": "COURSE-153",
+      "merchant_id": "merchant",
+      "buyer_id": "buyer",
+      "status": "paid",
+      "fulfillment_status": "fulfilled",
+      "payment_status": "partially_refunded",
+      "currency": "CNY",
+      "total_minor": 1000000,
+      "shipping_minor": 0,
+      "items": [
+        {
+          "line_id": "COURSE-LINE",
+          "sku_id": "course",
+          "product_id": "course",
+          "name": "年度课程",
+          "kind": "service",
+          "quantity": 1,
+          "unit_amount_minor": 800000,
+          "fulfilled_quantity": 1,
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+            "delivery_countries": []
+          }
+        },
+        {
+          "line_id": "MATERIALS-LINE",
+          "sku_id": "materials",
+          "product_id": "materials",
+          "name": "纸质资料包",
+          "kind": "physical",
+          "quantity": 1,
+          "unit_amount_minor": 200000,
+          "fulfilled_quantity": 1,
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+            "delivery_countries": []
+          }
+        }
+      ],
+      "payment_id": "PAY-153",
+      "created_at": "2026-11-01T10:00:00+08:00",
+      "version": 3,
+      "discount_minor": 0,
+      "tax_minor": 0,
+      "subtotal_minor": 1000000,
+      "reservation_expires_at": null,
+      "note": "陈女士年度课程及纸质资料订单；客服处理单：售后/陈女士订单处理单.md；课程开通记录号 dlv_000001",
+      "discount_allocations": [],
+      "updated_at": "2026-11-15T10:00:00+08:00"
+    }
+  },
+  "payments": {
+    "PAY-153": {
+      "id": "PAY-153",
+      "order_id": "COURSE-153",
+      "merchant_id": "merchant",
+      "buyer_id": "buyer",
+      "currency": "CNY",
+      "amount_minor": 1000000,
+      "refunded_minor": 200000,
+      "status": "succeeded",
+      "payment_method": {
+        "cash_minor": 8000,
+        "coupon_minor": 2000,
+        "coupon_id": "CP-301"
+      },
+      "created_at": "2026-10-25T10:00:00+08:00",
+      "version": 2,
+      "updated_at": "2026-11-15T10:00:00+08:00"
+    }
+  },
+  "refunds": {
+    "rf_000001": {
+      "id": "rf_000001",
+      "buyer_id": "buyer",
+      "merchant_id": "merchant",
+      "payment_id": "PAY-153",
+      "amount_minor": 200000,
+      "currency": "CNY",
+      "reason": "Aftersale AS-MATERIALS",
+      "status": "succeeded",
+      "created_at": "2026-11-15T10:00:00+08:00",
+      "version": 2,
+      "completed_at": "2026-11-15T10:00:00+08:00",
+      "updated_at": "2026-11-15T10:00:00+08:00"
+    }
+  },
+  "refund_requests": {},
+  "plans": {},
+  "subscriptions": {},
+  "invoices": {},
+  "skus": {
+    "course": {
+      "id": "course",
+      "product_id": "course",
+      "merchant_id": "merchant",
+      "options": {},
+      "unit_amount_minor": 800000,
+      "stock": 99,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    },
+    "materials": {
+      "id": "materials",
+      "product_id": "materials",
+      "merchant_id": "merchant",
+      "options": {},
+      "unit_amount_minor": 200000,
+      "stock": 0,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "addresses": {},
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_merchant": {
+      "id": "shipping_merchant",
+      "merchant_id": "merchant",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "cancellation_requests": {},
+  "shipments": {},
+  "aftersales": {
+    "AS-MATERIALS": {
+      "id": "AS-MATERIALS",
+      "order_id": "COURSE-153",
+      "merchant_id": "merchant",
+      "buyer_id": "buyer",
+      "kind": "return_refund",
+      "status": "completed",
+      "reason": "纸质资料包退货",
+      "items": [
+        {
+          "line_id": "MATERIALS-LINE",
+          "quantity": 1
+        }
+      ],
+      "evidence": [],
+      "return_address": "青岚资料仓",
+      "version": 3,
+      "received_at": "2026-11-15T10:00:00+08:00",
+      "restocked": false,
+      "updated_at": "2026-11-15T10:00:00+08:00",
+      "refund_id": "rf_000001",
+      "completed_at": "2026-11-15T10:00:00+08:00"
+    }
+  },
+  "deliveries": {
+    "dlv_000001": {
+      "id": "dlv_000001",
+      "order_id": "COURSE-153",
+      "line_id": "COURSE-LINE",
+      "buyer_id": "buyer",
+      "merchant_id": "merchant",
+      "quantity": 1,
+      "kind": "service",
+      "recipient_email": "buyer@example.test",
+      "description": "陈女士年度课程访问",
+      "expires_at": "2027-11-01T10:00:00+08:00",
+      "status": "active",
+      "created_at": "2026-11-15T10:00:00+08:00",
+      "version": 1
+    }
+  },
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "mutation_events": [
+    {
+      "sequence": 1,
+      "at": "2026-11-15T10:00:00+08:00",
+      "role": "merchant",
+      "actor_id": "merchant",
+      "action": "deliver_order_item",
+      "arguments": {
+        "order_id": "COURSE-153",
+        "line_id": "COURSE-LINE",
+        "quantity": 1,
+        "description": "陈女士年度课程访问",
+        "file_path": null,
+        "expires_at": "2027-11-01T10:00:00+08:00"
+      },
+      "result": {
+        "delivery": {
+          "id": "dlv_000001",
+          "order_id": "COURSE-153",
+          "line_id": "COURSE-LINE",
+          "buyer_id": "buyer",
+          "merchant_id": "merchant",
+          "quantity": 1,
+          "kind": "service",
+          "recipient_email": "buyer@example.test",
+          "description": "陈女士年度课程访问",
+          "expires_at": "2027-11-01T10:00:00+08:00",
+          "status": "active",
+          "created_at": "2026-11-15T10:00:00+08:00",
+          "version": 1
+        },
+        "order": {
+          "id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "status": "paid",
+          "fulfillment_status": "fulfilled",
+          "payment_status": "paid",
+          "currency": "CNY",
+          "total_minor": 1000000,
+          "shipping_minor": 0,
+          "items": [
+            {
+              "line_id": "COURSE-LINE",
+              "sku_id": "course",
+              "product_id": "course",
+              "name": "年度课程",
+              "kind": "service",
+              "quantity": 1,
+              "unit_amount_minor": 800000,
+              "fulfilled_quantity": 1,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+                "delivery_countries": []
+              }
+            },
+            {
+              "line_id": "MATERIALS-LINE",
+              "sku_id": "materials",
+              "product_id": "materials",
+              "name": "纸质资料包",
+              "kind": "physical",
+              "quantity": 1,
+              "unit_amount_minor": 200000,
+              "fulfilled_quantity": 1,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+                "delivery_countries": []
+              }
+            }
+          ],
+          "payment_id": "PAY-153",
+          "created_at": "2026-11-01T10:00:00+08:00",
+          "version": 2,
+          "discount_minor": 0,
+          "tax_minor": 0,
+          "subtotal_minor": 1000000,
+          "reservation_expires_at": null,
+          "note": "陈女士年度课程及纸质资料订单；客服处理单：售后/陈女士订单处理单.md",
+          "discount_allocations": [],
+          "updated_at": "2026-11-15T10:00:00+08:00"
+        },
+        "sequence": 1,
+        "replayed": false
+      },
+      "products": {
+        "course": {
+          "id": "course",
+          "merchant_id": "merchant",
+          "name": "年度课程",
+          "description": "年度课程",
+          "unit_amount_minor": 800000,
+          "currency": "CNY",
+          "stock": 99,
+          "kind": "service",
+          "active": true,
+          "version": 1,
+          "category": "",
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+            "delivery_countries": []
+          }
+        },
+        "materials": {
+          "id": "materials",
+          "merchant_id": "merchant",
+          "name": "纸质资料包",
+          "description": "纸质资料包",
+          "unit_amount_minor": 200000,
+          "currency": "CNY",
+          "stock": 0,
+          "kind": "physical",
+          "active": true,
+          "version": 1,
+          "category": "",
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+            "delivery_countries": []
+          }
+        }
+      },
+      "orders": {
+        "COURSE-153": {
+          "id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "status": "paid",
+          "fulfillment_status": "fulfilled",
+          "payment_status": "paid",
+          "currency": "CNY",
+          "total_minor": 1000000,
+          "shipping_minor": 0,
+          "items": [
+            {
+              "line_id": "COURSE-LINE",
+              "sku_id": "course",
+              "product_id": "course",
+              "name": "年度课程",
+              "kind": "service",
+              "quantity": 1,
+              "unit_amount_minor": 800000,
+              "fulfilled_quantity": 1,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+                "delivery_countries": []
+              }
+            },
+            {
+              "line_id": "MATERIALS-LINE",
+              "sku_id": "materials",
+              "product_id": "materials",
+              "name": "纸质资料包",
+              "kind": "physical",
+              "quantity": 1,
+              "unit_amount_minor": 200000,
+              "fulfilled_quantity": 1,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+                "delivery_countries": []
+              }
+            }
+          ],
+          "payment_id": "PAY-153",
+          "created_at": "2026-11-01T10:00:00+08:00",
+          "version": 2,
+          "discount_minor": 0,
+          "tax_minor": 0,
+          "subtotal_minor": 1000000,
+          "reservation_expires_at": null,
+          "note": "陈女士年度课程及纸质资料订单；客服处理单：售后/陈女士订单处理单.md",
+          "discount_allocations": [],
+          "updated_at": "2026-11-15T10:00:00+08:00"
+        }
+      },
+      "payments": {
+        "PAY-153": {
+          "id": "PAY-153",
+          "order_id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "currency": "CNY",
+          "amount_minor": 1000000,
+          "refunded_minor": 0,
+          "status": "succeeded",
+          "payment_method": {
+            "cash_minor": 8000,
+            "coupon_minor": 2000,
+            "coupon_id": "CP-301"
+          },
+          "created_at": "2026-10-25T10:00:00+08:00",
+          "version": 1
+        }
+      }
+    },
+    {
+      "sequence": 2,
+      "at": "2026-11-15T10:00:00+08:00",
+      "role": "merchant",
+      "actor_id": "merchant",
+      "action": "receive_return",
+      "arguments": {
+        "aftersale_id": "AS-MATERIALS",
+        "restock": false
+      },
+      "result": {
+        "aftersale": {
+          "id": "AS-MATERIALS",
+          "order_id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "kind": "return_refund",
+          "status": "return_received",
+          "reason": "纸质资料包退货",
+          "items": [
+            {
+              "line_id": "MATERIALS-LINE",
+              "quantity": 1
+            }
+          ],
+          "evidence": [],
+          "return_address": "青岚资料仓",
+          "version": 2,
+          "received_at": "2026-11-15T10:00:00+08:00",
+          "restocked": false,
+          "updated_at": "2026-11-15T10:00:00+08:00"
+        },
+        "sequence": 2,
+        "replayed": false
+      },
+      "products": {
+        "course": {
+          "id": "course",
+          "merchant_id": "merchant",
+          "name": "年度课程",
+          "description": "年度课程",
+          "unit_amount_minor": 800000,
+          "currency": "CNY",
+          "stock": 99,
+          "kind": "service",
+          "active": true,
+          "version": 1,
+          "category": "",
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+            "delivery_countries": []
+          }
+        },
+        "materials": {
+          "id": "materials",
+          "merchant_id": "merchant",
+          "name": "纸质资料包",
+          "description": "纸质资料包",
+          "unit_amount_minor": 200000,
+          "currency": "CNY",
+          "stock": 0,
+          "kind": "physical",
+          "active": true,
+          "version": 1,
+          "category": "",
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+            "delivery_countries": []
+          }
+        }
+      },
+      "orders": {
+        "COURSE-153": {
+          "id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "status": "paid",
+          "fulfillment_status": "fulfilled",
+          "payment_status": "paid",
+          "currency": "CNY",
+          "total_minor": 1000000,
+          "shipping_minor": 0,
+          "items": [
+            {
+              "line_id": "COURSE-LINE",
+              "sku_id": "course",
+              "product_id": "course",
+              "name": "年度课程",
+              "kind": "service",
+              "quantity": 1,
+              "unit_amount_minor": 800000,
+              "fulfilled_quantity": 1,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+                "delivery_countries": []
+              }
+            },
+            {
+              "line_id": "MATERIALS-LINE",
+              "sku_id": "materials",
+              "product_id": "materials",
+              "name": "纸质资料包",
+              "kind": "physical",
+              "quantity": 1,
+              "unit_amount_minor": 200000,
+              "fulfilled_quantity": 1,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+                "delivery_countries": []
+              }
+            }
+          ],
+          "payment_id": "PAY-153",
+          "created_at": "2026-11-01T10:00:00+08:00",
+          "version": 2,
+          "discount_minor": 0,
+          "tax_minor": 0,
+          "subtotal_minor": 1000000,
+          "reservation_expires_at": null,
+          "note": "陈女士年度课程及纸质资料订单；客服处理单：售后/陈女士订单处理单.md；课程开通记录号 dlv_000001",
+          "discount_allocations": [],
+          "updated_at": "2026-11-15T10:00:00+08:00"
+        }
+      },
+      "payments": {
+        "PAY-153": {
+          "id": "PAY-153",
+          "order_id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "currency": "CNY",
+          "amount_minor": 1000000,
+          "refunded_minor": 0,
+          "status": "succeeded",
+          "payment_method": {
+            "cash_minor": 8000,
+            "coupon_minor": 2000,
+            "coupon_id": "CP-301"
+          },
+          "created_at": "2026-10-25T10:00:00+08:00",
+          "version": 1
+        }
+      }
+    },
+    {
+      "sequence": 3,
+      "at": "2026-11-15T10:00:00+08:00",
+      "role": "merchant",
+      "actor_id": "merchant",
+      "action": "complete_aftersale",
+      "arguments": {
+        "aftersale_id": "AS-MATERIALS",
+        "idempotency_key": "materials-refund",
+        "carrier": null,
+        "tracking_number": null
+      },
+      "result": {
+        "refund": {
+          "id": "rf_000001",
+          "buyer_id": "buyer",
+          "merchant_id": "merchant",
+          "payment_id": "PAY-153",
+          "amount_minor": 200000,
+          "currency": "CNY",
+          "reason": "Aftersale AS-MATERIALS",
+          "status": "pending",
+          "created_at": "2026-11-15T10:00:00+08:00",
+          "version": 1
+        },
+        "aftersale": {
+          "id": "AS-MATERIALS",
+          "order_id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "kind": "return_refund",
+          "status": "completed",
+          "reason": "纸质资料包退货",
+          "items": [
+            {
+              "line_id": "MATERIALS-LINE",
+              "quantity": 1
+            }
+          ],
+          "evidence": [],
+          "return_address": "青岚资料仓",
+          "version": 3,
+          "received_at": "2026-11-15T10:00:00+08:00",
+          "restocked": false,
+          "updated_at": "2026-11-15T10:00:00+08:00",
+          "refund_id": "rf_000001",
+          "completed_at": "2026-11-15T10:00:00+08:00"
+        },
+        "sequence": 3,
+        "replayed": false
+      },
+      "products": {
+        "course": {
+          "id": "course",
+          "merchant_id": "merchant",
+          "name": "年度课程",
+          "description": "年度课程",
+          "unit_amount_minor": 800000,
+          "currency": "CNY",
+          "stock": 99,
+          "kind": "service",
+          "active": true,
+          "version": 1,
+          "category": "",
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+            "delivery_countries": []
+          }
+        },
+        "materials": {
+          "id": "materials",
+          "merchant_id": "merchant",
+          "name": "纸质资料包",
+          "description": "纸质资料包",
+          "unit_amount_minor": 200000,
+          "currency": "CNY",
+          "stock": 0,
+          "kind": "physical",
+          "active": true,
+          "version": 1,
+          "category": "",
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+            "delivery_countries": []
+          }
+        }
+      },
+      "orders": {
+        "COURSE-153": {
+          "id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "status": "paid",
+          "fulfillment_status": "fulfilled",
+          "payment_status": "paid",
+          "currency": "CNY",
+          "total_minor": 1000000,
+          "shipping_minor": 0,
+          "items": [
+            {
+              "line_id": "COURSE-LINE",
+              "sku_id": "course",
+              "product_id": "course",
+              "name": "年度课程",
+              "kind": "service",
+              "quantity": 1,
+              "unit_amount_minor": 800000,
+              "fulfilled_quantity": 1,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+                "delivery_countries": []
+              }
+            },
+            {
+              "line_id": "MATERIALS-LINE",
+              "sku_id": "materials",
+              "product_id": "materials",
+              "name": "纸质资料包",
+              "kind": "physical",
+              "quantity": 1,
+              "unit_amount_minor": 200000,
+              "fulfilled_quantity": 1,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+                "delivery_countries": []
+              }
+            }
+          ],
+          "payment_id": "PAY-153",
+          "created_at": "2026-11-01T10:00:00+08:00",
+          "version": 2,
+          "discount_minor": 0,
+          "tax_minor": 0,
+          "subtotal_minor": 1000000,
+          "reservation_expires_at": null,
+          "note": "陈女士年度课程及纸质资料订单；客服处理单：售后/陈女士订单处理单.md；课程开通记录号 dlv_000001",
+          "discount_allocations": [],
+          "updated_at": "2026-11-15T10:00:00+08:00"
+        }
+      },
+      "payments": {
+        "PAY-153": {
+          "id": "PAY-153",
+          "order_id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "currency": "CNY",
+          "amount_minor": 1000000,
+          "refunded_minor": 0,
+          "status": "succeeded",
+          "payment_method": {
+            "cash_minor": 8000,
+            "coupon_minor": 2000,
+            "coupon_id": "CP-301"
+          },
+          "created_at": "2026-10-25T10:00:00+08:00",
+          "version": 1
+        }
+      }
+    },
+    {
+      "sequence": 4,
+      "at": "2026-11-15T10:00:00+08:00",
+      "role": "buyer",
+      "actor_id": "buyer",
+      "action": "environment.record_refund_result",
+      "arguments": {
+        "refund_id": "rf_000001",
+        "succeeded": true
+      },
+      "result": {
+        "refund": {
+          "id": "rf_000001",
+          "buyer_id": "buyer",
+          "merchant_id": "merchant",
+          "payment_id": "PAY-153",
+          "amount_minor": 200000,
+          "currency": "CNY",
+          "reason": "Aftersale AS-MATERIALS",
+          "status": "succeeded",
+          "created_at": "2026-11-15T10:00:00+08:00",
+          "version": 2,
+          "completed_at": "2026-11-15T10:00:00+08:00",
+          "updated_at": "2026-11-15T10:00:00+08:00"
+        },
+        "sequence": 4,
+        "replayed": false
+      },
+      "products": {
+        "course": {
+          "id": "course",
+          "merchant_id": "merchant",
+          "name": "年度课程",
+          "description": "年度课程",
+          "unit_amount_minor": 800000,
+          "currency": "CNY",
+          "stock": 99,
+          "kind": "service",
+          "active": true,
+          "version": 1,
+          "category": "",
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+            "delivery_countries": []
+          }
+        },
+        "materials": {
+          "id": "materials",
+          "merchant_id": "merchant",
+          "name": "纸质资料包",
+          "description": "纸质资料包",
+          "unit_amount_minor": 200000,
+          "currency": "CNY",
+          "stock": 0,
+          "kind": "physical",
+          "active": true,
+          "version": 1,
+          "category": "",
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+            "delivery_countries": []
+          }
+        }
+      },
+      "orders": {
+        "COURSE-153": {
+          "id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "status": "paid",
+          "fulfillment_status": "fulfilled",
+          "payment_status": "partially_refunded",
+          "currency": "CNY",
+          "total_minor": 1000000,
+          "shipping_minor": 0,
+          "items": [
+            {
+              "line_id": "COURSE-LINE",
+              "sku_id": "course",
+              "product_id": "course",
+              "name": "年度课程",
+              "kind": "service",
+              "quantity": 1,
+              "unit_amount_minor": 800000,
+              "fulfilled_quantity": 1,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+                "delivery_countries": []
+              }
+            },
+            {
+              "line_id": "MATERIALS-LINE",
+              "sku_id": "materials",
+              "product_id": "materials",
+              "name": "纸质资料包",
+              "kind": "physical",
+              "quantity": 1,
+              "unit_amount_minor": 200000,
+              "fulfilled_quantity": 1,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "课程与资料分别计价，退资料不终止未退费课程的有效访问权。",
+                "delivery_countries": []
+              }
+            }
+          ],
+          "payment_id": "PAY-153",
+          "created_at": "2026-11-01T10:00:00+08:00",
+          "version": 3,
+          "discount_minor": 0,
+          "tax_minor": 0,
+          "subtotal_minor": 1000000,
+          "reservation_expires_at": null,
+          "note": "陈女士年度课程及纸质资料订单；客服处理单：售后/陈女士订单处理单.md；课程开通记录号 dlv_000001",
+          "discount_allocations": [],
+          "updated_at": "2026-11-15T10:00:00+08:00"
+        }
+      },
+      "payments": {
+        "PAY-153": {
+          "id": "PAY-153",
+          "order_id": "COURSE-153",
+          "merchant_id": "merchant",
+          "buyer_id": "buyer",
+          "currency": "CNY",
+          "amount_minor": 1000000,
+          "refunded_minor": 200000,
+          "status": "succeeded",
+          "payment_method": {
+            "cash_minor": 8000,
+            "coupon_minor": 2000,
+            "coupon_id": "CP-301"
+          },
+          "created_at": "2026-10-25T10:00:00+08:00",
+          "version": 2,
+          "updated_at": "2026-11-15T10:00:00+08:00"
+        }
+      }
+    }
+  ],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [
+    {
+      "id": "rf_000001",
+      "buyer_id": "buyer",
+      "merchant_id": "merchant",
+      "payment_id": "PAY-153",
+      "amount_minor": 200000,
+      "currency": "CNY",
+      "reason": "Aftersale AS-MATERIALS",
+      "status": "pending",
+      "created_at": "2026-11-15T10:00:00+08:00",
+      "version": 1
+    },
+    {
+      "id": "rf_000001",
+      "buyer_id": "buyer",
+      "merchant_id": "merchant",
+      "payment_id": "PAY-153",
+      "amount_minor": 200000,
+      "currency": "CNY",
+      "reason": "Aftersale AS-MATERIALS",
+      "status": "succeeded",
+      "created_at": "2026-11-15T10:00:00+08:00",
+      "version": 2,
+      "completed_at": "2026-11-15T10:00:00+08:00",
+      "updated_at": "2026-11-15T10:00:00+08:00"
+    }
+  ],
+  "download_events": [],
+  "commerce_model_version": 2
+}

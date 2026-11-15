@@ -1,0 +1,179 @@
+[
+  {
+    "seed": 150,
+    "version": "original-150",
+    "variant": "fi_test",
+    "groups": [
+      "mail",
+      "files"
+    ]
+  },
+  {
+    "seed": 151,
+    "version": "151-153-v2",
+    "variant": "fi_test",
+    "groups": [
+      "buyer",
+      "files"
+    ]
+  },
+  {
+    "seed": 152,
+    "version": "151-156-original",
+    "variant": "fi_test",
+    "groups": [
+      "git",
+      "github"
+    ]
+  },
+  {
+    "seed": 153,
+    "version": "151-153-v2",
+    "variant": "fi_test",
+    "groups": [
+      "merchant",
+      "files"
+    ]
+  },
+  {
+    "seed": 154,
+    "version": "151-156-original",
+    "variant": "fi_test",
+    "groups": [
+      "mail",
+      "files"
+    ]
+  },
+  {
+    "seed": 155,
+    "version": "151-156-original",
+    "variant": "ri_test",
+    "groups": [
+      "chat",
+      "files"
+    ]
+  },
+  {
+    "seed": 156,
+    "version": "151-156-original",
+    "variant": "fi_test",
+    "groups": [
+      "merchant",
+      "files"
+    ]
+  },
+  {
+    "seed": 157,
+    "version": "three-v3",
+    "variant": "ri_test",
+    "groups": [
+      "database",
+      "files"
+    ]
+  },
+  {
+    "seed": 158,
+    "version": "158-159-v1",
+    "variant": "ri_test",
+    "groups": [
+      "code"
+    ]
+  },
+  {
+    "seed": 159,
+    "version": "158-159-v1",
+    "variant": "fi_test",
+    "groups": [
+      "files",
+      "mail"
+    ]
+  },
+  {
+    "seed": 160,
+    "version": "rewrite-v2.1-negation-fix",
+    "variant": "ru_test",
+    "groups": [
+      "mail",
+      "files"
+    ]
+  },
+  {
+    "seed": 161,
+    "version": "rewrite-v2.1-negation-fix",
+    "variant": "ru_test",
+    "groups": [
+      "database",
+      "files"
+    ]
+  },
+  {
+    "seed": 162,
+    "version": "160-169-v1",
+    "variant": "ru_test",
+    "groups": [
+      "mail",
+      "files"
+    ]
+  },
+  {
+    "seed": 163,
+    "version": "160-169-v1",
+    "variant": "ri_test",
+    "groups": [
+      "code"
+    ]
+  },
+  {
+    "seed": 164,
+    "version": "160-169-v1",
+    "variant": "fi_test",
+    "groups": [
+      "files",
+      "chat"
+    ]
+  },
+  {
+    "seed": 165,
+    "version": "three-v3",
+    "variant": "fi_test",
+    "groups": [
+      "code"
+    ]
+  },
+  {
+    "seed": 166,
+    "version": "160-169-v1",
+    "variant": "ri_test",
+    "groups": [
+      "buyer",
+      "files"
+    ]
+  },
+  {
+    "seed": 167,
+    "version": "rewrite-v2.1-negation-fix",
+    "variant": "ri_test",
+    "groups": [
+      "code"
+    ]
+  },
+  {
+    "seed": 168,
+    "version": "rewrite-v2.1-negation-fix",
+    "variant": "ri_test",
+    "groups": [
+      "files",
+      "mail"
+    ]
+  },
+  {
+    "seed": 169,
+    "version": "three-v3",
+    "variant": "fi_test",
+    "groups": [
+      "merchant",
+      "files",
+      "mail"
+    ]
+  }
+]

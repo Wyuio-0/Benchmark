@@ -1,0 +1,8 @@
+{
+  "version": "v2",
+  "subscription_id": "sub_000001",
+  "merchant_id": "merchant",
+  "company_method": "pm_company",
+  "personal_method": "pm_personal",
+  "company_label": "青岚公司卡 尾号5186"
+}

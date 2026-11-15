@@ -1,0 +1,146 @@
+{
+  "now": "2026-11-14T10:00:00+08:00",
+  "current_actor": "owner",
+  "actors": [
+    {
+      "id": "owner",
+      "email_address": "manager@qinglan.example.test"
+    },
+    {
+      "id": "wang",
+      "email_address": "wang@qinglan.example.test",
+      "name": "小王"
+    },
+    {
+      "id": "chen",
+      "email_address": "chen@qinglan.example.test",
+      "name": "小陈"
+    }
+  ],
+  "accounts": [
+    {
+      "account_name": "采购邮箱",
+      "email_address": "purchasing@qinglan.example.test",
+      "owner_id": "owner",
+      "delegates": [
+        {
+          "actor_id": "wang",
+          "permissions": [
+            "read",
+            "send_as"
+          ]
+        }
+      ],
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "display_name": "采购邮箱",
+      "aliases": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "auto_reply_history": [],
+      "folders": [
+        {
+          "id": "folder-e16ffe64c56f44da868a1b877c9a4de9",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-b469b2847a7f4209b48501250a9531d4",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-122f904abb3745c394d94f0e5d430c0b",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-b134d76394d4482b8022423fbd58d011",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-4eb4bbc987124e6ab87e5f3592fb3230",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-cbe02f353670443182dff0e39d8110c7",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "wang-contact",
+      "name": "小王",
+      "emails": [
+        "wang@qinglan.example.test"
+      ],
+      "organization": "青岚采购",
+      "remark": "actor_id=wang",
+      "owner_id": "owner",
+      "scope": "personal",
+      "version": 1
+    },
+    {
+      "id": "chen-contact",
+      "name": "小陈",
+      "emails": [
+        "chen@qinglan.example.test"
+      ],
+      "organization": "青岚采购",
+      "remark": "actor_id=chen",
+      "owner_id": "owner",
+      "scope": "personal",
+      "version": 1
+    }
+  ],
+  "messages": [],
+  "sequence": 0,
+  "drafts": [],
+  "groups": [],
+  "rules": [],
+  "scheduled": [],
+  "submissions": [],
+  "events": [],
+  "sent_events": [],
+  "delivery_events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}
