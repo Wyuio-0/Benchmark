@@ -1,0 +1,1 @@
+客户查询只返回部门业务授权且属于当前受托项目范围的客户。业务组许可与项目范围限制分别由DEPARTMENT_CUSTOMERS和PROJECT_SCOPE提供。入口 access.can_view(customer_id)。

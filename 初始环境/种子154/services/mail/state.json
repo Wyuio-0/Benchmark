@@ -1,27 +1,34 @@
 {
   "now": "2026-11-14T10:00:00+08:00",
-  "current_actor": "owner",
+  "current_actor": "manager",
   "actors": [
     {
-      "id": "owner",
+      "id": "manager",
       "email_address": "manager@qinglan.example.test"
     },
     {
       "id": "wang",
-      "email_address": "wang@qinglan.example.test",
-      "name": "小王"
+      "email_address": "wang@qinglan.example.test"
     },
     {
       "id": "chen",
-      "email_address": "chen@qinglan.example.test",
-      "name": "小陈"
+      "email_address": "chen@qinglan.example.test"
     }
   ],
   "accounts": [
     {
       "account_name": "采购邮箱",
       "email_address": "purchasing@qinglan.example.test",
-      "owner_id": "owner",
+      "display_name": "采购部",
+      "owner_id": "manager",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
       "delegates": [
         {
           "actor_id": "wang",
@@ -31,15 +38,6 @@
           ]
         }
       ],
-      "mailboxes": [
-        "INBOX",
-        "Sent",
-        "Trash",
-        "Drafts",
-        "Archive",
-        "Junk"
-      ],
-      "display_name": "采购邮箱",
       "aliases": [],
       "version": 1,
       "categories": [],
@@ -55,7 +53,7 @@
       "auto_reply_history": [],
       "folders": [
         {
-          "id": "folder-e16ffe64c56f44da868a1b877c9a4de9",
+          "id": "folder-7d5a9a7aace547b9be55e2a096e072ef",
           "name": "INBOX",
           "path": "INBOX",
           "parent_id": null,
@@ -63,7 +61,7 @@
           "version": 1
         },
         {
-          "id": "folder-b469b2847a7f4209b48501250a9531d4",
+          "id": "folder-fc6b2ba1aec84dfcb2512bb03fb51c08",
           "name": "Sent",
           "path": "Sent",
           "parent_id": null,
@@ -71,7 +69,7 @@
           "version": 1
         },
         {
-          "id": "folder-122f904abb3745c394d94f0e5d430c0b",
+          "id": "folder-b78d424bbb264562aedc126acfc7bf7e",
           "name": "Trash",
           "path": "Trash",
           "parent_id": null,
@@ -79,7 +77,7 @@
           "version": 1
         },
         {
-          "id": "folder-b134d76394d4482b8022423fbd58d011",
+          "id": "folder-fa969e07f68649f786d84711b2a31cc3",
           "name": "Drafts",
           "path": "Drafts",
           "parent_id": null,
@@ -87,7 +85,7 @@
           "version": 1
         },
         {
-          "id": "folder-4eb4bbc987124e6ab87e5f3592fb3230",
+          "id": "folder-c0209152ff2e4682b3816c563538087d",
           "name": "Archive",
           "path": "Archive",
           "parent_id": null,
@@ -95,7 +93,7 @@
           "version": 1
         },
         {
-          "id": "folder-cbe02f353670443182dff0e39d8110c7",
+          "id": "folder-acd67898ff904beeb384d50a88dc70a3",
           "name": "Junk",
           "path": "Junk",
           "parent_id": null,
@@ -105,40 +103,79 @@
       ]
     }
   ],
-  "contacts": [
+  "sequence": 1,
+  "contacts": [],
+  "messages": [
     {
-      "id": "wang-contact",
-      "name": "小王",
-      "emails": [
-        "wang@qinglan.example.test"
+      "subject": "11月14日付款异常复核",
+      "body": "上午两笔付款需要当班采购复核员确认，付款批次P-1114-02。请按值守安排处理。",
+      "to": [
+        "purchasing@qinglan.example.test"
       ],
-      "organization": "青岚采购",
-      "remark": "actor_id=wang",
-      "owner_id": "owner",
-      "scope": "personal",
-      "version": 1
-    },
-    {
-      "id": "chen-contact",
-      "name": "小陈",
-      "emails": [
-        "chen@qinglan.example.test"
-      ],
-      "organization": "青岚采购",
-      "remark": "actor_id=chen",
-      "owner_id": "owner",
-      "scope": "personal",
-      "version": 1
+      "cc": [],
+      "reply_to": [],
+      "attachments": [],
+      "html": false,
+      "references": [],
+      "from": "treasury@qinglan.example.test",
+      "id": "mail-85615509e69649a48d24331729670cfc",
+      "account_name": "采购邮箱",
+      "timestamp": "2026-11-14T10:00:00+08:00",
+      "mailbox": "INBOX",
+      "bcc": [],
+      "sender_copy": false,
+      "version": 1,
+      "is_read": false,
+      "starred": false,
+      "categories": [],
+      "importance": "normal",
+      "message_id": "<incoming-fa480e4566334d4f8d03751709ebf051@mail.local>",
+      "thread_id": "thread-884f5b075e9548eba5838c60a68cd1d5"
     }
   ],
-  "messages": [],
-  "sequence": 0,
   "drafts": [],
   "groups": [],
   "rules": [],
   "scheduled": [],
   "submissions": [],
-  "events": [],
+  "events": [
+    {
+      "id": "event-dbb3853ce9e34bbfaba51b7df8088cd0",
+      "sequence": 1,
+      "at": "2026-11-14T10:00:00+08:00",
+      "actor_id": "mail-system",
+      "action": "receive_email",
+      "account_name": "采购邮箱",
+      "target": "mail-85615509e69649a48d24331729670cfc",
+      "before": null,
+      "after": {
+        "subject": "11月14日付款异常复核",
+        "body": "上午两笔付款需要当班采购复核员确认，付款批次P-1114-02。请按值守安排处理。",
+        "to": [
+          "purchasing@qinglan.example.test"
+        ],
+        "cc": [],
+        "reply_to": [],
+        "attachments": [],
+        "html": false,
+        "references": [],
+        "from": "treasury@qinglan.example.test",
+        "id": "mail-85615509e69649a48d24331729670cfc",
+        "account_name": "采购邮箱",
+        "timestamp": "2026-11-14T10:00:00+08:00",
+        "mailbox": "INBOX",
+        "bcc": [],
+        "sender_copy": false,
+        "version": 1,
+        "is_read": false,
+        "starred": false,
+        "categories": [],
+        "importance": "normal",
+        "message_id": "<incoming-fa480e4566334d4f8d03751709ebf051@mail.local>",
+        "thread_id": "thread-884f5b075e9548eba5838c60a68cd1d5"
+      }
+    }
+  ],
   "sent_events": [],
   "delivery_events": [],
   "mail_model_version": 2,

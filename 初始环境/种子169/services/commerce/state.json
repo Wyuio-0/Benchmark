@@ -56,6 +56,29 @@
         "terms": "按实际成交信息交付。"
       },
       "version": 1
+    },
+    "PJ-168": {
+      "id": "PJ-168",
+      "merchant_id": "repair-shop",
+      "name": "MX-4投影仪（二手）",
+      "kind": "physical",
+      "category": "二手设备",
+      "currency": "CNY",
+      "unit_amount_minor": 620000,
+      "stock": 1,
+      "active": true,
+      "description": "序列号PJ-168；银灰色机身；已完成收购入库。",
+      "policies": {
+        "returnable": true,
+        "exchangeable": true,
+        "return_days": 7,
+        "cancellation_allowed": true,
+        "delivery_countries": [
+          "CN"
+        ],
+        "terms": "按实际成交信息交付。"
+      },
+      "version": 1
     }
   },
   "carts": {},
@@ -75,6 +98,18 @@
       "unit_amount_minor": 620000,
       "stock": 1,
       "active": false,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    },
+    "PJ-168": {
+      "id": "PJ-168",
+      "product_id": "PJ-168",
+      "merchant_id": "repair-shop",
+      "options": {},
+      "unit_amount_minor": 620000,
+      "stock": 1,
+      "active": true,
       "currency": "CNY",
       "version": 1,
       "default": true

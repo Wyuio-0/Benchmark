@@ -1,24 +1,21 @@
 {
   "now": "2026-11-14T10:00:00+08:00",
-  "sequence": 0,
-  "counters": {},
-  "idempotency": {},
-  "current_merchant": "merchant_hemu",
-  "current_buyer": "customer_301",
+  "current_merchant": "merchant_156",
+  "current_buyer": "buyer_156",
   "merchants": {
-    "merchant_hemu": {
-      "id": "merchant_hemu",
-      "name": "青岚服务商店",
+    "merchant_156": {
+      "id": "merchant_156",
+      "name": "青岚劳保店",
       "currency": "CNY",
       "shipping_minor": 0,
       "version": 1
     }
   },
   "buyers": {
-    "customer_301": {
-      "id": "customer_301",
+    "buyer_156": {
+      "id": "buyer_156",
       "name": "赵先生",
-      "email": "buyer156@example.test",
+      "email": "customer156@example.test",
       "payment_methods": [],
       "version": 1,
       "default_address_id": null,
@@ -26,102 +23,92 @@
     }
   },
   "products": {
-    "prod_cup": {
-      "id": "prod_cup",
-      "merchant_id": "merchant_hemu",
+    "product_156": {
+      "id": "product_156",
+      "merchant_id": "merchant_156",
       "name": "防坠安全带",
-      "description": "双杯礼盒",
-      "unit_amount_minor": 10000,
+      "description": "单件防坠安全带",
+      "unit_amount_minor": 68000,
       "currency": "CNY",
       "stock": 0,
       "kind": "physical",
       "active": true,
-      "version": 1,
-      "category": "",
       "policies": {
         "returnable": true,
         "exchangeable": true,
         "return_days": 30,
         "cancellation_allowed": true,
-        "terms": "承受坠落冲击后不得再次投入使用。",
+        "terms": "承受坠落冲击后停止使用，不得再次投入使用。",
         "delivery_countries": []
-      }
+      },
+      "version": 1,
+      "category": ""
     }
   },
-  "carts": {},
   "orders": {
-    "O301": {
-      "id": "O301",
-      "merchant_id": "merchant_hemu",
-      "buyer_id": "customer_301",
+    "ORDER-156": {
+      "id": "ORDER-156",
+      "merchant_id": "merchant_156",
+      "buyer_id": "buyer_156",
       "status": "fulfilled",
-      "fulfillment_status": "fulfilled",
       "payment_status": "paid",
+      "fulfillment_status": "fulfilled",
       "currency": "CNY",
-      "total_minor": 8000,
+      "total_minor": 68000,
       "shipping_minor": 0,
       "items": [
         {
-          "product_id": "prod_cup",
+          "line_id": "ORDER-156_line_1",
+          "product_id": "product_156",
+          "sku_id": "product_156",
           "name": "防坠安全带",
+          "kind": "physical",
           "quantity": 1,
-          "unit_amount_minor": 8000,
-          "line_id": "O301_line_1",
-          "sku_id": "prod_cup",
           "fulfilled_quantity": 1,
+          "unit_amount_minor": 68000,
           "policies": {
             "returnable": true,
             "exchangeable": true,
             "return_days": 30,
             "cancellation_allowed": true,
-            "terms": "承受坠落冲击后不得再次投入使用。",
+            "terms": "承受坠落冲击后停止使用，不得再次投入使用。",
             "delivery_countries": []
-          },
-          "kind": "physical"
+          }
         }
       ],
-      "payment_id": "pay_301",
-      "created_at": "2026-11-10T10:00:00+08:00",
+      "payment_id": "payment_156",
+      "created_at": "2026-11-01T10:00:00+08:00",
+      "delivery_email": "customer156@example.test",
       "version": 1,
       "discount_minor": 0,
       "tax_minor": 0,
-      "subtotal_minor": 8000,
+      "subtotal_minor": 68000,
       "reservation_expires_at": null,
-      "note": "赵先生安全带订单",
+      "note": "",
       "discount_allocations": []
     }
   },
   "payments": {
-    "pay_301": {
-      "id": "pay_301",
-      "order_id": "O301",
-      "merchant_id": "merchant_hemu",
-      "buyer_id": "customer_301",
+    "payment_156": {
+      "id": "payment_156",
+      "merchant_id": "merchant_156",
+      "buyer_id": "buyer_156",
+      "order_id": "ORDER-156",
       "currency": "CNY",
-      "amount_minor": 8000,
-      "refunded_minor": 0,
+      "amount_minor": 68000,
       "status": "succeeded",
-      "payment_method": {
-        "cash_minor": 8000,
-        "coupon_minor": 2000,
-        "coupon_id": "CP-301"
-      },
-      "created_at": "2026-10-25T10:00:00+08:00",
+      "refunded_minor": 0,
+      "created_at": "2026-11-01T10:01:00+08:00",
       "version": 1
     }
   },
-  "refunds": {},
-  "refund_requests": {},
-  "plans": {},
-  "subscriptions": {},
-  "invoices": {},
   "skus": {
-    "prod_cup": {
-      "id": "prod_cup",
-      "product_id": "prod_cup",
-      "merchant_id": "merchant_hemu",
+    "product_156": {
+      "id": "product_156",
+      "product_id": "product_156",
+      "merchant_id": "merchant_156",
       "options": {},
-      "unit_amount_minor": 10000,
+      "unit_amount_minor": 68000,
       "stock": 0,
       "active": true,
       "currency": "CNY",
@@ -129,13 +116,19 @@
       "default": true
     }
   },
+  "carts": {},
+  "refunds": {},
+  "refund_requests": {},
+  "plans": {},
+  "subscriptions": {},
+  "invoices": {},
   "addresses": {},
   "favorites": {},
   "quotes": {},
   "shipping_options": {
-    "shipping_merchant_hemu": {
-      "id": "shipping_merchant_hemu",
-      "merchant_id": "merchant_hemu",
+    "shipping_merchant_156": {
+      "id": "shipping_merchant_156",
+      "merchant_id": "merchant_156",
       "name": "Standard",
       "amount_minor": 0,
       "countries": [],
@@ -148,41 +141,458 @@
   },
   "discounts": {},
   "cancellation_requests": {},
-  "shipments": {},
-  "aftersales": {
-    "AS-156": {
-      "id": "AS-156",
-      "order_id": "O301",
-      "buyer_id": "customer_301",
-      "merchant_id": "merchant_hemu",
-      "kind": "return_refund",
-      "status": "return_shipped",
-      "reason": "安全带受冲击后退货",
+  "shipments": {
+    "shipment_original": {
+      "id": "shipment_original",
+      "order_id": "ORDER-156",
+      "buyer_id": "buyer_156",
+      "merchant_id": "merchant_156",
       "items": [
         {
-          "line_id": "O301_line_1",
+          "line_id": "ORDER-156_line_1",
           "quantity": 1
         }
       ],
-      "evidence": [
+      "carrier": "本地承运",
+      "tracking_number": "TEST15601",
+      "status": "delivered",
+      "events": [],
+      "version": 1,
+      "shipped_at": "2026-11-02T10:00:00+08:00",
+      "delivered_at": "2026-11-04T10:00:00+08:00",
+      "buyer_confirmed_at": null
+    }
+  },
+  "aftersales": {
+    "as_000001": {
+      "id": "as_000001",
+      "order_id": "ORDER-156",
+      "buyer_id": "buyer_156",
+      "merchant_id": "merchant_156",
+      "kind": "return_refund",
+      "items": [
         {
-          "name": "使用及验收说明.txt",
-          "size_bytes": 154,
-          "sha256": "1f647d46ca9d245a2895a7e9ad7f8914ca79269cb3ddbf334b84e72116e1efde",
-          "content_base64": "6LW15YWI55Sf6YCA6LSn6K+05piO77ya5a6J5YWo5bim5Zyo5LiA5qyh5Z2g6JC95Lit5Y+X5Yqb77yM55Sz6K+36YCA6LSn5aSE55CG44CC5LuT5bqT6aqM5pS256Gu6K6k57uH5bim5Y+X5Yqb55eV6L+577yM56aB5q2i5L2c5Li65paw5ZOB6YeN5paw6ZSA5ZSu44CCCg=="
+          "line_id": "ORDER-156_line_1",
+          "quantity": 1
         }
       ],
-      "return_address": "青岚仓库",
-      "return_carrier": "测试物流",
-      "return_tracking_number": "RETURN-156",
-      "version": 1
+      "reason": "坠落受力后停用，申请退货",
+      "evidence": [
+        {
+          "name": "赵先生使用说明.txt",
+          "size": 136,
+          "sha256": "7c44dd95cc7394e4d767e4dac015aa7b06d9841a4ba577ba2a9495eb7cd88a00",
+          "content_base64": "6K6i5Y2VT1JERVItMTU277yM5a6J5YWo5bim57yW5Y+3RkFMTC0xNTYtMDHjgILkvb/nlKjkuK3lj5HnlJ/kuIDmrKHlnaDokL3vvIzlronlhajluKblj5flipvlkI7lt7LlgZzmraLkvb/nlKjvvIznlLPor7fpgIDotKflpITnva7jgIINCg=="
+        }
+      ],
+      "status": "return_shipped",
+      "created_at": "2026-11-14T10:00:00+08:00",
+      "version": 3,
+      "resolution_reason": "同意收到退件后办理售后",
+      "resolved_at": "2026-11-14T10:00:00+08:00",
+      "return_address": "青岚劳保店售后仓",
+      "updated_at": "2026-11-14T10:00:00+08:00",
+      "return_shipment": {
+        "carrier": "本地承运",
+        "tracking_number": "TEST156RETURN",
+        "submitted_at": "2026-11-14T10:00:00+08:00"
+      }
     }
   },
   "deliveries": {},
   "billing_profiles": {},
   "tax_invoice_requests": {},
   "payment_tokens": {},
-  "mutation_events": [],
+  "counters": {
+    "aftersales": 1
+  },
+  "idempotency": {},
+  "sequence": 3,
+  "mutation_events": [
+    {
+      "sequence": 1,
+      "at": "2026-11-14T10:00:00+08:00",
+      "role": "buyer",
+      "actor_id": "buyer_156",
+      "action": "request_aftersale",
+      "arguments": {
+        "order_id": "ORDER-156",
+        "kind": "return_refund",
+        "items": [
+          {
+            "line_id": "ORDER-156_line_1",
+            "quantity": 1
+          }
+        ],
+        "reason": "坠落受力后停用，申请退货",
+        "paths": [
+          "售后/赵先生使用说明.txt"
+        ]
+      },
+      "result": {
+        "aftersale": {
+          "id": "as_000001",
+          "order_id": "ORDER-156",
+          "buyer_id": "buyer_156",
+          "merchant_id": "merchant_156",
+          "kind": "return_refund",
+          "items": [
+            {
+              "line_id": "ORDER-156_line_1",
+              "quantity": 1
+            }
+          ],
+          "reason": "坠落受力后停用，申请退货",
+          "evidence": [
+            {
+              "name": "赵先生使用说明.txt",
+              "size": 136,
+              "sha256": "7c44dd95cc7394e4d767e4dac015aa7b06d9841a4ba577ba2a9495eb7cd88a00"
+            }
+          ],
+          "status": "pending",
+          "created_at": "2026-11-14T10:00:00+08:00",
+          "version": 1
+        },
+        "sequence": 1,
+        "replayed": false
+      },
+      "products": {
+        "product_156": {
+          "id": "product_156",
+          "merchant_id": "merchant_156",
+          "name": "防坠安全带",
+          "description": "单件防坠安全带",
+          "unit_amount_minor": 68000,
+          "currency": "CNY",
+          "stock": 0,
+          "kind": "physical",
+          "active": true,
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "承受坠落冲击后停止使用，不得再次投入使用。",
+            "delivery_countries": []
+          },
+          "version": 1,
+          "category": ""
+        }
+      },
+      "orders": {
+        "ORDER-156": {
+          "id": "ORDER-156",
+          "merchant_id": "merchant_156",
+          "buyer_id": "buyer_156",
+          "status": "fulfilled",
+          "payment_status": "paid",
+          "fulfillment_status": "fulfilled",
+          "currency": "CNY",
+          "total_minor": 68000,
+          "shipping_minor": 0,
+          "items": [
+            {
+              "line_id": "ORDER-156_line_1",
+              "product_id": "product_156",
+              "sku_id": "product_156",
+              "name": "防坠安全带",
+              "kind": "physical",
+              "quantity": 1,
+              "fulfilled_quantity": 1,
+              "unit_amount_minor": 68000,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "承受坠落冲击后停止使用，不得再次投入使用。",
+                "delivery_countries": []
+              }
+            }
+          ],
+          "payment_id": "payment_156",
+          "created_at": "2026-11-01T10:00:00+08:00",
+          "delivery_email": "customer156@example.test",
+          "version": 1,
+          "discount_minor": 0,
+          "tax_minor": 0,
+          "subtotal_minor": 68000,
+          "reservation_expires_at": null,
+          "note": "",
+          "discount_allocations": []
+        }
+      },
+      "payments": {
+        "payment_156": {
+          "id": "payment_156",
+          "merchant_id": "merchant_156",
+          "buyer_id": "buyer_156",
+          "order_id": "ORDER-156",
+          "currency": "CNY",
+          "amount_minor": 68000,
+          "status": "succeeded",
+          "refunded_minor": 0,
+          "created_at": "2026-11-01T10:01:00+08:00",
+          "version": 1
+        }
+      }
+    },
+    {
+      "sequence": 2,
+      "at": "2026-11-14T10:00:00+08:00",
+      "role": "merchant",
+      "actor_id": "merchant_156",
+      "action": "resolve_aftersale",
+      "arguments": {
+        "aftersale_id": "as_000001",
+        "approve": true,
+        "reason": "同意收到退件后办理售后",
+        "return_address": "青岚劳保店售后仓"
+      },
+      "result": {
+        "aftersale": {
+          "id": "as_000001",
+          "order_id": "ORDER-156",
+          "buyer_id": "buyer_156",
+          "merchant_id": "merchant_156",
+          "kind": "return_refund",
+          "items": [
+            {
+              "line_id": "ORDER-156_line_1",
+              "quantity": 1
+            }
+          ],
+          "reason": "坠落受力后停用，申请退货",
+          "evidence": [
+            {
+              "name": "赵先生使用说明.txt",
+              "size": 136,
+              "sha256": "7c44dd95cc7394e4d767e4dac015aa7b06d9841a4ba577ba2a9495eb7cd88a00"
+            }
+          ],
+          "status": "approved",
+          "created_at": "2026-11-14T10:00:00+08:00",
+          "version": 2,
+          "resolution_reason": "同意收到退件后办理售后",
+          "resolved_at": "2026-11-14T10:00:00+08:00",
+          "return_address": "青岚劳保店售后仓",
+          "updated_at": "2026-11-14T10:00:00+08:00"
+        },
+        "sequence": 2,
+        "replayed": false
+      },
+      "products": {
+        "product_156": {
+          "id": "product_156",
+          "merchant_id": "merchant_156",
+          "name": "防坠安全带",
+          "description": "单件防坠安全带",
+          "unit_amount_minor": 68000,
+          "currency": "CNY",
+          "stock": 0,
+          "kind": "physical",
+          "active": true,
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "承受坠落冲击后停止使用，不得再次投入使用。",
+            "delivery_countries": []
+          },
+          "version": 1,
+          "category": ""
+        }
+      },
+      "orders": {
+        "ORDER-156": {
+          "id": "ORDER-156",
+          "merchant_id": "merchant_156",
+          "buyer_id": "buyer_156",
+          "status": "fulfilled",
+          "payment_status": "paid",
+          "fulfillment_status": "fulfilled",
+          "currency": "CNY",
+          "total_minor": 68000,
+          "shipping_minor": 0,
+          "items": [
+            {
+              "line_id": "ORDER-156_line_1",
+              "product_id": "product_156",
+              "sku_id": "product_156",
+              "name": "防坠安全带",
+              "kind": "physical",
+              "quantity": 1,
+              "fulfilled_quantity": 1,
+              "unit_amount_minor": 68000,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "承受坠落冲击后停止使用，不得再次投入使用。",
+                "delivery_countries": []
+              }
+            }
+          ],
+          "payment_id": "payment_156",
+          "created_at": "2026-11-01T10:00:00+08:00",
+          "delivery_email": "customer156@example.test",
+          "version": 1,
+          "discount_minor": 0,
+          "tax_minor": 0,
+          "subtotal_minor": 68000,
+          "reservation_expires_at": null,
+          "note": "",
+          "discount_allocations": []
+        }
+      },
+      "payments": {
+        "payment_156": {
+          "id": "payment_156",
+          "merchant_id": "merchant_156",
+          "buyer_id": "buyer_156",
+          "order_id": "ORDER-156",
+          "currency": "CNY",
+          "amount_minor": 68000,
+          "status": "succeeded",
+          "refunded_minor": 0,
+          "created_at": "2026-11-01T10:01:00+08:00",
+          "version": 1
+        }
+      }
+    },
+    {
+      "sequence": 3,
+      "at": "2026-11-14T10:00:00+08:00",
+      "role": "buyer",
+      "actor_id": "buyer_156",
+      "action": "submit_return_shipment",
+      "arguments": {
+        "aftersale_id": "as_000001",
+        "carrier": "本地承运",
+        "tracking_number": "TEST156RETURN"
+      },
+      "result": {
+        "aftersale": {
+          "id": "as_000001",
+          "order_id": "ORDER-156",
+          "buyer_id": "buyer_156",
+          "merchant_id": "merchant_156",
+          "kind": "return_refund",
+          "items": [
+            {
+              "line_id": "ORDER-156_line_1",
+              "quantity": 1
+            }
+          ],
+          "reason": "坠落受力后停用，申请退货",
+          "evidence": [
+            {
+              "name": "赵先生使用说明.txt",
+              "size": 136,
+              "sha256": "7c44dd95cc7394e4d767e4dac015aa7b06d9841a4ba577ba2a9495eb7cd88a00"
+            }
+          ],
+          "status": "return_shipped",
+          "created_at": "2026-11-14T10:00:00+08:00",
+          "version": 3,
+          "resolution_reason": "同意收到退件后办理售后",
+          "resolved_at": "2026-11-14T10:00:00+08:00",
+          "return_address": "青岚劳保店售后仓",
+          "updated_at": "2026-11-14T10:00:00+08:00",
+          "return_shipment": {
+            "carrier": "本地承运",
+            "tracking_number": "TEST156RETURN",
+            "submitted_at": "2026-11-14T10:00:00+08:00"
+          }
+        },
+        "sequence": 3,
+        "replayed": false
+      },
+      "products": {
+        "product_156": {
+          "id": "product_156",
+          "merchant_id": "merchant_156",
+          "name": "防坠安全带",
+          "description": "单件防坠安全带",
+          "unit_amount_minor": 68000,
+          "currency": "CNY",
+          "stock": 0,
+          "kind": "physical",
+          "active": true,
+          "policies": {
+            "returnable": true,
+            "exchangeable": true,
+            "return_days": 30,
+            "cancellation_allowed": true,
+            "terms": "承受坠落冲击后停止使用，不得再次投入使用。",
+            "delivery_countries": []
+          },
+          "version": 1,
+          "category": ""
+        }
+      },
+      "orders": {
+        "ORDER-156": {
+          "id": "ORDER-156",
+          "merchant_id": "merchant_156",
+          "buyer_id": "buyer_156",
+          "status": "fulfilled",
+          "payment_status": "paid",
+          "fulfillment_status": "fulfilled",
+          "currency": "CNY",
+          "total_minor": 68000,
+          "shipping_minor": 0,
+          "items": [
+            {
+              "line_id": "ORDER-156_line_1",
+              "product_id": "product_156",
+              "sku_id": "product_156",
+              "name": "防坠安全带",
+              "kind": "physical",
+              "quantity": 1,
+              "fulfilled_quantity": 1,
+              "unit_amount_minor": 68000,
+              "policies": {
+                "returnable": true,
+                "exchangeable": true,
+                "return_days": 30,
+                "cancellation_allowed": true,
+                "terms": "承受坠落冲击后停止使用，不得再次投入使用。",
+                "delivery_countries": []
+              }
+            }
+          ],
+          "payment_id": "payment_156",
+          "created_at": "2026-11-01T10:00:00+08:00",
+          "delivery_email": "customer156@example.test",
+          "version": 1,
+          "discount_minor": 0,
+          "tax_minor": 0,
+          "subtotal_minor": 68000,
+          "reservation_expires_at": null,
+          "note": "",
+          "discount_allocations": []
+        }
+      },
+      "payments": {
+        "payment_156": {
+          "id": "payment_156",
+          "merchant_id": "merchant_156",
+          "buyer_id": "buyer_156",
+          "order_id": "ORDER-156",
+          "currency": "CNY",
+          "amount_minor": 68000,
+          "status": "succeeded",
+          "refunded_minor": 0,
+          "created_at": "2026-11-01T10:01:00+08:00",
+          "version": 1
+        }
+      }
+    }
+  ],
   "subscription_events": [],
   "payment_events": [],
   "refund_events": [],

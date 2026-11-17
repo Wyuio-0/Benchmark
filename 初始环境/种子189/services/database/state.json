@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-16T10:00:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "class_access",
+      "name": "课后美术班出勤及权限目录"
+    }
+  ],
+  "mutation_events": []
+}

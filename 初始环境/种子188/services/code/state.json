@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-16T10:00:00+08:00",
+  "sequence": 0,
+  "projects": [
+    {
+      "id": "well-lab",
+      "name": "北岭饮水检测数据导入",
+      "path": "projects/well-lab"
+    }
+  ]
+}

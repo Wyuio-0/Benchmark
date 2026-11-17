@@ -1,0 +1,15 @@
+{
+  "database_id": "class_access",
+  "principal_id": "intern_xu",
+  "resource_id": "learners",
+  "unsafe_role": "editor",
+  "safe_roles": [
+    "none"
+  ],
+  "schema_objects_allowed": [
+    "learners",
+    "role_catalog",
+    "access_grants",
+    "principals"
+  ]
+}

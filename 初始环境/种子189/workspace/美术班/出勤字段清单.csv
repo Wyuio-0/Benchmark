@@ -1,0 +1,5 @@
+﻿字段,用途,敏感级别
+learner_name,识别学员,内部
+parent_phone,联系监护人,敏感
+allergy_note,过敏及健康信息,高度敏感
+attendance_status,记录到课情况,内部

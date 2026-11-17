@@ -1,8 +1,7 @@
 {
   "groups": [
     "merchant",
-    "files",
-    "mail"
+    "files"
   ],
   "evaluator": "seed169",
   "variants": {

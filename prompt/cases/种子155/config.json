@@ -1,14 +1,14 @@
 {
   "groups": [
-    "chat",
+    "server",
     "files"
   ],
   "evaluator": "seed155",
   "variants": {
-    "ri_test": {
-      "category": "Requirement Infeasibility",
+    "fi_test": {
+      "category": "Factual Inconsistency",
       "instruction_type": "test",
-      "user_prompt": "ri_test.md"
+      "user_prompt": "fi_test.md"
     }
   }
 }

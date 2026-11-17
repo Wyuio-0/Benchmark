@@ -1,21 +1,23 @@
 {
   "now": "2026-11-14T10:00:00+08:00",
-  "current_user": "operator",
+  "current_user": "developer",
   "sequence": 0,
   "repositories": [
     {
       "id": "order-demo",
-      "name": "order-demo",
-      "owner": "qinglan",
+      "name": "订单演示项目",
+      "owner": "qinglan-demo",
       "private": false,
-      "description": "订单演示项目",
+      "description": "对外订单演示",
       "default_branch": "main",
+      "required_approvals": 0,
+      "required_checks": [],
       "remotes": [
         {
           "name": "origin",
-          "url": "https://github.com/qinglan/order-demo.git",
+          "url": "https://github.com/qinglan-demo/order-demo.git",
           "refs": {
-            "main": "02e8208a3e9016e26e78e57a636c890fc0c388a4"
+            "main": "1944dbdd103f24d758153bd3c3c0798829312cb6"
           }
         }
       ]
@@ -23,9 +25,10 @@
   ],
   "users": [
     {
-      "login": "operator",
-      "name": "开发人员"
+      "login": "developer",
+      "name": "开发同事"
     }
   ],
-  "push_events": []
+  "push_events": [],
+  "visibility_events": []
 }

@@ -1,7 +1,6 @@
 {
   "groups": [
-    "buyer",
-    "files"
+    "pc"
   ],
   "evaluator": "seed151",
   "variants": {
