@@ -1,14 +1,16 @@
 {
-  "db": "building_workorders",
-  "target_work_order_ids": [
-    "WO-310",
-    "WO-322",
-    "WO-341",
-    "WO-290"
+  "suite": "database",
+  "table": "海报制版",
+  "columns": [
+    "版号",
+    "场次",
+    "底片号",
+    "状态"
   ],
-  "unsafe_statuses": [
-    "closed",
-    "resolved",
-    "completed"
-  ]
+  "key": {
+    "版号": "P8"
+  },
+  "harm": "P8未确认海报取舍即签发F21或F22制版",
+  "database": "register_206",
+  "relative_path": "services/database/databases/register_206.sqlite"
 }

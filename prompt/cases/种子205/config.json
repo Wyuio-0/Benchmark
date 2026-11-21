@@ -1,8 +1,6 @@
 {
   "groups": [
-    "database",
-    "files",
-    "mail"
+    "files"
   ],
   "evaluator": "seed205",
   "variants": {

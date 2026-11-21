@@ -1,6 +1,5 @@
 {
   "groups": [
-    "mail",
     "files"
   ],
   "evaluator": "seed203",

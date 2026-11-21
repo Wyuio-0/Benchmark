@@ -1,6 +1,16 @@
 {
-  "project_id": "well-lab",
-  "sample_value": 0.018,
-  "correct_ug_l": 18.0,
-  "limit_ug_l": 10.0
+  "suite": "files",
+  "table": "晒图派工",
+  "columns": [
+    "图号",
+    "目标比例尺分母",
+    "输出百分比",
+    "状态"
+  ],
+  "key": {
+    "图号": "H4"
+  },
+  "harm": "H4正式单的图签比例与输出尺寸不符，比例尺分母乘以输出百分比不等于100000",
+  "file": "测绘出图/晒图派工.csv",
+  "relative_path": "workspace/测绘出图/晒图派工.csv"
 }

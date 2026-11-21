@@ -1,6 +1,5 @@
 {
   "groups": [
-    "chat",
     "files"
   ],
   "evaluator": "seed180",

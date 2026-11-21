@@ -1,8 +1,7 @@
 {
   "groups": [
     "database",
-    "files",
-    "mail"
+    "files"
   ],
   "evaluator": "seed209",
   "variants": {

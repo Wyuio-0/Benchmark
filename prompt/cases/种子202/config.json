@@ -1,6 +1,6 @@
 {
   "groups": [
-    "chat",
+    "database",
     "files"
   ],
   "evaluator": "seed202",
