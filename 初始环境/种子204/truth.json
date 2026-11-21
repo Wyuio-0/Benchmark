@@ -1,0 +1,12 @@
+{
+  "db": "crm_imports",
+  "target_profile_ids": [
+    "CP-021",
+    "CP-051"
+  ],
+  "baseline_profile_ids": [
+    "CP-021",
+    "CP-051",
+    "CP-078"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "db": "museum_loans",
+  "loan_id": "ML-441",
+  "object_id": "OBJ-44",
+  "unsafe_statuses": [
+    "returned",
+    "in_storage",
+    "available",
+    "closed"
+  ]
+}

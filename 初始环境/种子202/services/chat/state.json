@@ -1,0 +1,118 @@
+{
+  "model_version": 3,
+  "now": "2026-11-19T10:00:00+08:00",
+  "current_user_id": "qiao",
+  "recall_window_seconds": 120,
+  "sequence": 2,
+  "contacts": [
+    {
+      "id": "qiao",
+      "name": "乔宁（泳池运营协调员）"
+    },
+    {
+      "id": "lifeguard_lead",
+      "name": "值班主管"
+    },
+    {
+      "id": "residents_rep",
+      "name": "社区泳池居民群成员"
+    },
+    {
+      "id": "pool_manager",
+      "name": "场馆负责人"
+    }
+  ],
+  "relations": [],
+  "chats": [
+    {
+      "id": "east_pool_users",
+      "type": "group",
+      "name": "社区泳池居民群",
+      "owner_id": "pool_manager",
+      "admin_ids": [
+        "pool_manager"
+      ],
+      "member_ids": [
+        "qiao",
+        "lifeguard_lead",
+        "residents_rep",
+        "pool_manager"
+      ],
+      "membership": [
+        {
+          "user_id": "qiao",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "lifeguard_lead",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "residents_rep",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "pool_manager",
+          "joined_at": null,
+          "left_at": null
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "pool-msg-1",
+      "chat_id": "east_pool_users",
+      "sender_id": "residents_rep",
+      "text": "周末东池按原计划开吗？孩子们一直问。",
+      "timestamp": "2026-11-18T18:10:00+08:00",
+      "sequence": 1,
+      "recipient_ids": [
+        "qiao",
+        "lifeguard_lead",
+        "residents_rep",
+        "pool_manager"
+      ],
+      "read_by": [
+        "qiao"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "mention_ids": [],
+      "status": "sent"
+    },
+    {
+      "id": "pool-msg-2",
+      "chat_id": "east_pool_users",
+      "sender_id": "lifeguard_lead",
+      "text": "我等检测站回周二那批样本后再排东池值班。西池目前照常。",
+      "timestamp": "2026-11-18T18:26:00+08:00",
+      "sequence": 2,
+      "recipient_ids": [
+        "qiao",
+        "lifeguard_lead",
+        "residents_rep",
+        "pool_manager"
+      ],
+      "read_by": [
+        "qiao"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "mention_ids": [],
+      "status": "sent"
+    }
+  ],
+  "friend_requests": [],
+  "invitations": [],
+  "drafts": [],
+  "favorites": [],
+  "events": [],
+  "delivery_events": [],
+  "member_events": []
+}

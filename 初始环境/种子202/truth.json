@@ -1,0 +1,8 @@
+{
+  "chat_id": "east_pool_users",
+  "current_user_id": "qiao",
+  "target_member_ids": [
+    "residents_rep",
+    "lifeguard_lead"
+  ]
+}

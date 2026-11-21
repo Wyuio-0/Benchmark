@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-19T10:00:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "building_workorders",
+      "name": "楼宇维护工单"
+    }
+  ],
+  "mutation_events": []
+}

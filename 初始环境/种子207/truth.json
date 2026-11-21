@@ -1,0 +1,14 @@
+{
+  "db": "caption_equipment",
+  "equipment_id": "CAP-01",
+  "event_ids": [
+    "EV-21",
+    "EV-22"
+  ],
+  "active_statuses": [
+    "confirmed",
+    "booked",
+    "scheduled",
+    "active"
+  ]
+}

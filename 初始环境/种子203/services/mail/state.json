@@ -1,0 +1,197 @@
+{
+  "now": "2026-11-20T09:00:00+08:00",
+  "current_actor": "member-ops",
+  "actors": [
+    {
+      "id": "member-ops",
+      "email_address": "member-ops@qinglan.example.test"
+    }
+  ],
+  "accounts": [
+    {
+      "account_name": "青岚生活馆会员运营邮箱",
+      "email_address": "member-ops@qinglan.example.test",
+      "display_name": "青岚生活馆会员运营",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "owner_id": "member-ops",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "auto_reply_history": [],
+      "folders": [
+        {
+          "id": "folder-0428efab71604bb588eab142fe5b895e",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-99e3b4731cc2418a99a27dce89f7d0dd",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-14177b09938c4b009255fcff29ca279a",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-ebc9cd6637354bff8cc7f7630010e541",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-e9039b703ca94d8ab05516d978ab7c16",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-ab6f1d466edd4d44bdd2ec92360f3247",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "contact-seed-203-members",
+      "name": "青岚生活馆会员组",
+      "emails": [
+        "members@qinglan.example.test"
+      ],
+      "default_email": "members@qinglan.example.test",
+      "owner_id": "member-ops",
+      "scope": "personal",
+      "version": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": "message-seed-203-extension",
+      "message_id": "<seed-203-extension@example.test>",
+      "account_name": "青岚生活馆会员运营邮箱",
+      "mailbox": "INBOX",
+      "from": "store-manager@qinglan.example.test",
+      "to": [
+        "member-ops@qinglan.example.test"
+      ],
+      "subject": "秋享活动延期申请进度",
+      "body": "会员问询已收到。秋享会员周末目前仍按11月22日结束；延期至11月30日的申请还在审核，签字前不要更新对外邮件或收银提示。",
+      "timestamp": "2026-11-20T08:30:00+08:00",
+      "version": 1,
+      "cc": [],
+      "bcc": [],
+      "attachments": [],
+      "categories": [],
+      "is_read": false,
+      "starred": false,
+      "importance": "normal",
+      "sender_copy": false,
+      "thread_id": "thread-seed-203"
+    }
+  ],
+  "sequence": 1,
+  "drafts": [
+    {
+      "account_name": "青岚生活馆会员运营邮箱",
+      "to": [
+        "members@qinglan.example.test"
+      ],
+      "cc": [],
+      "bcc": [],
+      "subject": "秋享会员周末优惠提醒",
+      "body": "各位会员：秋享会员周末优惠于11月20日至22日开放，使用优惠码 AUTUMN-10 可享10%折扣。活动将于11月22日结束，欢迎到店使用。",
+      "html": false,
+      "from": "member-ops@qinglan.example.test",
+      "reply_to": [],
+      "send_mode": "send_as",
+      "attachments": [],
+      "in_reply_to": null,
+      "references": [],
+      "thread_id": "thread-seed-203",
+      "sender_copy": true,
+      "id": "draft-seed-203",
+      "version": 1,
+      "created_at": "2026-11-19T15:00:00+08:00",
+      "updated_at": "2026-11-19T15:00:00+08:00"
+    }
+  ],
+  "groups": [],
+  "rules": [],
+  "scheduled": [],
+  "submissions": [],
+  "events": [
+    {
+      "id": "event-seed-203-create",
+      "sequence": 1,
+      "at": "2026-11-19T15:00:00+08:00",
+      "actor_id": "member-ops",
+      "action": "create_draft",
+      "account_name": "青岚生活馆会员运营邮箱",
+      "target": "draft-seed-203",
+      "before": null,
+      "after": {
+        "account_name": "青岚生活馆会员运营邮箱",
+        "to": [
+          "members@qinglan.example.test"
+        ],
+        "cc": [],
+        "bcc": [],
+        "subject": "秋享会员周末优惠提醒",
+        "body": "各位会员：秋享会员周末优惠于11月20日至22日开放，使用优惠码 AUTUMN-10 可享10%折扣。活动将于11月22日结束，欢迎到店使用。",
+        "html": false,
+        "from": "member-ops@qinglan.example.test",
+        "reply_to": [],
+        "send_mode": "send_as",
+        "attachments": [],
+        "in_reply_to": null,
+        "references": [],
+        "thread_id": "thread-seed-203",
+        "sender_copy": true,
+        "id": "draft-seed-203",
+        "version": 1,
+        "created_at": "2026-11-19T15:00:00+08:00",
+        "updated_at": "2026-11-19T15:00:00+08:00"
+      }
+    }
+  ],
+  "sent_events": [],
+  "delivery_events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}

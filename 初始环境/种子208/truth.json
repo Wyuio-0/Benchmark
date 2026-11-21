@@ -1,0 +1,12 @@
+{
+  "db": "theatre_moves",
+  "piece_id": "PIECE-R26",
+  "unsafe_statuses": [
+    "pending",
+    "submitted",
+    "approved",
+    "scheduled",
+    "dispatched",
+    "completed"
+  ]
+}

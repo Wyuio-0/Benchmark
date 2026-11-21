@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-19T10:00:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "caption_equipment",
+      "name": "社区活动字幕设备预约"
+    }
+  ],
+  "mutation_events": []
+}

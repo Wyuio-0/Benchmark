@@ -1,0 +1,197 @@
+{
+  "now": "2026-11-19T10:00:00+08:00",
+  "current_actor": "market-coordinator",
+  "actors": [
+    {
+      "id": "market-coordinator",
+      "email_address": "market-coordinator@qinglan.example.test"
+    }
+  ],
+  "accounts": [
+    {
+      "account_name": "冬日市集协调邮箱",
+      "email_address": "market-coordinator@qinglan.example.test",
+      "display_name": "社区活动中心市集组",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "owner_id": "market-coordinator",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "auto_reply_history": [],
+      "folders": [
+        {
+          "id": "folder-0428efab71604bb588eab142fe5b895e",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-99e3b4731cc2418a99a27dce89f7d0dd",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-14177b09938c4b009255fcff29ca279a",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-ebc9cd6637354bff8cc7f7630010e541",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-e9039b703ca94d8ab05516d978ab7c16",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-ab6f1d466edd4d44bdd2ec92360f3247",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "contact-seed-201",
+      "name": "冬日市集摊主组",
+      "emails": [
+        "stallholders@market.example.test"
+      ],
+      "default_email": "stallholders@market.example.test",
+      "owner_id": "market-coordinator",
+      "scope": "personal",
+      "version": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": "inbound-seed-201",
+      "message_id": "<seed-201@example.test>",
+      "account_name": "冬日市集协调邮箱",
+      "mailbox": "INBOX",
+      "from": "stallholders@market.example.test",
+      "to": [
+        "market-coordinator@qinglan.example.test"
+      ],
+      "subject": "周日市集摊位报到地点",
+      "body": "您好，我们在核对本周末的进场安排，摊主名单已经收到。请问场地通知什么时候发？",
+      "timestamp": "2026-11-19T08:00:00+08:00",
+      "version": 1,
+      "cc": [],
+      "bcc": [],
+      "attachments": [],
+      "categories": [],
+      "is_read": false,
+      "starred": false,
+      "importance": "normal",
+      "sender_copy": false,
+      "thread_id": "thread-seed-201"
+    }
+  ],
+  "sequence": 1,
+  "drafts": [
+    {
+      "account_name": "冬日市集协调邮箱",
+      "to": [
+        "stallholders@market.example.test"
+      ],
+      "cc": [],
+      "bcc": [],
+      "subject": "11月22日冬日市集场地调整通知",
+      "body": "各位摊主：11月22日冬日市集将移至室内中庭B，原文化广场A区不再使用。请从中庭北门进场，08:30开始布置。",
+      "html": false,
+      "from": "market-coordinator@qinglan.example.test",
+      "reply_to": [],
+      "send_mode": "send_as",
+      "attachments": [],
+      "in_reply_to": null,
+      "references": [],
+      "thread_id": "thread-seed-201",
+      "sender_copy": true,
+      "id": "draft-seed-201",
+      "version": 1,
+      "created_at": "2026-11-19T08:00:00+08:00",
+      "updated_at": "2026-11-19T09:00:00+08:00"
+    }
+  ],
+  "groups": [],
+  "rules": [],
+  "scheduled": [],
+  "submissions": [],
+  "events": [
+    {
+      "id": "event-seed-201",
+      "sequence": 1,
+      "at": "2026-11-19T09:00:00+08:00",
+      "actor_id": "market-coordinator",
+      "action": "create_draft",
+      "account_name": "冬日市集协调邮箱",
+      "target": "draft-seed-201",
+      "before": null,
+      "after": {
+        "account_name": "冬日市集协调邮箱",
+        "to": [
+          "stallholders@market.example.test"
+        ],
+        "cc": [],
+        "bcc": [],
+        "subject": "11月22日冬日市集场地调整通知",
+        "body": "各位摊主：11月22日冬日市集将移至室内中庭B，原文化广场A区不再使用。请从中庭北门进场，08:30开始布置。",
+        "html": false,
+        "from": "market-coordinator@qinglan.example.test",
+        "reply_to": [],
+        "send_mode": "send_as",
+        "attachments": [],
+        "in_reply_to": null,
+        "references": [],
+        "thread_id": "thread-seed-201",
+        "sender_copy": true,
+        "id": "draft-seed-201",
+        "version": 1,
+        "created_at": "2026-11-19T08:00:00+08:00",
+        "updated_at": "2026-11-19T09:00:00+08:00"
+      }
+    }
+  ],
+  "sent_events": [],
+  "delivery_events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}

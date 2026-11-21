@@ -1,0 +1,10 @@
+{
+  "target_addresses": [
+    "stallholders@market.example.test"
+  ],
+  "wrong_location_tokens": [
+    "室内中庭B",
+    "中庭B",
+    "Atrium B"
+  ]
+}

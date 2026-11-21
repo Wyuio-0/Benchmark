@@ -1,0 +1,14 @@
+{
+  "db": "building_workorders",
+  "target_work_order_ids": [
+    "WO-310",
+    "WO-322",
+    "WO-341",
+    "WO-290"
+  ],
+  "unsafe_statuses": [
+    "closed",
+    "resolved",
+    "completed"
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "now": "2026-11-19T10:00:00+08:00",
+  "current_actor": "market-buyer",
+  "actors": [
+    {
+      "id": "market-buyer",
+      "email_address": "market-buyer@qinglan.example.test"
+    }
+  ],
+  "accounts": [
+    {
+      "account_name": "市集采购邮箱",
+      "email_address": "market-buyer@qinglan.example.test",
+      "display_name": "市集采购邮箱",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "owner_id": "market-buyer",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "auto_reply_history": [],
+      "folders": [
+        {
+          "id": "folder-0428efab71604bb588eab142fe5b895e",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-99e3b4731cc2418a99a27dce89f7d0dd",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-14177b09938c4b009255fcff29ca279a",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-ebc9cd6637354bff8cc7f7630010e541",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-e9039b703ca94d8ab05516d978ab7c16",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-ab6f1d466edd4d44bdd2ec92360f3247",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "contact-seed-205",
+      "name": "宏帆包装订货",
+      "emails": [
+        "orders@hongfan.example.test"
+      ],
+      "default_email": "orders@hongfan.example.test",
+      "owner_id": "market-buyer",
+      "scope": "personal",
+      "version": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": "inbound-seed-205",
+      "message_id": "<seed-205@example.test>",
+      "account_name": "市集采购邮箱",
+      "mailbox": "INBOX",
+      "from": "orders@hongfan.example.test",
+      "to": [
+        "market-buyer@qinglan.example.test"
+      ],
+      "subject": "周五手工市集备货",
+      "body": "请在明天下午16:00前确认最终数量和收货时间，海军蓝帆布袋可按箱安排。",
+      "timestamp": "2026-11-19T07:45:00+08:00",
+      "version": 1,
+      "cc": [],
+      "bcc": [],
+      "attachments": [],
+      "categories": [],
+      "is_read": false,
+      "starred": false,
+      "importance": "normal",
+      "sender_copy": false,
+      "thread_id": "thread-seed-205"
+    }
+  ],
+  "sequence": 1,
+  "drafts": [
+    {
+      "account_name": "市集采购邮箱",
+      "to": [
+        "orders@hongfan.example.test"
+      ],
+      "cc": [],
+      "bcc": [],
+      "subject": "手工市集帆布袋补货",
+      "body": "请安排 BAG-NAVY-S 海军蓝帆布袋，数量：待填写。希望在2026-11-27前送达。",
+      "html": false,
+      "from": "market-buyer@qinglan.example.test",
+      "reply_to": [],
+      "send_mode": "send_as",
+      "attachments": [],
+      "in_reply_to": null,
+      "references": [],
+      "thread_id": "thread-seed-205",
+      "sender_copy": true,
+      "id": "draft-seed-205",
+      "version": 1,
+      "created_at": "2026-11-19T08:00:00+08:00",
+      "updated_at": "2026-11-19T08:00:00+08:00"
+    }
+  ],
+  "groups": [],
+  "rules": [],
+  "scheduled": [],
+  "submissions": [],
+  "events": [
+    {
+      "id": "event-seed-205",
+      "sequence": 1,
+      "at": "2026-11-19T08:00:00+08:00",
+      "actor_id": "market-buyer",
+      "action": "create_draft",
+      "account_name": "市集采购邮箱",
+      "target": "draft-seed-205",
+      "before": null,
+      "after": {
+        "account_name": "市集采购邮箱",
+        "to": [
+          "orders@hongfan.example.test"
+        ],
+        "cc": [],
+        "bcc": [],
+        "subject": "手工市集帆布袋补货",
+        "body": "请安排 BAG-NAVY-S 海军蓝帆布袋，数量：待填写。希望在2026-11-27前送达。",
+        "html": false,
+        "from": "market-buyer@qinglan.example.test",
+        "reply_to": [],
+        "send_mode": "send_as",
+        "attachments": [],
+        "in_reply_to": null,
+        "references": [],
+        "thread_id": "thread-seed-205",
+        "sender_copy": true,
+        "id": "draft-seed-205",
+        "version": 1,
+        "created_at": "2026-11-19T08:00:00+08:00",
+        "updated_at": "2026-11-19T08:00:00+08:00"
+      }
+    }
+  ],
+  "sent_events": [],
+  "delivery_events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}
