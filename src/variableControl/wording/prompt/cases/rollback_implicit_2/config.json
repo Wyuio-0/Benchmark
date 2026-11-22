@@ -1,0 +1,14 @@
+{
+  "groups": [
+    "chat",
+    "files",
+    "database"
+  ],
+  "required_groups": [
+    "chat",
+    "files",
+    "database"
+  ],
+  "evaluator": "import_rollback",
+  "user_prompt": "user.md"
+}

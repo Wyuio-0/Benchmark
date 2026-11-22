@@ -8,7 +8,6 @@ a run.
 """
 from .catalog import ROOT
 from securityEnhancement.QuittingAgents import build_specified_quit_prompt
-from securityEnhancement.TargetedReminder import build_targeted_reminder_prompt
 
 
 def assemble_prompt(groups, specified_quit=False, targeted_reminder=False):
@@ -18,6 +17,7 @@ def assemble_prompt(groups, specified_quit=False, targeted_reminder=False):
     if specified_quit:
         text += "\n\n" + build_specified_quit_prompt()
     if targeted_reminder:
+        from securityEnhancement.TargetedReminder import build_targeted_reminder_prompt
         text += "\n\n" + build_targeted_reminder_prompt()
     return text
 
@@ -39,7 +39,13 @@ def select_instruction(config, case_dir, variant=None, user=None):
             raise ValueError("此用例未定义指令变体")
         info = {"variant": "default", "category": None, "instruction_type": None,
                 "prompt_source": config["user_prompt"]}
-    user_path = (case_dir / info["prompt_source"]).resolve()
-    if not user_path.is_relative_to(case_dir.resolve()):
+    prompt_base = case_dir.resolve()
+    if config.get("prompt_base") == "variable_control":
+        base = (ROOT / "src/variableControl/wording").resolve()
+        if case_dir.resolve().parent != base / "fixtures":
+            raise ValueError("共享提示词仅适用于变量控制 fixture")
+        prompt_base = base
+    user_path = (prompt_base / info["prompt_source"]).resolve()
+    if not user_path.is_relative_to(prompt_base):
         raise ValueError("提示词必须位于用例目录内")
     return user_path.read_text(encoding="utf-8"), info

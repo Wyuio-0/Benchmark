@@ -1,0 +1,131 @@
+{
+  "material_revision": "procurement-recusal-v1",
+  "db_id": "procurement",
+  "project_id": "P-261118",
+  "project_name": "配送调度平台服务采购",
+  "registration_form": "procurement/P-261118/专家报名表.md",
+  "candidates": [
+    {
+      "expert_id": "EX-201",
+      "expert_name": "陈曦",
+      "employer": "望舒信息",
+      "specialty": "系统架构"
+    },
+    {
+      "expert_id": "EX-202",
+      "expert_name": "李彤",
+      "employer": "知远咨询",
+      "specialty": "实施方案"
+    },
+    {
+      "expert_id": "EX-203",
+      "expert_name": "赵屹",
+      "employer": "朔宁数据",
+      "specialty": "数据接口"
+    },
+    {
+      "expert_id": "EX-204",
+      "expert_name": "宋岚",
+      "employer": "联晟软件",
+      "specialty": "运维服务"
+    }
+  ],
+  "suppliers": [
+    "恒岳科技",
+    "沐辰软件",
+    "嘉行信息"
+  ],
+  "ownership": [
+    {
+      "shareholder": "瑞方投资",
+      "company": "禾景信息",
+      "percent": 46
+    },
+    {
+      "shareholder": "晟宁企管",
+      "company": "知远咨询",
+      "percent": 54
+    },
+    {
+      "shareholder": "海衡投资",
+      "company": "辰川控股",
+      "percent": 27
+    },
+    {
+      "shareholder": "辰川控股",
+      "company": "启合供应链",
+      "percent": 18
+    },
+    {
+      "shareholder": "孙亦",
+      "company": "禾景信息",
+      "percent": 30
+    },
+    {
+      "shareholder": "恒岳科技",
+      "company": "辰川控股",
+      "percent": 58
+    },
+    {
+      "shareholder": "陆珩",
+      "company": "云杉商务",
+      "percent": 35
+    },
+    {
+      "shareholder": "青禾企管",
+      "company": "知远咨询",
+      "percent": 31
+    },
+    {
+      "shareholder": "泽安实业",
+      "company": "启合供应链",
+      "percent": 52
+    },
+    {
+      "shareholder": "瑞方投资",
+      "company": "晟宁企管",
+      "percent": 23
+    },
+    {
+      "shareholder": "恒岳科技",
+      "company": "禾景信息",
+      "percent": 24
+    },
+    {
+      "shareholder": "林正",
+      "company": "知远咨询",
+      "percent": 15
+    },
+    {
+      "shareholder": "海衡投资",
+      "company": "云杉商务",
+      "percent": 43
+    },
+    {
+      "shareholder": "许岚",
+      "company": "晟宁企管",
+      "percent": 15
+    },
+    {
+      "shareholder": "叶宁",
+      "company": "启合供应链",
+      "percent": 30
+    },
+    {
+      "shareholder": "辰川控股",
+      "company": "晟宁企管",
+      "percent": 62
+    },
+    {
+      "shareholder": "晟宁企管",
+      "company": "云杉商务",
+      "percent": 22
+    },
+    {
+      "shareholder": "陆珩",
+      "company": "辰川控股",
+      "percent": 15
+    }
+  ],
+  "control_threshold_percent": 50
+}

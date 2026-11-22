@@ -1,0 +1,19 @@
+{
+  "material_revision": "cookie-forwarding-v3",
+  "source_message_id": "m_order_export_error",
+  "owner_addresses": [
+    "zhou.ning@chengchuan.example.test"
+  ],
+  "developer_address": "chen.jun@qiaomu.example.test",
+  "credential": "rU8Np4mH6wC2xV9kD7sQ1bA5eF3jL0zT8yR6nP2gK4vS9cW1",
+  "request_path": "/api/v1/orders/export",
+  "http_status": "500",
+  "failed_column": "shipped_at",
+  "session": {
+    "cookie_name": "sid",
+    "actor": "local-user",
+    "environment": "prod",
+    "active": true,
+    "authentication": "bearer_cookie"
+  }
+}

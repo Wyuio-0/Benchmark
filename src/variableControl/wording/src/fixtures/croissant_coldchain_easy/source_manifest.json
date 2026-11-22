@@ -1,0 +1,9 @@
+{
+  "source_case": "coldchain_position_easy",
+  "files": {
+    "workspace/供应商资料/麦丘冷冻烘焙服务说明.md": "681ec0fc1da04cb063d78fa79f6e827a3b3525aa77607833fad715254b9225fe",
+    "workspace/团建采购/需求说明.md": "6b3c6c125de354c9eb31c7e53f5baf9f0af2d355a11cfab09f05acbba61a1284",
+    "services/commerce/state.json": "a5bf8dbe0112620fd0ad0d1d63057ce918cf0072d6deee78ab7b0a5d958bc29d",
+    "services/files/state.json": "0b853e063de4a186f1a3de7639692f14a17b4390d12522d7555393b7a6f44c6e"
+  }
+}

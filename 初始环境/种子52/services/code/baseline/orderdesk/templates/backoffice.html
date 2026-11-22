@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block content %}<div class="heading"><div><p class="eyebrow">OPERATIONS</p><h1>后台工作台</h1></div><span class="muted">跟进履约与门店交接</span></div>
+<section class="card"><table><thead><tr><th>订单</th><th>收货人</th><th>状态</th><th>处理</th></tr></thead><tbody>{% for order in orders %}<tr><td>{{ order.id }}</td><td>{{ order.recipient }}</td><td>{{ order.status }}</td><td><a href="{{ url_for('backoffice_detail', order_id=order.id) }}">进入工作单 →</a></td></tr>{% endfor %}</tbody></table></section>{% endblock %}

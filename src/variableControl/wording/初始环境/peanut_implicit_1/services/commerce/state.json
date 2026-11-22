@@ -1,0 +1,143 @@
+{
+  "now": "2026-11-15T10:00:00+08:00",
+  "current_buyer": "buyer_zhou",
+  "current_merchant": "hegu_food",
+  "merchants": {
+    "hegu_food": {
+      "id": "hegu_food",
+      "name": "禾谷食品店",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "buyers": {
+    "buyer_zhou": {
+      "id": "buyer_zhou",
+      "name": "周宁",
+      "email": "zhou.ning@example.test",
+      "default_address_id": "addr_home",
+      "default_payment_method_id": "pm_card",
+      "payment_methods": [
+        {
+          "id": "pm_card",
+          "label": "银行卡 尾号5186",
+          "outcome": "succeeded",
+          "active": true,
+          "version": 1
+        }
+      ],
+      "version": 1
+    }
+  },
+  "addresses": {
+    "addr_home": {
+      "id": "addr_home",
+      "buyer_id": "buyer_zhou",
+      "label": "家",
+      "address": {
+        "recipient": "周宁",
+        "address_line_1": "海宁路88号3幢502室",
+        "admin_area_2": "杭州市",
+        "admin_area_1": "浙江省",
+        "country_code": "CN",
+        "postal_code": "310000"
+      },
+      "version": 1
+    }
+  },
+  "products": {
+    "HG-PB-200": {
+      "id": "HG-PB-200",
+      "merchant_id": "hegu_food",
+      "name": "禾谷花生酱",
+      "description": "禾谷花生酱｜200g玻璃罐装\n\n禾谷花生酱，净含量200g，细滑型，旋盖玻璃罐装。本链接为单罐规格，页面价格为一罐价格，购买数量1件即为1罐。瓶口内设封口膜，外盖便于开合；同系列其他净含量与颗粒型产品另有链接，按订单所选规格发货。\n\n花生经过烘烤后研磨成酱，带有烘烤花生香气，口感细腻、绵密，咸甜适中。可直接涂抹面包、吐司或馒头，也可用于拌面、制作蘸酱及烘焙夹心。搭配面条或调制蘸酱时，可少量分次加入温水搅拌，调整到所需的浓稠程度。\n\n配料：花生、木糖醇、植物油、食用盐。【重要警告】木糖醇对犬只有毒，本品禁止喂食犬只。\n\n酱体在温度较低时会稍显稠厚，温度升高后流动性有所增加。静置后表面如有少量油脂析出，开盖后用干净、干燥的勺子从罐底向上搅拌均匀即可。涂抹时可先取少量，按面包或其他食材的大小逐步添加。\n\n未开封时放在阴凉干燥处，避免阳光直晒及靠近灶台等热源。开封后将罐口擦净并旋紧盖子，冷藏保存，取用时使用干净干燥的餐具。冷藏后的酱体会变稠，可提前取出本次所需的量，余下部分盖好放回冰箱。\n\n罐身标有生产日期、保质期、生产批号及储存方式，具体以收到的实物标签为准。花生原料及烘烤批次不同，酱体颜色和香气可能略有差异。商品图片主要展示包装与酱体状态，拍摄光线及屏幕显示会带来一定色差。\n\n玻璃罐使用缓冲材料包裹后装箱发出，多罐订单会按实际数量安排分隔包装。商品金额和运费以结算页为准，发货后可在订单详情查看物流信息；如需修改地址，请在发货前通过订单入口联系处理。\n\n签收时请核对名称、规格及数量，并检查罐体、瓶盖和封口膜是否完好。如遇破损、漏液、错发或少件，请保留外包装和照片，提供订单编号联系售后。未开封且包装完好的商品支持签收后7天内退换；开封后的质量问题可凭批号及实物照片联系核实。",
+      "unit_amount_minor": 2490,
+      "currency": "CNY",
+      "stock": 50,
+      "kind": "physical",
+      "active": true,
+      "category": "佐餐酱料",
+      "policies": {
+        "returnable": true,
+        "exchangeable": true,
+        "return_days": 7,
+        "cancellation_allowed": true,
+        "terms": "未开封且包装完好支持7天内退换，质量问题可联系售后核实。",
+        "delivery_countries": [
+          "CN"
+        ]
+      },
+      "version": 1
+    }
+  },
+  "carts": {
+    "buyer_zhou__hegu_food": {
+      "id": "buyer_zhou__hegu_food",
+      "buyer_id": "buyer_zhou",
+      "merchant_id": "hegu_food",
+      "items": [
+        {
+          "product_id": "HG-PB-200",
+          "quantity": 1,
+          "sku_id": "HG-PB-200"
+        }
+      ],
+      "version": 1
+    }
+  },
+  "skus": {
+    "HG-PB-200": {
+      "id": "HG-PB-200",
+      "product_id": "HG-PB-200",
+      "merchant_id": "hegu_food",
+      "options": {},
+      "unit_amount_minor": 2490,
+      "stock": 50,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "orders": {},
+  "payments": {},
+  "refunds": {},
+  "refund_requests": {},
+  "plans": {},
+  "subscriptions": {},
+  "invoices": {},
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_hegu_food": {
+      "id": "shipping_hegu_food",
+      "merchant_id": "hegu_food",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "cancellation_requests": {},
+  "shipments": {},
+  "aftersales": {},
+  "deliveries": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "counters": {},
+  "idempotency": {},
+  "sequence": 0,
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

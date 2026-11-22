@@ -73,7 +73,7 @@ class ToolInterface:
             if group in {"code", "git", "github"}:
                 return relative
             path = self.workspace / relative
-            check_path(path, self.root)
+            check_path(path, self.root, write=key == "save_path")
             if not path.resolve().is_relative_to(self.workspace):
                 raise ValueError("文件路径必须位于工作区内")
             return str(path)
@@ -122,7 +122,8 @@ class ToolInterface:
         try:
             group, server, tool = self.routes[name]
             jsonschema.validate(arguments, tool.inputSchema)
-            mapped = self.arguments(group, arguments)
+            with tool_scope(self.root):
+                mapped = self.arguments(group, arguments)
             # AgentGuard is opt-in. When disabled, the real MCP tool runs directly.
             # When enabled it remains fail-open: an outage never terminates the run.
             if guard_config.enabled():

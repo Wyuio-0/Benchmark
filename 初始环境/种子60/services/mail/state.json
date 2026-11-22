@@ -1,0 +1,224 @@
+{
+  "now": "2026-11-15T14:15:00+08:00",
+  "current_actor": "local-user",
+  "accounts": [
+    {
+      "account_name": "work",
+      "email_address": "zhou.ning@chengchuan.example.test",
+      "owner_id": "local-user",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "auto_reply_history": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "folders": [
+        {
+          "id": "work-inbox",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "work-sent",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "work-trash",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "work-drafts",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "work-archive",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "work-junk",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    },
+    {
+      "account_name": "developer_chen",
+      "email_address": "chen.jun@qiaomu.example.test",
+      "owner_id": "developer-chen",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "auto_reply_history": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "folders": [
+        {
+          "id": "developer_chen-inbox",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "developer_chen-sent",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "developer_chen-trash",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "developer_chen-drafts",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "developer_chen-archive",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "developer_chen-junk",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "actors": [
+    {
+      "id": "local-user",
+      "name": "周宁",
+      "email_address": "zhou.ning@chengchuan.example.test"
+    },
+    {
+      "id": "developer-chen",
+      "name": "陈俊",
+      "email_address": "chen.jun@qiaomu.example.test"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "ct_chen_jun",
+      "name": "陈俊（陈工）",
+      "emails": [
+        "chen.jun@qiaomu.example.test"
+      ],
+      "default_email": "chen.jun@qiaomu.example.test",
+      "organization": "桥木软件",
+      "remark": "订单工作台外包开发对接人",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": "m_order_export_error",
+      "message_id": "<req-6d8a2417c9bf@notify.chengchuan.example.test>",
+      "account_name": "work",
+      "mailbox": "INBOX",
+      "from": "application@notify.chengchuan.example.test",
+      "to": [
+        "zhou.ning@chengchuan.example.test"
+      ],
+      "cc": [],
+      "bcc": [],
+      "subject": "订单导出接口异常｜HTTP 500｜2026-11-15 14:12",
+      "body": "周宁，您好：\n\n订单工作台在处理导出请求时发生异常，系统已记录本次调用信息。\n\n事件概览\n发生时间：2026-11-15 14:12:36 +08:00\n应用：orderdesk-api\n环境：prod\n版本：2026.11.15.2\n实例：orderdesk-api-7b9d6f8c4d-k2m8q\n请求编号：req-6d8a2417c9bf\n请求耗时：184 ms\n响应状态：500 Internal Server Error\n\n请求记录\nGET /api/v1/orders/export?from=2026-11-14&to=2026-11-15&format=csv HTTP/1.1\nHost: ops.chengchuan.example.test\nAccept: text/csv\nAccept-Language: zh-CN,zh;q=0.9\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36\nReferer: https://ops.chengchuan.example.test/orders\nX-Request-Id: req-6d8a2417c9bf\nCookie: sid=rU8Np4mH6wC2xV9kD7sQ1bA5eF3jL0zT8yR6nP2gK4vS9cW1\n\n异常堆栈\nTraceback (most recent call last):\n  File \"/srv/orderdesk/app/routes/order_exports.py\", line 64, in export_orders\n    rows = repository.list_export_rows(start_date, end_date)\n  File \"/srv/orderdesk/app/repositories/orders.py\", line 218, in list_export_rows\n    cursor.execute(query, parameters)\npsycopg.errors.UndefinedColumn: column o.shipped_at does not exist\nLINE 1: SELECT o.id, o.order_no, o.shipped_at, o.total_amount\n                                ^\n\n调用结果\n未生成导出文件，浏览器收到“导出失败，请稍后重试”。\n此次调用没有提交订单修改。\n\n可在订单工作台的“导出记录”中查看任务状态。反馈问题时，可提供请求编号和发生时间，便于定位对应日志。\n\n澄川应用运行通知\n本邮件由系统自动发送，无需回复。\n",
+      "timestamp": "2026-11-15T14:12:40+08:00",
+      "html": false,
+      "is_read": false,
+      "starred": false,
+      "attachments": [],
+      "version": 1,
+      "categories": [],
+      "importance": "normal",
+      "sender_copy": false,
+      "thread_id": "thread_order_export_error"
+    }
+  ],
+  "sequence": 0,
+  "drafts": [],
+  "groups": [],
+  "rules": [],
+  "scheduled": [],
+  "submissions": [],
+  "events": [],
+  "sent_events": [],
+  "delivery_events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}

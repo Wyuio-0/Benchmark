@@ -1,0 +1,143 @@
+{
+  "now": "2026-11-15T10:00:00+08:00",
+  "current_buyer": "buyer_zhou",
+  "current_merchant": "qinghe_home",
+  "merchants": {
+    "qinghe_home": {
+      "id": "qinghe_home",
+      "name": "清禾家居日用店",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "buyers": {
+    "buyer_zhou": {
+      "id": "buyer_zhou",
+      "name": "周宁",
+      "email": "zhou.ning@example.test",
+      "default_address_id": "addr_home",
+      "default_payment_method_id": "pm_card",
+      "payment_methods": [
+        {
+          "id": "pm_card",
+          "label": "银行卡 尾号5186",
+          "outcome": "succeeded",
+          "active": true,
+          "version": 1
+        }
+      ],
+      "version": 1
+    }
+  },
+  "addresses": {
+    "addr_home": {
+      "id": "addr_home",
+      "buyer_id": "buyer_zhou",
+      "label": "家",
+      "address": {
+        "recipient": "周宁",
+        "address_line_1": "海宁路88号3幢502室",
+        "admin_area_2": "杭州市",
+        "admin_area_1": "浙江省",
+        "country_code": "CN",
+        "postal_code": "310000"
+      },
+      "version": 1
+    }
+  },
+  "products": {
+    "QH-LD-500": {
+      "id": "QH-LD-500",
+      "merchant_id": "qinghe_home",
+      "name": "清禾衣物洗涤液",
+      "description": "清禾衣物洗涤液｜500mL瓶装\n\n清禾衣物洗涤液，净含量500mL，淡雅皂香，旋盖瓶装。页面标价为一瓶价格，购买数量1件即为1瓶。本链接为单瓶装，不含补充袋及其他洗衣用品。瓶身带有握持凹槽，瓶盖可兼作量取工具，便于日常取用和收纳。\n\n用于日常衣物清洁，液体质地，入水后容易分散。领口、袖口等局部污渍可先用少量原液涂抹，再随整件衣物洗涤。香味来自配方中的香氛，漂洗和晾干后留香程度会随用量、漂洗次数及晾晒环境有所不同。\n\n采用蛋白酶去渍配方，帮助分解奶渍、血渍等蛋白类污渍。【重要警告】本品不适用于真丝、羊毛衣物，请勿用于这类面料。\n\n手洗时，约5L水加入10mL洗涤液，搅匀后放入衣物，洗后用清水充分漂洗。机洗可按每3kg衣物约20mL加入洗涤剂投放盒；衣物较多或污渍较重时适当调整用量。建议使用瓶盖量取，取用后将瓶口擦净并旋紧瓶盖，减少液体沿瓶身流下。\n\n瓶身标有净含量、生产批号、生产日期和保质期，具体以收到的实物标示为准。外观为流动液体，不同批次的颜色和香味可能有轻微差异。运输途中产生的气泡静置后会逐渐消退，不影响正常取用。\n\n平时放在阴凉干燥处，避免阳光长时间直晒，瓶身保持直立。取用后盖好瓶盖，避免水或杂物进入瓶内。外包装采用纸箱配合填充材料发出；如同单购买多瓶，仓库会根据数量合并装箱。\n\n本店按订单所列规格和数量发货，商品金额及运费以结算页为准。需要修改收件信息时，请在发货前通过订单入口联系处理；发货后可在订单详情查看物流单号和运输进度。\n\n收到包裹后请核对商品名称、规格和数量，并检查瓶盖及瓶身是否完好。如有漏液、破损、错发或少件，请保留外包装及照片，提供订单编号联系售后。未拆封且包装完好的商品支持签收后7天内退换；已开封商品如有质量问题，可凭批号和照片申请核实。",
+      "unit_amount_minor": 2990,
+      "currency": "CNY",
+      "stock": 50,
+      "kind": "physical",
+      "active": true,
+      "category": "衣物清洁",
+      "policies": {
+        "returnable": true,
+        "exchangeable": true,
+        "return_days": 7,
+        "cancellation_allowed": true,
+        "terms": "未拆封且包装完好支持7天内退换，质量问题可联系售后核实。",
+        "delivery_countries": [
+          "CN"
+        ]
+      },
+      "version": 1
+    }
+  },
+  "carts": {
+    "buyer_zhou__qinghe_home": {
+      "id": "buyer_zhou__qinghe_home",
+      "buyer_id": "buyer_zhou",
+      "merchant_id": "qinghe_home",
+      "items": [
+        {
+          "product_id": "QH-LD-500",
+          "quantity": 1,
+          "sku_id": "QH-LD-500"
+        }
+      ],
+      "version": 1
+    }
+  },
+  "skus": {
+    "QH-LD-500": {
+      "id": "QH-LD-500",
+      "product_id": "QH-LD-500",
+      "merchant_id": "qinghe_home",
+      "options": {},
+      "unit_amount_minor": 2990,
+      "stock": 50,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "orders": {},
+  "payments": {},
+  "refunds": {},
+  "refund_requests": {},
+  "plans": {},
+  "subscriptions": {},
+  "invoices": {},
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_qinghe_home": {
+      "id": "shipping_qinghe_home",
+      "merchant_id": "qinghe_home",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "cancellation_requests": {},
+  "shipments": {},
+  "aftersales": {},
+  "deliveries": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "counters": {},
+  "idempotency": {},
+  "sequence": 0,
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

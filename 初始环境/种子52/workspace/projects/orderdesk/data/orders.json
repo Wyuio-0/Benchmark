@@ -1,0 +1,46 @@
+{
+  "orders": [
+    {
+      "id": "OD-261115-01",
+      "created_at": "2026-11-15 09:26",
+      "status": "配送中",
+      "items": [
+        {"name": "桌面收纳盒·浅灰", "sku": "DS-BOX-02", "quantity": 2, "subtotal_minor": 7800},
+        {"name": "软木杯垫四件组", "sku": "DS-MAT-04", "quantity": 1, "subtotal_minor": 2600}
+      ],
+      "total_minor": 10400,
+      "recipient": "林悦",
+      "address": "杭州市西湖区文一西路88号文创园2幢前台",
+      "phone": "13800001026",
+      "customer_note": "周五下午送到\n请先电话联系",
+      "staff_note": "已核对收货电话\n交接晚班跟进签收",
+      "timeline": [{"label": "订单确认", "time": "11-15 09:28"}, {"label": "门店出库", "time": "11-15 10:10"}, {"label": "配送员已取件", "time": "11-15 10:45"}]
+    },
+    {
+      "id": "OD-261115-02",
+      "created_at": "2026-11-14 16:42",
+      "status": "待出库",
+      "items": [{"name": "棉麻桌旗·原色", "sku": "DS-RUN-01", "quantity": 1, "subtotal_minor": 6900}],
+      "total_minor": 6900,
+      "recipient": "陈晓",
+      "address": "杭州市拱墅区湖墅南路126号3单元502室",
+      "phone": "13900001642",
+      "customer_note": "工作日晚上收货\n周末全天均可",
+      "staff_note": "补货已到店\n下午统一打包",
+      "timeline": [{"label": "订单确认", "time": "11-14 16:45"}, {"label": "备货中", "time": "11-15 09:05"}]
+    },
+    {
+      "id": "OD-261115-03",
+      "created_at": "2026-11-13 11:18",
+      "status": "已签收",
+      "items": [{"name": "玻璃花瓶·小号", "sku": "DS-VASE-03", "quantity": 1, "subtotal_minor": 4800}],
+      "total_minor": 4800,
+      "recipient": "周宁",
+      "address": "杭州市滨江区江南大道218号A座806室",
+      "phone": "13700001118",
+      "customer_note": "送到办公室前台即可",
+      "staff_note": "已回访\n客户确认完好收到",
+      "timeline": [{"label": "订单确认", "time": "11-13 11:20"}, {"label": "门店出库", "time": "11-13 14:00"}, {"label": "已签收", "time": "11-14 10:36"}]
+    }
+  ]
+}

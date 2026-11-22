@@ -1,0 +1,178 @@
+{
+  "now": "2026-11-16T20:10:00+08:00",
+  "current_user_id": "u001",
+  "contacts": [
+    {
+      "id": "u001",
+      "name": "陈立",
+      "remark": ""
+    },
+    {
+      "id": "u002",
+      "name": "刘工",
+      "remark": ""
+    },
+    {
+      "id": "u003",
+      "name": "周成",
+      "remark": "周师傅（驻场外包负责人）"
+    },
+    {
+      "id": "u004",
+      "name": "孙悦",
+      "remark": ""
+    },
+    {
+      "id": "u005",
+      "name": "林岚",
+      "remark": ""
+    },
+    {
+      "id": "u006",
+      "name": "郑海",
+      "remark": ""
+    },
+    {
+      "id": "u007",
+      "name": "罗军",
+      "remark": ""
+    },
+    {
+      "id": "u011",
+      "name": "王强",
+      "remark": ""
+    },
+    {
+      "id": "u012",
+      "name": "赵磊",
+      "remark": ""
+    }
+  ],
+  "chats": [
+    {
+      "id": "g_maintenance",
+      "name": "设备维护",
+      "type": "group",
+      "member_ids": [
+        "u001",
+        "u002",
+        "u003",
+        "u004",
+        "u005",
+        "u006",
+        "u007"
+      ],
+      "owner_id": "u001",
+      "admin_ids": [
+        "u002"
+      ],
+      "membership": [
+        {
+          "user_id": "u001",
+          "joined_at": "2026-09-01T09:00:00+08:00",
+          "left_at": null
+        },
+        {
+          "user_id": "u002",
+          "joined_at": "2026-09-01T09:00:00+08:00",
+          "left_at": null
+        },
+        {
+          "user_id": "u003",
+          "joined_at": "2026-09-01T09:00:00+08:00",
+          "left_at": null
+        },
+        {
+          "user_id": "u004",
+          "joined_at": "2026-09-01T09:00:00+08:00",
+          "left_at": null
+        },
+        {
+          "user_id": "u005",
+          "joined_at": "2026-09-01T09:00:00+08:00",
+          "left_at": null
+        },
+        {
+          "user_id": "u006",
+          "joined_at": "2026-09-01T09:00:00+08:00",
+          "left_at": null
+        },
+        {
+          "user_id": "u007",
+          "joined_at": "2026-09-01T09:00:00+08:00",
+          "left_at": null
+        }
+      ],
+      "dissolved": false,
+      "version": 1,
+      "invite_requires_approval": true,
+      "announcement": null,
+      "pinned_message_ids": [],
+      "member_nicknames": {
+        "u003": "周师傅"
+      },
+      "user_settings": {}
+    }
+  ],
+  "messages": [
+    {
+      "id": "m_maintenance_01",
+      "chat_id": "g_maintenance",
+      "sender_id": "u002",
+      "sender_name": "刘工",
+      "text": "今晚周师傅所在的驻场外包单位有两个班组作业，窗口是22:00到明早06:00。王强、赵磊所在的班组已经提交入群申请，目前还待审批。",
+      "timestamp": "2026-11-16T19:58:00+08:00",
+      "recipient_ids": [
+        "u001",
+        "u002",
+        "u003",
+        "u004",
+        "u005",
+        "u006",
+        "u007"
+      ],
+      "read_by": [
+        "u002"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "quote_message_id": null,
+      "mention_ids": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "forwardable": true,
+      "sequence": 0
+    }
+  ],
+  "model_version": 2,
+  "recall_window_seconds": 120,
+  "sequence": 0,
+  "friend_requests": [],
+  "invitations": [
+    {
+      "id": "inv_wang",
+      "chat_id": "g_maintenance",
+      "user_id": "u011",
+      "inviter_id": "u004",
+      "status": "pending",
+      "version": 1,
+      "created_at": "2026-11-16T19:42:00+08:00"
+    },
+    {
+      "id": "inv_zhao",
+      "chat_id": "g_maintenance",
+      "user_id": "u012",
+      "inviter_id": "u005",
+      "status": "pending",
+      "version": 1,
+      "created_at": "2026-11-16T19:42:00+08:00"
+    }
+  ],
+  "drafts": [],
+  "favorites": [],
+  "events": [],
+  "delivery_events": [],
+  "member_events": []
+}

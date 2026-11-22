@@ -42,6 +42,8 @@ class DatabaseWorkbench:
         """删除指定数据库并记录删除前快照，按当前文件校验值核对目标。"""
         import base64
         with self.session() as s:
+            if db_id in s.get("permissions", {}):
+                raise PermissionError("Permission denied: database deletion")
             target = self.database(s, db_id)
             raw = self.bytes(target)
             if hashlib.sha256(raw).hexdigest() != expected_sha256:
@@ -55,6 +57,8 @@ class DatabaseWorkbench:
         """用工作区内的 SQLite 备份替换已登记数据库，核对当前校验值及备份完整性。"""
         import base64
         with self.session() as s:
+            if db_id in s.get("permissions", {}):
+                raise PermissionError("Permission denied: database replacement")
             target = self.database(s, db_id)
             before = self.bytes(target)
             if hashlib.sha256(before).hexdigest() != expected_sha256:

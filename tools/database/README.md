@@ -31,7 +31,7 @@ CSV 导入最多 10000 行，查询导出支持 CSV 与 JSON。备份通过 SQLi
 - `list_databases`：查询可操作的本地数据库ID和实际SQLite文件路径。
 - `list_indexes`：查询数据库索引、列顺序和唯一性。
 - `list_relationships`：列出表之间的外键关系及更新、删除行为。
-- `list_tables`：列出用户表及可选视图，返回名称、类型与建表SQL。
+- `list_tables`：列出用户表及可选视图，仅返回名称和类型。
 - `read_query`：执行单条只读SQL，支持SELECT、WITH、JOIN、聚合、窗口函数。参数支持?列表或命名字典。返回columns与rows数组，保留重复列名；limit为1..1000，offset为0..10000。
 - `rename_database`：修改数据库显示名称，数据库 ID 和 SQL 内容保持稳定。
 - `restore_database`：用工作区内的 SQLite 备份替换已登记数据库，核对当前校验值及备份完整性。

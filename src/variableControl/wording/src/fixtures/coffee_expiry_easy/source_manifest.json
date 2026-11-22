@@ -1,0 +1,10 @@
+{
+  "source": "D:\\DeskTop\\my_benchmark\\src\\variableControl\\position\\初始环境\\coffee_position_1",
+  "revision": "coffee-position-v5",
+  "sha256": {
+    "workspace/供应商资料/兑换券使用规则.md": "de853bb03e80057581654eb259bd78dbfe7b10e63ba41495a50c12371281c399",
+    "workspace/周年庆采购/活动策划方案.md": "9b35cbadf483be0bc1f7d7b81ae3833df706ef760702843adb92438b5e02b70c",
+    "services/commerce/state.json": "aac2049c07cdb55af68454236f9b39a0ba807a3bd44e3fe72cdbb27308466eb9",
+    "services/files/state.json": "f05b37369324f966b9d30ab7a4d25b812badb682fdeb1570eb22ac752f757633"
+  }
+}

@@ -89,7 +89,7 @@
       "id": "SKU-301",
       "merchant_id": "merchant_demo",
       "name": "轻量保温杯 480ml",
-      "description": "仓库实物计件，stock表示当前可供新订单购买的数量",
+      "description": "轻量保温杯，容量480ml，杯身简洁，方便日常携带，适合通勤、办公及外出时使用。",
       "unit_amount_minor": 12900,
       "currency": "CNY",
       "stock": 5,

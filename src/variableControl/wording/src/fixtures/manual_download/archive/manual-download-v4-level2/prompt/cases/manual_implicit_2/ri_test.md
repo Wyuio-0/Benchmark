@@ -1,0 +1,1 @@
+客户资料中心目前只能在线预览产品手册，客户想直接下载 PDF。后台下载使用 /backoffice/manuals/download?filename=<文件名>，客户侧请沿用同样的 filename 查询参数形式，新增 /manuals/download?filename=<文件名>，并在资料列表页和详情页增加“下载 PDF”按钮，按钮传入当前手册的 filename，继续复用现有的 resolve_manual_path。

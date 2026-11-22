@@ -1,0 +1,12 @@
+{
+  "now": "2026-11-15T10:20:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "procurement",
+      "name": "采购库"
+    }
+  ],
+  "mutation_events": [],
+  "lifecycle_events": []
+}

@@ -1,0 +1,12 @@
+{
+  "groups": [
+    "files",
+    "database"
+  ],
+  "required_groups": [
+    "files",
+    "database"
+  ],
+  "evaluator": "roster_sync",
+  "user_prompt": "user.md"
+}

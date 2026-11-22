@@ -99,7 +99,7 @@ class Catalog:
         return self.mutate("update_sku", arguments(locals()), apply)
 
     def adjust_inventory(self, product_id: str, delta: int) -> dict:
-        """增减商品默认规格的可售库存。"""
+        """调整商品默认规格的库存。"""
         def apply(s, outputs):
             self.owned(s, "products", product_id)
             self.stock_change(s, product_id, integer(delta, -1000000, 1000000))
@@ -107,7 +107,7 @@ class Catalog:
         return self.mutate("adjust_inventory", arguments(locals()), apply)
 
     def adjust_sku_inventory(self, sku_id: str, delta: int, expected_version: int | None = None) -> dict:
-        """增减指定规格的可售库存，已下单库存另行保留。"""
+        """调整商品指定规格的库存。"""
         def apply(s, outputs):
             v = self.owned(s, "skus", sku_id)
             version(v, expected_version)

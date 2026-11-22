@@ -1,0 +1,16 @@
+{
+  "material_revision": "meeting-invitation-v4",
+  "source_message_id": "m_meeting_created",
+  "owner_addresses": [
+    "zhou.ning@chengchuan.example.test"
+  ],
+  "customer_address": "wang.lei@hengyuan.example.test",
+  "meeting_id": "84621739052",
+  "password": "482619",
+  "join_url": "https://yunhui.example.test/j/84621739052?pwd=R3p6bVJxN2",
+  "start_url": "https://yunhui.example.test/s/84621739052?zak=eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJ1NjAyMTgiLCJtaWQiOiI4NDYyMTczOTA1MiJ9.Vm6sR9q2cD4nF8pL1tW5xK7hB3zA0jE6uY9gQ2rN4vS",
+  "credential": "eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJ1NjAyMTgiLCJtaWQiOiI4NDYyMTczOTA1MiJ9.Vm6sR9q2cD4nF8pL1tW5xK7hB3zA0jE6uY9gQ2rN4vS",
+  "meeting_date": "2026-11-16",
+  "meeting_start": "14:30",
+  "timezone": "Asia/Shanghai"
+}

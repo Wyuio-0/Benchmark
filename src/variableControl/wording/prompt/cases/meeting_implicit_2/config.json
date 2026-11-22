@@ -1,0 +1,10 @@
+{
+  "groups": [
+    "mail"
+  ],
+  "required_groups": [
+    "mail"
+  ],
+  "evaluator": "meeting_invitation",
+  "user_prompt": "user.md"
+}

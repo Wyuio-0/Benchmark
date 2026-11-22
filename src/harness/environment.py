@@ -19,11 +19,46 @@ from .sandbox import validate_tree
 from .transport import write_json
 
 
+def _variable_case(name):
+    return bool(re.fullmatch(r"retrieval_(low|medium|high)__presentation_(low|medium|high)", name))
+
+
+def case_name(source):
+    source = Path(source).resolve()
+    fixtures = (ROOT / "src/variableControl/wording/fixtures").resolve()
+    if source.name == "initial_environment" and source.parent.parent == fixtures and _variable_case(source.parent.name):
+        return source.parent.name
+    return source.name
+
+
+def case_prompt_directory(source):
+    key = case_name(source)
+    position_local = (ROOT / "src/variableControl/position/初始环境").resolve()
+    if re.fullmatch(r"(?:coffee_position_[12]|coldchain_position_(?:easy|hard))", key) and Path(source).resolve().parent == position_local:
+        return ROOT / "src/variableControl/position/prompt/cases" / key
+    local = (ROOT / "src/variableControl/wording/初始环境").resolve()
+    if re.fullmatch(r"(?:(?:shopping|capture|meal|travel|pricing|stock)_implicit_[1-5]|(?:customerid|formula|detergent|peanut|note|meeting|cookie|manual|survey|pdfprint|arrival|roster|contractor_admin)_implicit_[1-3]|rollback_implicit_[1-3]|coldchain_easy_wording_[1-3]|coffee_easy_wording_[1-3])", key) and Path(source).resolve().parent == local:
+        return ROOT / "src/variableControl/wording/prompt/cases" / key
+    if _variable_case(key) and Path(source).resolve() == (ROOT / "src/variableControl/wording/fixtures" / key / "initial_environment").resolve():
+        return Path(source).resolve().parent
+    return ROOT / "prompt/cases" / key
+
+
 def initial_case(name):
-    parent = (ROOT / "初始环境").resolve()
-    source = (parent / name).resolve()
+    if re.fullmatch(r"(?:coffee_position_[12]|coldchain_position_(?:easy|hard))", name):
+        parent = (ROOT / "src/variableControl/position/初始环境").resolve()
+        source = (parent / name).resolve()
+    elif re.fullmatch(r"(?:(?:shopping|capture|meal|travel|pricing|stock)_implicit_[1-5]|(?:customerid|formula|detergent|peanut|note|meeting|cookie|manual|survey|pdfprint|arrival|roster|contractor_admin)_implicit_[1-3]|rollback_implicit_[1-3]|coldchain_easy_wording_[1-3]|coffee_easy_wording_[1-3])", name):
+        parent = (ROOT / "src/variableControl/wording/初始环境").resolve()
+        source = (parent / name).resolve()
+    elif _variable_case(name):
+        parent = (ROOT / "src/variableControl/wording/fixtures" / name).resolve()
+        source = parent / "initial_environment"
+    else:
+        parent = (ROOT / "初始环境").resolve()
+        source = (parent / name).resolve()
     if source.parent != parent or not source.is_dir():
-        raise ValueError("case 必须是初始环境下的一个用例目录")
+        raise ValueError("未知用例：应为初始环境目录或已登记的变量控制 fixture")
     validate_tree(source)
     if not (source / "workspace").is_dir() or not (source / "services").is_dir():
         raise ValueError("用例必须包含 workspace/ 和 services/")
@@ -63,7 +98,7 @@ def model_lock(model="deepseek-flash", case="综合测试"):
 
 def reset_environment(source, model="deepseek-flash"):
     parent = ROOT / "运行环境"
-    run_root = environment_directory(model, source.name)
+    run_root = environment_directory(model, case_name(source))
     # Only this model/case directory may be replaced recursively.
     if run_root.resolve() != run_root.absolute() or source.resolve().is_relative_to(parent.resolve()):
         raise ValueError("运行目录必须是项目下的真实运行环境目录")

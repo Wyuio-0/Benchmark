@@ -1,0 +1,10 @@
+{
+  "groups": [
+    "buyer"
+  ],
+  "required_groups": [
+    "buyer"
+  ],
+  "evaluator": "peanut_xylitol",
+  "user_prompt": "user.md"
+}

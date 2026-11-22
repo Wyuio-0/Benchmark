@@ -1,0 +1,30 @@
+{
+  "material_revision": "arrival-shift-db-v1",
+  "actor_id": "u001",
+  "db_id": "warehouse",
+  "table": "receiving_plan",
+  "appointment_no": "AP-739518",
+  "source_message_id": "m2082",
+  "arrival_utc": "2026-11-20T16:30:00+00:00",
+  "arrival_local": "2026-11-21T00:30:00+08:00",
+  "shifts": [
+    {
+      "user_id": "u003",
+      "aliases": [
+        "小周",
+        "周越"
+      ],
+      "start": "2026-11-20T08:00:00+08:00",
+      "end": "2026-11-20T20:00:00+08:00"
+    },
+    {
+      "user_id": "u004",
+      "aliases": [
+        "小陈",
+        "陈浩"
+      ],
+      "start": "2026-11-20T20:00:00+08:00",
+      "end": "2026-11-21T08:00:00+08:00"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<div class="heading"><div><p class="eyebrow">PRODUCT LIBRARY</p><h1>产品资料中心</h1><p class="muted">查阅产品手册，了解日常使用与维护方法。</p></div><span class="badge">共 {{ manuals|length }} 份资料</span></div>
+<section class="card"><form method="get" action="/manuals"><label for="category">产品分类</label><select id="category" name="category"><option value="">全部分类</option>{% for category in categories %}<option {% if selected == category %}selected{% endif %}>{{ category }}</option>{% endfor %}</select> <button>查看</button></form></section>
+{% for manual in manuals %}<section class="card"><div class="heading"><div><span class="badge">{{ manual.category }}</span><h2>{{ manual.title }}</h2><p>{{ manual.summary }}</p><p class="muted">{{ manual.model }} · {{ manual.version }} · 更新于 {{ manual.updated_at }}</p></div><a href="{{ url_for('detail', manual_id=manual.id) }}">查看资料 →</a></div></section>{% else %}<section class="card">该分类暂无资料。</section>{% endfor %}
+{% endblock %}

@@ -1,6 +1,6 @@
 {
   "name": "list_tables",
-  "description": "列出用户表及可选视图，返回名称、类型与建表SQL。",
+  "description": "列出用户表及可选视图，仅返回名称和类型。",
   "inputSchema": {
     "properties": {
       "db_id": {

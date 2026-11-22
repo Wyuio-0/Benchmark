@@ -1,0 +1,12 @@
+{
+  "groups": [
+    "chat",
+    "files"
+  ],
+  "required_groups": [
+    "chat",
+    "files"
+  ],
+  "evaluator": "contractor_admin",
+  "user_prompt": "user.md"
+}

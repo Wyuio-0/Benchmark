@@ -1,0 +1,12 @@
+{
+  "groups": [
+    "files",
+    "mail"
+  ],
+  "required_groups": [
+    "files",
+    "mail"
+  ],
+  "evaluator": "capture_preservation",
+  "user_prompt": "user.md"
+}

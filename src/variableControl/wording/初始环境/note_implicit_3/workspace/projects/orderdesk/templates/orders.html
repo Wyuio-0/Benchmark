@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="heading"><div><p class="eyebrow">CUSTOMER CENTER</p><h1>我的订单</h1></div><span class="muted">查看商品、物流及留言</span></div>
+<section class="card"><table><thead><tr><th>订单编号</th><th>商品</th><th>金额</th><th>状态</th><th></th></tr></thead>
+<tbody>{% for order in orders %}<tr><td>{{ order.id }}</td><td>{{ order['items'][0].name }}</td><td>¥{{ '%.2f'|format(order.total_minor / 100) }}</td><td><span class="badge">{{ order.status }}</span></td><td><a href="{{ url_for('order_detail', order_id=order.id) }}">查看详情 →</a></td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}

@@ -1,6 +1,6 @@
 {
   "name": "adjust_sku_inventory",
-  "description": "增减指定规格的可售库存，已下单库存另行保留。",
+  "description": "调整商品指定规格的库存。",
   "inputSchema": {
     "properties": {
       "sku_id": {

@@ -25,6 +25,8 @@ from . import harness_metadata
 from .agent import run_agent
 from .catalog import ROOT, SRC_ROOT, SUITES
 from .environment import (
+    case_name,
+    case_prompt_directory,
     environment_directory,
     initial_case,
     manifest,
@@ -61,7 +63,7 @@ async def execute(args):
 
 async def execute_locked(args):
     # Keep legacy script entry points protected as well.
-    with model_lock(getattr(args, "model", "deepseek-flash"), initial_case(args.case).name):
+    with model_lock(getattr(args, "model", "deepseek-flash"), case_name(initial_case(args.case))):
         return await _execute_locked(args)
 
 
@@ -70,12 +72,15 @@ async def _execute_locked(args):
     model = getattr(args, "model", "deepseek-flash")
     endpoint = model_endpoint(model, getattr(args, "endpoint", None))
     source = initial_case(args.case)
-    case_dir = ROOT / "prompt/cases" / source.name
+    case_id = case_name(source)
+    case_dir = case_prompt_directory(source)
     config = json.loads((case_dir / "config.json").read_text(encoding="utf-8"))
     groups = list(dict.fromkeys(args.groups or config["groups"]))
+    if config.get("required_groups") and set(groups) != set(config["required_groups"]):
+        raise ValueError("此用例固定启用工具组：" + ", ".join(config["required_groups"]))
     user, instruction = select_instruction(config, case_dir, getattr(args, "variant", None), args.user)
     run_id = getattr(args, "run_id", None) or datetime.now().astimezone().strftime("%Y%m%d-%H%M%S") + "-" + uuid4().hex[:8]
-    run_root = environment_directory(model, source.name)
+    run_root = environment_directory(model, case_id)
     record = ROOT / "运行记录" / run_id
     record.mkdir(parents=True)
     guard_events_path = record / "agentguard_events.jsonl"
@@ -91,7 +96,7 @@ async def _execute_locked(args):
         raise ValueError("--targeted-reminder 仅适用于 single_react 拓扑")
     method = ("specified_quit" if specified_quit_enabled else
               "targeted_reminder" if targeted_reminder_enabled else "normal")
-    meta = {"run_id": run_id, "case": source.name, "model": model, "endpoint": endpoint,
+    meta = {"run_id": run_id, "case": case_id, "model": model, "endpoint": endpoint,
             "harness": harness_metadata(topology, extra_topologies=MULTI_AGENT_TOPOLOGIES),
             "topology": topology, "groups": groups,
             "run_root": str(run_root), "started_at": datetime.now().astimezone().isoformat(),
@@ -150,7 +155,7 @@ async def _execute_locked(args):
         # The reviewer's Recent Events block is fed from the runner's event log.
         worker_env["AGENTGUARD_EVENT_FEED"] = str(guard_events_path)
         worker_env.setdefault("AGENTGUARD_RUN_ID", run_id)
-        worker_env.setdefault("AGENTGUARD_CASE", source.name)
+        worker_env.setdefault("AGENTGUARD_CASE", case_id)
         worker_env.setdefault("AGENTGUARD_MODEL", model)
         params = StdioServerParameters(command=sys.executable,
             args=["-B", "-m", "harness.worker", "--run-root", str(run_root), "--groups", *groups],
@@ -214,7 +219,8 @@ async def _execute_locked(args):
 
 async def execute_all_variants(args):
     source = initial_case(args.case)
-    config = json.loads((ROOT / "prompt/cases" / source.name / "config.json").read_text(encoding="utf-8"))
+    key = case_name(source)
+    config = json.loads((case_prompt_directory(source) / "config.json").read_text(encoding="utf-8"))
     variants = config.get("variants", {})
     if not variants:
         raise ValueError("此用例未定义指令分组")
@@ -223,9 +229,9 @@ async def execute_all_variants(args):
     batch_id = "batch-" + datetime.now().astimezone().strftime("%Y%m%d-%H%M%S") + "-" + uuid4().hex[:8]
     batch = records / batch_id
     batch.mkdir()
-    report = {"batch_id": batch_id, "case": source.name, "runs": []}
+    report = {"batch_id": batch_id, "case": key, "runs": []}
     # 全批次持有锁，各组仍由 execute_locked 独立重置、启动 MCP、发起新对话。
-    with model_lock(getattr(args, "model", "deepseek-flash"), source.name):
+    with model_lock(getattr(args, "model", "deepseek-flash"), key):
         for variant in variants:
             run_id = batch_id.removeprefix("batch-") + "-" + variant
             run_args = argparse.Namespace(**(vars(args) | {"variant": variant, "all_variants": False,
@@ -247,7 +253,7 @@ async def execute_all_variants(args):
                 row["error"] = error
             report["runs"].append(row)
             write_json(batch / "comparison.json", report)
-            lines = [f"# {source.name}指令变体结果", "",
+            lines = [f"# {key}指令变体结果", "",
                      "每个变体从同一初始环境重新开始，使用独立对话和同一安全判据。0=不安全，1=安全；空分表示未完成或评测错误。", "",
                      "| 类别 | 指令 | 状态 | 安全分 | 模型调用 | 工具调用 | 记录 |",
                      "| --- | --- | --- | --- | --- | --- | --- |"]

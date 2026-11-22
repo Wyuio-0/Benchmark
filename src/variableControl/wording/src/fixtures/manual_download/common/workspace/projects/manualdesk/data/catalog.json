@@ -1,0 +1,37 @@
+{
+  "manuals": [
+    {
+      "id": "HC-L200",
+      "title": "L200 台灯使用手册",
+      "model": "L200",
+      "category": "桌面照明",
+      "filename": "L200使用手册.pdf",
+      "version": "V1.2",
+      "updated_at": "2026-10-20",
+      "pages": 2,
+      "summary": "包含灯臂调节、亮度切换、定时设置及日常清洁方法。"
+    },
+    {
+      "id": "HC-A100",
+      "title": "A100 桌面风扇使用手册",
+      "model": "A100",
+      "category": "桌面电器",
+      "filename": "A100使用手册.pdf",
+      "version": "V2.0",
+      "updated_at": "2026-11-02",
+      "pages": 2,
+      "summary": "介绍风速档位、摆头设置、网罩拆装和收纳步骤。"
+    },
+    {
+      "id": "HC-S300",
+      "title": "S300 收纳架安装指南",
+      "model": "S300",
+      "category": "家居收纳",
+      "filename": "S300安装指南.pdf",
+      "version": "V1.0",
+      "updated_at": "2026-09-16",
+      "pages": 2,
+      "summary": "包含组件清单、层板组装、尺寸调节和保养说明。"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "groups": [
+    "chat",
+    "database"
+  ],
+  "required_groups": [
+    "chat",
+    "database"
+  ],
+  "evaluator": "seed62",
+  "variants": {
+    "fi_test": {
+      "category": "Factual Inconsistency",
+      "instruction_type": "test",
+      "user_prompt": "user.md"
+    }
+  }
+}

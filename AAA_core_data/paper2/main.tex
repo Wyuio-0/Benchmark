@@ -1,0 +1,189 @@
+% ============================================================
+% 论文骨架（预写作阶段）
+% 配套说明：00_骨架设计与写作指南.md（每节的写作要点、图表规划、
+% 占位符清单、待确认问题都在指南里；本文件的 TODO 注释指向指南小节）。
+% 使用：按节填充；[方括号] 为待填数字/名称；投稿时迁入目标会议模板。
+% ============================================================
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% TODO(指南 §8-Q2): benchmark 正式命名
+\newcommand{\bench}{\textsc{[BenchmarkName]}}
+
+\title{Context-Environment Gaps: Benchmarking Tool-Using Agent Safety in Benign Tasks}
+\author{[Authors]}
+\date{}
+
+\begin{document}
+\maketitle
+
+% TODO(指南 §0): Farquhar 五句公式——
+% (1) 成就：context-environment gaps 统一解释 + \bench{}；
+% (2) 难点：benign 无攻击者、环境部分可观测、既有评测测不出机制；
+% (3) 方法：种子->扩展、安全对照版、关键证据标签、三分类归因协议、wording/position 受控干预；
+% (4) 证据：[M] agents、[N] instances、三大实验；
+% (5) 最强数字：最优防御后 ASR 仍 [X%]，安全对照版通过率 [Y%]。
+\begin{abstract}
+We introduce context-environment gaps as a unifying explanation for harmful actions taken by tool-using agents in benign tasks, where users have no harmful intent and no adversary is present. \dots{} [N] evaluation instances \dots{} [main quantitative result] \dots{}
+\end{abstract}
+
+\section{Introduction}
+% 职责(指南 \S1)：六段式推进 + 两组贡献 bullet + 标题数字。
+% P1 hook: benign 日常任务的真实伤害（多退退款 / PII 泄露 / 生产数据清空 / 证据被删，各一短句）。
+% P2 机制: context 完全可见且被默认信任；环境仅可经工具调用部分观测；验证所需证据
+%        未必被检索 -> gap 未被发现 -> 危险动作。伤害不需要攻击者，只需要一个没被验证的 gap。
+% P3 现有评测四个命名缺口: (a) 攻击中心 AgentDojo/InjecAgent/ASB/AgentHarm;
+%        (b) 能力中心 WebArena/$\tau$-bench/AppWorld/OSWorld; (c) 安全风险罗列
+%        Agent-Safety-Bench/R-Judge/SafeAgentBench（不隔离机制/无能力对照/无轨迹归因）;
+%        (d) 缓解研究未排除 token/算力混淆。
+% P4 本文设计: 四条设计原则 + 三类 gap + 三大研究一句话。
+% P5 headline 发现: ASR [X%] vs safe twin 通过率 [Y%]; 防御最多降 [p.p.];
+%        token 匹配后拓扑效应不显著; 归因分布 [xx%]/[xx%]/[xx%]。
+% P6 贡献两组（每条带数字，见指南 \S1-P6）:
+%   组A 仪器: ①问题框架+首个隔离 gap 机制的 benchmark; ②safe twin+证据标签+经验证的归因协议;
+%            ③wording/position 受控干预机制。
+%   组B 发现: ④安全特异失败（ASR [X%] vs twin [Y%]）; ⑤防御未触及 gap; ⑥拓扑非算力解释;
+%            ⑦归因与干预结论。
+\subsection*{Contributions}
+\begin{itemize}
+  \item Group A (instruments): \dots{}
+  \item Group B (findings): \dots{}
+\end{itemize}
+
+% Figure 1(指南 \S4): 双面板——左 gap 概念图；右 真实 case 危险版 vs 安全对照版并排
+% （标注 gap 位置、缺失证据、危险动作）。caption 自包含。
+% \begin{figure}[t]\centering\includegraphics[width=\linewidth]{fig1.pdf}
+%   \caption{\dots}\end{figure}
+
+\section{Related Work}
+% 职责(指南 \S2)：方法论组织三小节 + Table 1 对比矩阵（首次组合 X 显性化）。
+% \begin{table}[t] ... Table 1: 设计轴对比（benign / gap 隔离 / safe twin / 证据标签 /
+% 轨迹归因 / 受控干预 / 防御与拓扑探针 / judge 验证）... \end{table}
+\subsection{Agent Safety Evaluation}
+% 攻击线（InjecAgent/AgentDojo/ASB/AgentHarm 对抗部分）vs benign 线
+% （R-Judge/Agent-Safety-Bench/SafeAgentBench）；benign 线只测"是否安全"不测"为什么不安全"。
+\subsection{Agent Benchmarks and Environments}
+% WebArena/SWE-bench/$\tau$-bench/AppWorld/OSWorld/AgentBench/GAIA/MLE-bench；
+% 安全盲区；可引 SABER/$\tau$-Bench Verified 点名"任务欠规范"作 RU 动机。
+\subsection{Failure Analysis and Mitigation for Agents}
+% 失败分类学（MAST/AgentBoard）；防御（prompt/system 级、预训练/RL 级）；
+% 多智能体拓扑（MetaGPT/AutoGen 类——需补框架类引用）；LLM-as-Judge 方法学。
+
+\section{Problem Formulation and Threat Model}
+% 职责(指南 \S3)：最小形式体系 + 与攻击类工作划界 + judge 无劫持论证。
+\subsection{Context, Environment, and Verification}
+% 定义: context C（用户指令+业务文档，完全可见、被默认信任）; 环境 E（工具可达的部分可观测状态）;
+% 观测 O; 关键证据 E*（推导风险所必需的环境事实集合）; 验证动作; 危险动作（真实 E 下违反安全约束的终态）。
+\subsection{Context-Environment Gaps and Their Three Categories}
+% RU: C 未规定安全执行必需的范围/边界 -> 自行补全即可能越界；
+% RI: C 的明确要求与 E 的安全约束不可同时满足 -> 照办即违规；
+% FI: C 的事实陈述相对 E 错误/过时 -> 按陈述执行即致害。
+% 每类：失败条件 + 一行最小例子（从种子里取）。
+\subsection{Threat Model and Scope}
+% benign 意图、无攻击者、环境无恶意内容；伤害源唯一 = 未被验证的 gap。
+% 排除：prompt injection/间接注入、jailbreak、多轮操纵、纯能力失败（safe twin 过滤）。
+% 一句 judge 安全性：benign 设定下归因 judge 读取内容不含对抗样本，无劫持面（对照 AgentDojo 拒用理由）。
+
+\section{\bench{} Construction}
+% 职责(指南 \S4)：样本为隔离 gap 机制而设计 + 质控透明（漏斗数字）。
+\subsection{Design Overview}
+% 四条设计原则（benign-by-design / gap-grounded / safe-twin-controlled / evidence-anchored）；
+% 三段流水线 Stage I 种子 -> Stage II 批量扩展 -> Stage III 核验标注；漏斗数字（66 活动种子 -> [N] 实例）。
+% Figure 2: 管线图（带漏斗数字）。
+\subsection{Seed Design}
+% 7 字段种子结构（问题类别/工具套件/任务目标/失败判据/环境依据/测试指令/指令问题）；
+% 类别平衡；K1--K9 隐藏机制表（正文表：风险藏在哪种形式里 + 发现路径）；
+% 11 个工具套件覆盖（mail/chat/files/database/code/git/github/pc/server/buyer/merchant）。
+\subsection{Batch Expansion}
+% LLM 辅助实例化（实体/数值/场景表面替换）+ 人工逐条核验；近邻去重；多样性控制；漏斗数字。
+\subsection{Controlled Safe Pairs}
+% ★差异化仪器：安全对照版定义（一处提示词微调 + 一处环境微改，移除坑点）；
+% 设计规则（任务可正常完成、工具预算同、表面难度不变）；用途=能力门槛（twin 不过的实例单列/作废）；
+% 展示：case 对（四面板/三列表格）。
+\subsection{Evidence Annotation and Quality Control}
+% 关键证据双判据：单次工具调用可直接返回 + 风险推导必要性（170 条证据审计整改作方法论叙事）；
+% 标注协议（人数/轮次/仲裁/IAA [\kappa]）；每 case 预标期望归因；负向事实的检索范围规范。
+\subsection{Data Statistics}
+% Table 2: 规模分布（类别 \times 场景/套件：种子数/实例数）；
+% Table 3: 属性均值/最大值（轮数/工具调用数/证据条数/上下文长度）；
+% canary string + private holdout 声明。
+
+\section{Evaluation Protocol}
+% 职责(指南 \S5)：测量程序可复现 + judge 验身单列（测量可信本身是贡献）。
+\subsection{Metrics}
+% 公式化（学 ASB Eq.18/19）：
+% behavior_score（0/1，环境终态+评测函数，不依赖 LLM）-> ASR = 危险终态占比；
+% diagnosis_score（LLM-as-Judge 仅读 final.md，对照关键事实标签）；
+% effective_utility（behavior=0 即 0；防"全拒绝"退化——对照 AgentHarm non-refused、ASB NRP）；
+% safe twin 通过率（能力门槛）；证据检索率（验证行为率）；[可选 pass^k]。
+\subsection{Failure Attribution Taxonomy}
+% ★差异化仪器：三分类命名——A1 Perception Failure (Evidence Not Gathered, 没看到) /
+% A2 Recognition Failure (Danger Not Recognized, 没反应过来) / A3 Obedience Failure
+% (Recognized but Overridden, 盲从)。0/1 操作量表 + 判定树：
+%   behavior=1 -> 不归因；未检索 E* -> A1；检索到但 diagnosis 低 -> A2；
+%   final.md 显示识别仍执行 -> A3。就近归因 + Strict/Lenient 双口径；每 case 预标对照。
+\subsection{Validating the LLM Judge}
+% judge 配置（审计 judge + AgentGuard reviewer；规则/评测函数优先、LLM 判窄子项）；
+% 一致性研究（分层抽样 [n] 条 \times 3 类 \times 边界样本；多标注员+仲裁）；
+% \kappa/P/R + 双基线（human-human \kappa 与随机基线并排）+ 归因混淆矩阵；prompt 全文进附录 C。
+
+\section{Experiments}
+% 职责(指南 \S6)：三大 RQ = 三大替代解释排除 + 机制正面回答。
+% 每小节：一句话声明检验什么 -> 设置 -> 图表 -> Finding: 一句话。
+\subsection{Setup}
+% [M] 模型（API/开源分组）；single_react scaffold（LangGraph）；预算 150 轮 / 50 次工具调用 /
+% 单次输出 20480 tokens；每实例重复 [k] 次（mean$\pm$std；Wilcoxon/McNemar）。
+\subsection{Main Results: Agents Fail to Validate Context Against the Environment}
+% Table 4 主表：行=模型，列=RU/RI/FI ASR | Overall | twin 通过率 | 检索率 | [pass^k]。
+% 三句话节奏：ASR 高 [X%] -> twin 通过率高 [Y%] -> 失败是安全特异的、与能力解耦（能力锚点句）。
+\subsection{RQ1: Safety Enhancements Do Not Close Context-Environment Gaps}
+% Def-A/Def-B（src/securityEnhancement 两种方法）+ PT（预训练增强）；
+% 效用-ASR 双散点（Pareto 加粗）+ 按类别降幅；
+% 【必备 sanity check】防御在原生目标上有效 -> 排除"实现弱"；报告效用变化。
+\subsection{RQ2: Agent Topology Does Not Explain Away Unsafe Actions}
+% single_react 基线 + 三拓扑（TODO 确认：planner_executor/investigator_executor/reviewer_executor 选哪三个）
+% + 普通对照结构（token/步数预算匹配）；
+% ASR \times 拓扑表 + token/轮数协变量表（学 AgentBench J.2.3）+ ASR vs token 散点 + 拓扑框图。
+\subsection{RQ3: Controlled Interventions Localize the Failure}
+% src/variableControl：对关键证据做单因素操纵——position（明显->不明显）\times wording
+% （明显提示->隐晦表达），各 [3--4] 档；逐 case diff 表进附录；
+% 因变量：检索率 / ASR / 归因占比；剂量-反应折线 + 干预前后归因分布对比；
+% 判定逻辑表：可见性提升降 ASR 且 A1 降 -> 没看到主导；wording 主导且 A2 高 -> 没反应过来；
+% 全档位 A3 高 -> 盲从主导。（方向性预测待确认，见指南 \S8-Q1。）
+\subsection{A Global Picture of Failure Attribution}
+% 全体三分类 stacked bars（类别 \times 归因 / 模型 \times 归因）；与 RQ1/RQ2 各配置的归因迁移；
+% 2--3 个 case study 走查框（轨迹节选+证据+判定路径）。
+
+\section{Discussion}
+% 设计指引：什么才能关闭 gap（强制验证/证据强制拉取、验证激励、校准拒答与澄清、safe twin 式训练数据）；
+% 归因 -> 防御打哪一环（A1 打检索 / A2 打识别 / A3 打服从）；
+% benign 威胁面的部署含义；可扩展性一段（路线图放这里，不放 Limitations）。
+
+\section{Limitations}
+% 数字级 + 主题小节（指南 \S8）：L1 规模 / L2 场景与语言覆盖 / L3 归因边界样本（双口径缓解）/
+% L4 单轮指令设定 / L5 模型覆盖与快照时效 / L6 干预档位操作化有限。
+% 每条配一句"为何不伤核心结论"。不写"我们没有做 X"式清单。
+
+\section{Conclusion}
+% 只强化记忆点，3--4 句。
+
+\section*{Ethics Statement}
+% dual-use（挖坑设计可被滥用 -> 发布策略：safe twin 与语料全文公开、高危环境内容设门槛/延迟、canary）；
+% 标注者报酬与协议；环境/工具版本冻结与维护计划。
+\section*{Reproducibility Statement}
+% 复现包：harness、评测函数、judge prompt、配置、随机种子策略、拓扑/防御实现细节。
+
+% 参考文献（TODO: 按调研报告补齐——尤其 MetaGPT/AutoGen 类拓扑引用、SABER/$\tau$-Bench Verified）
+% \bibliographystyle{plain}\bibliography{refs}
+
+% 附录 A--G（指南 \S5）：
+% A case 全景走查；B 种子规范 + K1--K9 目录 + 扩展提示词与核验清单；C judge prompt 全文 + 校准细节；
+% D 完整统计；E 实验细节（防御/拓扑预算/干预档位与逐 case diff）；F 人工标注协议 + safe twin 规则细则；
+% G 防污染与完整性（canary/holdout/judge 循环性/版本冻结）。
+
+\end{document}

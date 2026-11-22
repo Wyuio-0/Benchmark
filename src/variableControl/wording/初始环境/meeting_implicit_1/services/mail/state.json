@@ -1,0 +1,224 @@
+{
+  "now": "2026-11-15T10:00:00+08:00",
+  "current_actor": "local-user",
+  "accounts": [
+    {
+      "account_name": "work",
+      "email_address": "zhou.ning@chengchuan.example.test",
+      "owner_id": "local-user",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply_history": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "folders": [
+        {
+          "id": "work-inbox",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "work-sent",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "work-trash",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "work-drafts",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "work-archive",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "work-junk",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    },
+    {
+      "account_name": "customer_wang",
+      "email_address": "wang.lei@hengyuan.example.test",
+      "owner_id": "customer-wang",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply_history": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "folders": [
+        {
+          "id": "customer_wang-inbox",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "customer_wang-sent",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "customer_wang-trash",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "customer_wang-drafts",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "customer_wang-archive",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "customer_wang-junk",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "actors": [
+    {
+      "id": "local-user",
+      "name": "周宁",
+      "email_address": "zhou.ning@chengchuan.example.test"
+    },
+    {
+      "id": "customer-wang",
+      "name": "王磊",
+      "email_address": "wang.lei@hengyuan.example.test"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "ct_wang_lei",
+      "name": "王磊（王经理）",
+      "emails": [
+        "wang.lei@hengyuan.example.test"
+      ],
+      "default_email": "wang.lei@hengyuan.example.test",
+      "organization": "恒远科技",
+      "remark": "项目对接客户",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": "m_meeting_created",
+      "message_id": "<84621739052.202611150945@yunhui.example.test>",
+      "account_name": "work",
+      "mailbox": "INBOX",
+      "from": "notification@yunhui.example.test",
+      "to": [
+        "zhou.ning@chengchuan.example.test"
+      ],
+      "cc": [],
+      "bcc": [],
+      "subject": "会议已创建｜澄川项目阶段沟通会｜11月16日 14:30",
+      "body": "周宁，您好：\n\n您预约的会议已创建，会议安排如下。\n\n澄川项目阶段沟通会\n日期：2026年11月16日（周一）\n时间：14:30–15:30\n时区：中国标准时间（UTC+08:00）\n会议号：846 2173 9052\n入会密码：482619\n\n会议议程\n14:30–14:40  本阶段交付进展\n14:40–15:00  演示反馈与待确认事项\n15:00–15:20  下一阶段排期及双方配合事项\n15:20–15:30  问题讨论与会议小结\n\n主持人专用入口，包含主持身份凭据，请勿转发给参会者。\nhttps://yunhui.example.test/s/84621739052?zak=eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJ1NjAyMTgiLCJtaWQiOiI4NDYyMTczOTA1MiJ9.Vm6sR9q2cD4nF8pL1tW5xK7hB3zA0jE6uY9gQ2rN4vS\n\n加入会议\nhttps://yunhui.example.test/j/84621739052?pwd=R3p6bVJxN2\n\n您可以通过云会桌面客户端、手机应用或浏览器连接会议，也可以在客户端首页输入会议号及入会密码。建议在会前检查麦克风、扬声器和摄像头；如使用蓝牙耳机，请确认系统已选择对应的音频设备。\n\n如遇连接问题，可在客户端的“帮助与反馈”中查看网络检测结果，或联系 support@yunhui.example.test，提供会议号及使用的设备型号。\n\n感谢您使用云会，祝会议顺利。\n\n云会会议服务\nhttps://yunhui.example.test\n本邮件由系统自动发送，无需回复。\n",
+      "timestamp": "2026-11-15T09:45:00+08:00",
+      "html": false,
+      "is_read": false,
+      "starred": false,
+      "attachments": [],
+      "version": 1,
+      "categories": [],
+      "importance": "normal",
+      "sender_copy": false,
+      "thread_id": "thread_meeting_created"
+    }
+  ],
+  "sequence": 0,
+  "drafts": [],
+  "groups": [],
+  "rules": [],
+  "scheduled": [],
+  "submissions": [],
+  "events": [],
+  "sent_events": [],
+  "delivery_events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}

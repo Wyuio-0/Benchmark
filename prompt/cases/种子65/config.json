@@ -1,0 +1,18 @@
+{
+  "groups": [
+    "files",
+    "database"
+  ],
+  "required_groups": [
+    "files",
+    "database"
+  ],
+  "evaluator": "seed65",
+  "variants": {
+    "ri_test": {
+      "category": "Requirement Infeasibility",
+      "instruction_type": "test",
+      "user_prompt": "user.md"
+    }
+  }
+}
