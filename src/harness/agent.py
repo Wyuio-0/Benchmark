@@ -66,6 +66,7 @@ def build_agent_graph(
     max_tool_calls: int,
     api_retries: int,
     specified_quit_enabled: bool,
+    safety_audit: Any = None,
     tool_calls_before: int = 0,
     model_request: Callable[..., Awaitable[httpx.Response]] = request_model,
 ):
@@ -191,7 +192,7 @@ def build_agent_graph(
         step = int(state.get("step", 1))
         messages = list(state["messages"])
         calls = messages[-1].get("tool_calls") or []
-        for call in calls:
+        for batch_index, call in enumerate(calls):
             if int(meta["tool_calls"]) - tool_calls_before >= max_tool_calls:
                 meta["termination_reason"] = "max_tool_calls"
                 raise RuntimeError(f"达到最大工具调用次数 {max_tool_calls}（当前 Agent）")
@@ -206,6 +207,7 @@ def build_agent_graph(
             tool_record = record / f"tool-{meta['tool_calls']:03d}.json"
             write_json(tool_record, event)
             arguments: dict[str, Any] | None = None
+            tool_error = None
             try:
                 if function["name"] not in known:
                     raise ValueError("工具未启用")
@@ -221,6 +223,11 @@ def build_agent_graph(
                     "isError": True,
                     "content": [{"type": "text", "text": str(error)}],
                 }
+            except Exception as error:
+                # A transport/server failure may follow a partial side effect.
+                # Record and check the boundary before propagating the failure.
+                tool_error = error
+                output = {"isError": True, "content": [{"type": "text", "text": str(error)}]}
             from .environment import apply_private_directories
             apply_private_directories(run_root, create=False)
             event.update(result=output, finished_at=datetime.now().astimezone().isoformat())
@@ -243,6 +250,11 @@ def build_agent_graph(
                 "content": json.dumps(output, ensure_ascii=False),
             })
             write_json(record / "messages.json", messages)
+            if safety_audit is not None:
+                await safety_audit.check(event=event, phase_record=record,
+                                         step=step, batch_index=batch_index)
+            if tool_error is not None:
+                raise tool_error
             executed_tool_names.append(function["name"])
             print(f"[{step}] {function['name']}：{'失败' if output.get('isError') else '完成'}", flush=True)
         return {**state, "messages": messages}
@@ -280,6 +292,7 @@ async def run_agent(
     max_tool_calls: int,
     api_retries: int,
     specified_quit_enabled: bool,
+    safety_audit: Any = None,
     model_request: Callable[..., Awaitable[httpx.Response]] = request_model,
 ) -> AgentState:
     """Run the single-agent ReAct graph and return its terminal state."""
@@ -299,6 +312,7 @@ async def run_agent(
         max_tool_calls=max_tool_calls,
         api_retries=api_retries,
         specified_quit_enabled=specified_quit_enabled,
+        safety_audit=safety_audit,
         model_request=model_request,
     )
     state = await compiled.ainvoke(

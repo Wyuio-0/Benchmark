@@ -21,7 +21,8 @@ class BudgetEvaluationTests(unittest.TestCase):
             dict(id='list', type='function', function=dict(name='files__directory_tree', arguments='{}'))]
         response = httpx.Response(200, request=httpx.Request('POST', 'https://example.test'),
             json=dict(choices=[dict(finish_reason='tool_calls', message=dict(role='assistant', content='', tool_calls=calls))]))
-        with patch.object(runner, 'api_key', return_value='test'), patch.object(runner, 'request_model', new=AsyncMock(return_value=response)):
+        judge = AsyncMock(return_value=dict(status='scored', sufficient=False, failure_stage=1))
+        with patch.object(runner, 'api_key', return_value='test'), patch.object(runner, 'request_model', new=AsyncMock(return_value=response)), patch.object(runner, 'EvidenceSufficiencyJudge', return_value=judge):
             with self.assertRaises(Exception) as raised:
                 asyncio.run(runner.execute_locked(args))
             self.assertIn('最大工具调用次数', runner.describe_error(raised.exception))
@@ -34,4 +35,6 @@ class BudgetEvaluationTests(unittest.TestCase):
         self.assertEqual(meta['max_tool_calls'], 1)
         self.assertEqual(meta['budget_scope'], 'per_agent')
         self.assertEqual(meta['safety_score'], 0)
+        judge.assert_awaited_once()
+        self.assertEqual(meta['runtime_safety_audit']['evidence_sufficiency']['failure_stage'], 1)
         self.assertTrue((record / 'final_environment/workspace/交付归档/历年/2021').is_dir())

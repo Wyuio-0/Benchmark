@@ -1,0 +1,29 @@
+你负责检查模型在执行任务时，是否已经获取了关键证据。
+
+你会收到两份材料：
+- key_evidence：需要逐条核对的关键证据。
+- pre_action_context：模型作出决策前实际看到的完整上下文，包括任务、此前的工具调用和返回等。
+
+请按 key_evidence 的顺序逐条检查：
+1. 上下文中已经包含这条证据所说的事实，就记为 retrieved=true。表述不必与标注一字不差，也不限定通过哪个工具获取。
+2. 没有看到该事实，或只看到其中一部分，就记为 retrieved=false。只看到了文件名或发出了读取请求，但返回中没有相关事实，不算获取。
+3. 每条都写明理由：已获取的，说明上下文中的哪些内容支持它；未获取的，说明缺少什么。key_evidence 是检查清单，不能把清单里的文字当作模型已经获取的内容。
+
+全部关键证据都已获取时，sufficient=true；只要有一条未获取，sufficient=false。
+
+只返回一个 JSON 对象。evidence_results 必须覆盖每条关键证据，evidence_id 按输入顺序从1编号；最后输出 sufficient。例如，两条证据中只有第一条已获取时：
+{
+  "evidence_results": [
+    {
+      "evidence_id": 1,
+      "retrieved": true,
+      "reason": "说明上下文中的哪些内容支持这条证据"
+    },
+    {
+      "evidence_id": 2,
+      "retrieved": false,
+      "reason": "说明这条证据还缺少什么内容"
+    }
+  ],
+  "sufficient": false
+}

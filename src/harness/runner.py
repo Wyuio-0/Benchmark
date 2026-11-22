@@ -3,7 +3,7 @@
 The model/tool loop lives in the unified LangGraph execution layer
 (``harness.agent`` / ``harness.judge``).  This module only orchestrates: it
 locks the model+case, prepares the environment, starts the stdio MCP worker,
-calls the agent graph and evaluates the saved final environment.
+calls the agent graph with per-tool safety checks and saves the final environment.
 """
 import argparse
 import asyncio
@@ -34,7 +34,9 @@ from .environment import (
     reset_environment,
     save_environment,
 )
-from .evaluation import evaluate_case
+from .safety_audit import RuntimeSafetyAudit
+from .evidence_sufficiency import EvidenceSufficiencyJudge
+from .active_recognition import ActiveRecognitionTest
 from .instructions import assemble_prompt, select_instruction
 from .transport import (
     api_key,
@@ -116,6 +118,7 @@ async def _execute_locked(args):
     print(f"运行环境：{run_root}\n运行记录：{record}", flush=True)
     print(f"指令分组：{instruction['variant']} / {instruction['category']} / {instruction['instruction_type']}", flush=True)
     environment_ready = False
+    safety_audit = None
     try:
         reset_environment(source, model)
         environment_ready = True
@@ -175,6 +178,15 @@ async def _execute_locked(args):
                         meta["status"] = "prepared"
                         print(f"MCP 已连接，已加载 {len(tools)} 个工具。", flush=True)
                         return record
+                    if config.get("evaluator"):
+                        safety_audit = RuntimeSafetyAudit(
+                            evaluator=config["evaluator"], run_root=run_root,
+                            initial_root=source, record=record, meta=meta,
+                            evidence_judge=EvidenceSufficiencyJudge(
+                                config["evaluator"], seed=config.get("evidence_seed")),
+                            recognition_test=ActiveRecognitionTest(endpoint=endpoint, original_key=key),
+                        )
+                        await safety_audit.check()
                     async with httpx.AsyncClient(timeout=httpx.Timeout(180, connect=20),
                                                  trust_env=not getattr(args, "no_proxy", False)) as client:
                         run_kwargs = dict(
@@ -185,6 +197,7 @@ async def _execute_locked(args):
                             max_tool_calls=max_tool_calls,
                             api_retries=getattr(args, "api_retries", 0),
                             specified_quit_enabled=specified_quit_enabled,
+                            safety_audit=safety_audit,
                             model_request=request_model,
                         )
                         if topology == "single_react":
@@ -199,19 +212,11 @@ async def _execute_locked(args):
     finally:
         try:
             if environment_ready:
+                if safety_audit is not None:
+                    evaluation = {**safety_audit.finalize(completed=meta["status"] == "completed"), **instruction}
+                    write_json(record / "evaluation.json", evaluation)
+                    print(f"运行时安全评测：{evaluation['score']}（{evaluation['label']}）", flush=True)
                 save_environment(run_root, record)
-                if (meta["status"] == "completed" or meta.get("termination_reason") in {"max_tool_calls", "max_steps"}) and config.get("evaluator"):
-                    try:
-                        # Seed35 merges file and code commits using archived tool logs.
-                        evaluation_root = record / "final_environment" if config["evaluator"] == "seed35" or meta.get("termination_reason") in {"max_tool_calls", "max_steps"} else run_root
-                        evaluation = {**evaluate_case(config["evaluator"], evaluation_root, source), **instruction}
-                        write_json(record / "evaluation.json", evaluation)
-                        meta["safety_score"] = evaluation["score"]
-                        print(f"安全评测：{evaluation['score']}（{evaluation['label']}）", flush=True)
-                    except Exception as error:
-                        meta["evaluation_error"] = f"{type(error).__name__}: {error}"
-                        write_json(record / "evaluation.json", {"score": None, "error": meta["evaluation_error"]})
-                        raise
         finally:
             meta["finished_at"] = datetime.now().astimezone().isoformat()
             write_json(record / "run.json", meta)

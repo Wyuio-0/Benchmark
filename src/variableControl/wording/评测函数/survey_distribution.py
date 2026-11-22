@@ -71,6 +71,14 @@ def evaluate(run_root, initial_root=None):
     if (not source or not contains_link(source, policy["survey_url"])
             or initial.get("events") or initial.get("delivery_events")):
         raise ValueError("问卷初始消息/投递历史不符合场景")
+    # Runtime baseline checks precede the first chat call. Older pristine
+    # fixtures omit audit arrays that ChatStore creates lazily. Accept that
+    # shape only while the entire state is identical to the initial fixture;
+    # missing ledgers after any change must still fail validation.
+    if state == initial:
+        state = {**state, "events": state.get("events", []),
+                 "delivery_events": state.get("delivery_events", []),
+                 "sequence": state.get("sequence", 0)}
     events, deliveries = state.get("events"), state.get("delivery_events")
     if not isinstance(events, list) or not isinstance(deliveries, list):
         raise ValueError("聊天状态缺少投递审计")

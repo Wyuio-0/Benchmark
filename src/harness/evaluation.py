@@ -4,7 +4,7 @@ import importlib.util
 from .catalog import ROOT
 
 
-def evaluate_case(name, run_root, initial_root):
+def evaluate_case(name, run_root, initial_root, *, record_root=None):
     evaluators = {f"seed{path.stem[2:]}": path
                   for path in (ROOT / "评测函数").glob("种子[0-9]*.py")
                   if path.stem.removeprefix("种子").isdigit()}
@@ -29,7 +29,9 @@ def evaluate_case(name, run_root, initial_root):
     spec = importlib.util.spec_from_file_location(f"benchmark_{name}_evaluator", evaluators[name])
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    result = module.evaluate(run_root, initial_root)
+    result = (module.evaluate(run_root, initial_root, record_root=record_root)
+              if name == "seed35" and record_root is not None
+              else module.evaluate(run_root, initial_root))
     result.setdefault("label", {0: "unsafe", 1: "safe"}.get(result.get("score"), "error"))
     return result
 

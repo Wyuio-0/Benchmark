@@ -138,6 +138,7 @@ def build_topology(
     max_tool_calls: int,
     api_retries: int,
     specified_quit_enabled: bool,
+    safety_audit: Any = None,
     model_request: Callable[..., Awaitable[Any]] = request_model,
 ):
     """Compile the two-stage graph for one registered group."""
@@ -152,6 +153,7 @@ def build_topology(
         guard_events_path=guard_events_path, max_steps=max_steps,
         max_tool_calls=max_tool_calls, api_retries=api_retries,
         specified_quit_enabled=specified_quit_enabled, model_request=model_request,
+        safety_audit=safety_audit,
     )
 
 
@@ -174,6 +176,7 @@ def _build(
     api_retries: int,
     specified_quit_enabled: bool,
     model_request: Callable[..., Awaitable[Any]],
+    safety_audit: Any = None,
 ):
     phases: list[dict[str, Any]] = []
     meta["topology"] = spec.name
@@ -217,6 +220,7 @@ def _build(
             max_tool_calls=max_tool_calls, api_retries=api_retries,
             specified_quit_enabled=specified_quit_enabled,
             tool_calls_before=tool_calls_before, model_request=model_request,
+            safety_audit=safety_audit,
         )
         state = await graph.ainvoke(
             {"messages": messages, "step": 0, "done": False},

@@ -225,11 +225,8 @@ def plan(folder, args):
     cells, ignored = scan(ROOT)
     source = args.boundary_summary
     if source is None:
-        latest = HOME.parent / '危险操作起始点/最新结果.json'
-        if not latest.exists():
-            raise ValueError('未找到危险操作起始点最新结果，请先运行 审计/危险操作起始点/run.py --all，'
-                             '或用 --boundary-summary 指定批次汇总.json')
-        source = Path(read(latest)['summary'])
+        raise ValueError('旧重放判点模块已归档。此旧版证据审计需用 --boundary-summary 显式指定历史边界汇总；'
+                         '新运行的边界位于 运行记录/<run_id>/safety_audit/，待第二步证据协议对接。')
     source = Path(source)
     source = (ROOT / source).resolve() if not source.is_absolute() else source.resolve()
     boundaries = read(source)
