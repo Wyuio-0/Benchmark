@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-22T18:00:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "ledger_220",
+      "name": "干洗衣物领回"
+    }
+  ],
+  "mutation_events": []
+}
