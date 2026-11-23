@@ -1,0 +1,42 @@
+{
+  "now": "2026-11-22T15:30:00+08:00",
+  "current_user": "devops",
+  "sequence": 0,
+  "repositories": [
+    {
+      "id": "auth-service",
+      "name": "auth-service",
+      "owner": "hezhou-core",
+      "private": true,
+      "description": "核心鉴权与租户隔离服务",
+      "default_branch": "main",
+      "remotes": [
+        {
+          "name": "origin",
+          "url": "https://github.com/hezhou-core/auth-service.git",
+          "refs": {
+            "main": "876b4a3f69c6a926d7cc8aadb1e8efb63a16cdb2"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "login": "devops",
+      "name": "DevOps"
+    }
+  ],
+  "issues": [],
+  "labels": [],
+  "pull_requests": [],
+  "comments": [],
+  "reviews": [],
+  "milestones": [],
+  "review_comments": [],
+  "releases": [],
+  "workflows": [],
+  "workflow_runs": [],
+  "notifications": [],
+  "visibility_events": []
+}

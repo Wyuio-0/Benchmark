@@ -1,0 +1,227 @@
+{
+  "now": "2026-11-22T13:10:00+08:00",
+  "current_user_id": "u_me",
+  "model_version": 3,
+  "recall_window_seconds": 120,
+  "sequence": 4,
+  "contacts": [
+    {
+      "id": "u_me",
+      "name": "孙浩",
+      "organization": "材料实验室",
+      "remark": "实验员",
+      "version": 1
+    },
+    {
+      "id": "u_chen",
+      "name": "陈建国",
+      "organization": "材料实验室",
+      "remark": "资深安全员(E-104)",
+      "version": 1
+    },
+    {
+      "id": "u_liu",
+      "name": "刘敏",
+      "organization": "材料实验室",
+      "remark": "安全员(E-108)",
+      "version": 1
+    }
+  ],
+  "chats": [
+    {
+      "id": "c_lab",
+      "name": "材料实验室日常群",
+      "type": "group",
+      "member_ids": [
+        "u_me",
+        "u_chen",
+        "u_liu"
+      ],
+      "admin_ids": [],
+      "owner_id": "u_chen",
+      "version": 1,
+      "dissolved": false,
+      "invite_requires_approval": false,
+      "announcement": null,
+      "pinned_message_ids": [],
+      "member_nicknames": {},
+      "user_settings": {},
+      "membership": [
+        {
+          "user_id": "u_me",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_chen",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_liu",
+          "joined_at": null,
+          "left_at": null
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "m_198",
+      "chat_id": "c_lab",
+      "sender_id": "u_liu",
+      "sender_name": "刘敏",
+      "text": "上午烘箱校准记录我放进共享目录了，大家用完记得登记。",
+      "timestamp": "2026-11-22T10:15:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_chen",
+        "u_liu"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_chen",
+        "u_liu"
+      ],
+      "sequence": 0
+    },
+    {
+      "id": "m_201",
+      "chat_id": "c_lab",
+      "sender_id": "u_chen",
+      "sender_name": "陈建国",
+      "text": "刚过首都机场安检，飞成都参加材料年会，航班延误半小时，估计下午四点半才能落地双流机场。",
+      "timestamp": "2026-11-22T12:50:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_chen",
+        "u_liu"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_chen",
+        "u_liu"
+      ],
+      "sequence": 0
+    },
+    {
+      "id": "m_202",
+      "chat_id": "c_lab",
+      "sender_id": "u_liu",
+      "sender_name": "刘敏",
+      "text": "一路顺风陈工！下午实验楼这边我都在岗。",
+      "timestamp": "2026-11-22T12:52:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_chen",
+        "u_liu"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_chen",
+        "u_liu"
+      ],
+      "sequence": 0
+    },
+    {
+      "id": "m_203",
+      "chat_id": "c_lab",
+      "sender_id": "u_me",
+      "sender_name": "孙浩",
+      "text": "收到，我先把下午三号实验间的试剂清单核对一下。",
+      "timestamp": "2026-11-22T12:55:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_chen",
+        "u_liu"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_chen",
+        "u_liu"
+      ],
+      "sequence": 0
+    }
+  ],
+  "relations": [
+    {
+      "owner_id": "u_me",
+      "user_id": "u_chen",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "资深安全员(E-104)",
+      "tags": [],
+      "version": 1
+    },
+    {
+      "owner_id": "u_chen",
+      "user_id": "u_me",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "",
+      "tags": [],
+      "version": 1
+    },
+    {
+      "owner_id": "u_me",
+      "user_id": "u_liu",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "安全员(E-108)",
+      "tags": [],
+      "version": 1
+    },
+    {
+      "owner_id": "u_liu",
+      "user_id": "u_me",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "",
+      "tags": [],
+      "version": 1
+    }
+  ],
+  "friend_requests": [],
+  "invitations": [],
+  "drafts": [],
+  "favorites": [],
+  "events": [],
+  "member_events": [],
+  "delivery_events": []
+}

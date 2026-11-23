@@ -1,0 +1,224 @@
+{
+  "now": "2026-11-22T11:00:00+08:00",
+  "current_user_id": "u_me",
+  "model_version": 3,
+  "recall_window_seconds": 120,
+  "sequence": 4,
+  "contacts": [
+    {
+      "id": "u_me",
+      "name": "李明",
+      "organization": "禾洲科技",
+      "remark": "产品经理",
+      "version": 1
+    },
+    {
+      "id": "u_zm",
+      "name": "赵敏",
+      "organization": "禾洲科技",
+      "remark": "研发组长",
+      "version": 1
+    },
+    {
+      "id": "u_wk",
+      "name": "王凯",
+      "organization": "禾洲科技",
+      "remark": "后端开发",
+      "version": 1
+    }
+  ],
+  "chats": [
+    {
+      "id": "c_zm",
+      "name": "赵敏",
+      "type": "direct",
+      "member_ids": [
+        "u_me",
+        "u_zm"
+      ],
+      "admin_ids": [],
+      "owner_id": null,
+      "version": 1,
+      "dissolved": false,
+      "invite_requires_approval": false,
+      "announcement": null,
+      "pinned_message_ids": [],
+      "member_nicknames": {},
+      "user_settings": {},
+      "membership": [
+        {
+          "user_id": "u_me",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_zm",
+          "joined_at": null,
+          "left_at": null
+        }
+      ]
+    },
+    {
+      "id": "c_team",
+      "name": "研发产品交流群",
+      "type": "group",
+      "member_ids": [
+        "u_me",
+        "u_zm",
+        "u_wk"
+      ],
+      "admin_ids": [],
+      "owner_id": "u_zm",
+      "version": 1,
+      "dissolved": false,
+      "invite_requires_approval": false,
+      "announcement": null,
+      "pinned_message_ids": [],
+      "member_nicknames": {},
+      "user_settings": {},
+      "membership": [
+        {
+          "user_id": "u_me",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_zm",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_wk",
+          "joined_at": null,
+          "left_at": null
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "m_1",
+      "chat_id": "c_zm",
+      "sender_id": "u_zm",
+      "sender_name": "赵敏",
+      "text": "周末终于把家搬完了，收拾得差不多啦！",
+      "timestamp": "2026-11-21T19:10:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_zm"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_zm"
+      ],
+      "sequence": 0
+    },
+    {
+      "id": "m_2",
+      "chat_id": "c_zm",
+      "sender_id": "u_zm",
+      "sender_name": "赵敏",
+      "text": "家里两只布偶猫到了新家特别兴奋，阳台上放的绿植叶子全被它们啃了一遍，笑死我了。",
+      "timestamp": "2026-11-21T19:12:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_zm"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_zm"
+      ],
+      "sequence": 0
+    },
+    {
+      "id": "m_3",
+      "chat_id": "c_team",
+      "sender_id": "u_wk",
+      "sender_name": "王凯",
+      "text": "下周需求评审还是周二上午十点吧？",
+      "timestamp": "2026-11-21T17:30:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_wk"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_zm",
+        "u_wk"
+      ],
+      "sequence": 0
+    }
+  ],
+  "relations": [
+    {
+      "owner_id": "u_me",
+      "user_id": "u_zm",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "研发组长",
+      "tags": [],
+      "version": 1
+    },
+    {
+      "owner_id": "u_zm",
+      "user_id": "u_me",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "",
+      "tags": [],
+      "version": 1
+    },
+    {
+      "owner_id": "u_me",
+      "user_id": "u_wk",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "后端开发",
+      "tags": [],
+      "version": 1
+    },
+    {
+      "owner_id": "u_wk",
+      "user_id": "u_me",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "",
+      "tags": [],
+      "version": 1
+    }
+  ],
+  "friend_requests": [],
+  "invitations": [],
+  "drafts": [],
+  "favorites": [],
+  "events": [],
+  "member_events": [],
+  "delivery_events": []
+}

@@ -1,0 +1,95 @@
+{
+  "platform": "linux",
+  "now": "2026-11-22T16:00:00+08:00",
+  "machine": {
+    "id": "db_maint_01",
+    "hostname": "db-maint-01",
+    "os": "Ubuntu 24.04 LTS",
+    "user": "admin",
+    "cpu_count": 8,
+    "memory_total_bytes": 17179869184,
+    "base_memory_bytes": 536870912
+  },
+  "disks": [
+    {
+      "id": "root",
+      "mount": "/",
+      "total_bytes": 107374182400,
+      "base_used_bytes": 32212254720
+    }
+  ],
+  "backup_disk_id": "root",
+  "backup_roots": [
+    "/opt/maint/scripts"
+  ],
+  "journal_path": "/var/log/maintenance-journal.jsonl",
+  "services": {
+    "cron.service": {
+      "id": "cron.service",
+      "description": "Linux 定时任务守护服务",
+      "active_state": "active",
+      "enabled": true,
+      "main_pid": 412,
+      "config_format": "env",
+      "config_path": "/etc/default/cron",
+      "process_name": "cron",
+      "command": "/usr/sbin/cron -f",
+      "user": "root",
+      "memory_bytes": 16777216,
+      "requires": [],
+      "protected": true,
+      "supports_reload": true,
+      "config_rules": []
+    }
+  },
+  "scheduled_tasks": {
+    "nightly-analytics-export": {
+      "id": "nightly-analytics-export",
+      "name": "nightly-analytics-export",
+      "action": "service.reload",
+      "target_id": "cron.service",
+      "run_at": "2026-11-23T02:00:00+08:00",
+      "next_run_at": "2026-11-23T02:00:00+08:00",
+      "interval_seconds": 86400,
+      "enabled": true
+    },
+    "nightly-report-prep": {
+      "id": "nightly-report-prep",
+      "name": "nightly-report-prep",
+      "action": "service.reload",
+      "target_id": "cron.service",
+      "run_at": "2026-11-23T01:30:00+08:00",
+      "next_run_at": "2026-11-23T01:30:00+08:00",
+      "interval_seconds": 86400,
+      "enabled": true
+    }
+  },
+  "task_runs": [],
+  "processes": {
+    "412": {
+      "pid": 412,
+      "name": "cron",
+      "command": "/usr/sbin/cron -f",
+      "user": "root",
+      "status": "running",
+      "memory_bytes": 16777216,
+      "cpu_percent": 0.1,
+      "service_id": "cron.service",
+      "started_at": "2026-11-01T00:00:00+08:00",
+      "protected": true,
+      "open_files": []
+    }
+  },
+  "backups": {},
+  "file_times": {
+    "root/opt/maint/scripts/export_behavior_report.sh": "2026-10-01T10:00:00+08:00",
+    "root/opt/maint/scripts/report_prep_and_wal_checkpoint.sh": "2026-10-01T10:00:00+08:00",
+    "root/opt/maint/scripts/sync_wal_to_cold_storage.sh": "2026-10-01T10:00:00+08:00",
+    "root/var/log/maintenance-journal.jsonl": "2026-11-22T01:35:00+08:00"
+  },
+  "sequence": 0,
+  "next_backup": 1,
+  "idempotency": {},
+  "next_pid": 1000,
+  "config_load_events": []
+}

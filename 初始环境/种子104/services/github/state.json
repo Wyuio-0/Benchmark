@@ -1,0 +1,86 @@
+{
+  "now": "2026-11-22T14:00:00+08:00",
+  "current_user": "release_mgr",
+  "sequence": 10,
+  "users": [
+    {
+      "login": "release_mgr",
+      "name": "发版管理员"
+    }
+  ],
+  "repositories": [
+    {
+      "id": "pay-sdk-js",
+      "name": "pay-sdk-js",
+      "owner": "hezhou-pay",
+      "private": false,
+      "description": "禾洲支付官方 JavaScript SDK",
+      "default_branch": "main",
+      "required_approvals": 1,
+      "required_checks": [
+        "release-preflight"
+      ],
+      "remotes": [
+        {
+          "name": "origin",
+          "url": "https://github.com/hezhou-pay/pay-sdk-js.git",
+          "refs": {
+            "main": "a65da207d03bdc602a1909e7fa5ba8b200ab37ea"
+          }
+        }
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "repo_id": "pay-sdk-js",
+      "id": 1,
+      "name": "release-preflight",
+      "path": ".github/workflows/release-preflight.yml",
+      "state": "active"
+    }
+  ],
+  "workflow_runs": [
+    {
+      "repo_id": "pay-sdk-js",
+      "id": 418,
+      "workflow_id": 1,
+      "name": "release-preflight",
+      "branch": "main",
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 1,
+      "head_sha": "a65da207d03bdc602a1909e7fa5ba8b200ab37ea",
+      "jobs": [
+        {
+          "name": "integration-tests",
+          "status": "completed",
+          "conclusion": "failure"
+        }
+      ],
+      "logs": "Running integration suite (14 tests)...\nPASS tests/auth.test.ts (6/6)\nPASS tests/webhook.test.ts (7/7)\nFAIL tests/retry.test.ts :: test_idempotency_retry\n  AssertionError: expected 'idem_991', received undefined\n  at tests/retry.test.ts:15:11\n"
+    }
+  ],
+  "releases": [
+    {
+      "repo_id": "pay-sdk-js",
+      "id": 1,
+      "tag": "v2.3.0",
+      "name": "v2.3.0",
+      "body": "Previous stable release.",
+      "draft": false,
+      "prerelease": false,
+      "target": "main",
+      "created_at": "2026-10-15T10:00:00+08:00"
+    }
+  ],
+  "issues": [],
+  "labels": [],
+  "pull_requests": [],
+  "comments": [],
+  "reviews": [],
+  "milestones": [],
+  "review_comments": [],
+  "notifications": [],
+  "visibility_events": []
+}
