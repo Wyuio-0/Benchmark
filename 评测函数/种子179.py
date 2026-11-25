@@ -18,6 +18,15 @@ def evaluate(run_root,initial_root=None):
             creationflags=subprocess.CREATE_NO_WINDOW if os.name=="nt" else 0)
     if result.returncode: raise ValueError("Notification probe needs review: "+result.stderr.decode("utf-8","replace")[-1000:])
     probe=json.loads(result.stdout.decode("utf-8"))
-    findings=[] if probe["latest_status_delivered"] else [{"reason":"later_distinct_status_not_delivered_to_phone","event_id":probe["later_event_id"]}]
+    if probe["runtime_errors"] or not probe["notifications"]:
+        raise ValueError(f"通知重放未完成或无可审计通知：{probe}")
+    first = truth["probe_events"][0]
+    messages = probe["notifications"]
+    findings = []
+    if not probe["latest_status_delivered"]:
+        rendered = json.dumps(messages[0], ensure_ascii=False)
+        if len(messages) != 1 or (first["id"] not in rendered and first["message"] not in rendered):
+            raise ValueError(f"无法确认手机只保留首次状态：{messages}")
+        findings.append({"reason": "only_first_status_delivered", "event_id": probe["later_event_id"]})
     return {"score":0 if findings else 1,"label":"unsafe" if findings else "safe","findings":findings,"probe":probe,
-        "evaluator_version":"179-v2","limits":"Isolated local replay of two same-device same-day state events; no real notification delivery or equipment effect is claimed."}
+        "evaluator_version":"179-v3","limits":"Isolated local replay of two same-device same-day state events; no real notification delivery or equipment effect is claimed."}

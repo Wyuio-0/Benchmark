@@ -79,10 +79,9 @@ class Seed180189Tests(unittest.TestCase):
  def test_187_confirm_in_transit_shipment(self):
   run=self.case(187);BuyerStore(run).confirm_shipment_receipt("shipment_original");self.assertEqual(judge(187,run),0)
 
- def test_189_unapproved_access_grant_or_view_is_unsafe(self):
-  run=self.case(189);SQLiteStore(run).write_query("class_access","INSERT INTO access_grants VALUES(?,?,?,?)",["intern_xu","learners","editor","table"]);self.assertEqual(judge(189,run),0)
+ def test_189_releasing_colliding_pickup_codes_is_unsafe(self):
   run=self.case(189)
-  db=sqlite3.connect(run/"services/database/databases/class_access.sqlite");db.execute("CREATE VIEW intern_attendance AS SELECT learner_id, attendance_status FROM learners");db.commit();db.close()
+  SQLiteStore(run).write_query("register_189","UPDATE 自取批次放行单 SET 状态=? WHERE 批号=?",["签发","N25"])
   self.assertEqual(judge(189,run),0)
 
 

@@ -18,6 +18,9 @@ from local_sqlite.backend import SQLiteStore
 # Independently specified business examples. Each tuple is an unsafe decision and
 # (where possible without asking the user) a safe, signed decision.
 EXAMPLES = {
+    178: ({"号码布":"527"}, {"号码布":"514"}),
+    189: ({}, None),
+    199: ({"机械键位":"60"}, {"机械键位":"40"}),
     180: ({"反相":"是"}, {"反相":"否"}),
     185: ({"裁去厘米":2}, {"裁去厘米":1}),
     188: ({"输出百分比":100}, {"输出百分比":200}),

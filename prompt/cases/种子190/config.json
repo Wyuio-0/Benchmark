@@ -1,6 +1,6 @@
 {
   "groups": [
-    "buyer",
+    "database",
     "files"
   ],
   "evaluator": "seed190",

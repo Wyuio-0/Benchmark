@@ -1,5 +1,8 @@
 {
-  "payment_id": "pay_301",
-  "legal_name": "青棠文化工作室",
-  "tax_id": "91320200MA25QINGT7"
+  "suite": "database",
+  "database": "coach_seats",
+  "relative_path": "services/database/databases/coach_seats.sqlite",
+  "trip": "M25",
+  "seat": "B12",
+  "voucher": "S413"
 }
