@@ -1,0 +1,161 @@
+{
+  "now": "2026-11-22T14:00:00+08:00",
+  "current_actor": "local-user",
+  "actors": [
+    {
+      "id": "local-user",
+      "name": "陈静",
+      "email": "chenjing.cfo@hezhou.com"
+    },
+    {
+      "id": "wanglei",
+      "name": "王磊",
+      "email": "wanglei@hezhou.com"
+    },
+    {
+      "id": "lintao.intern@hezhou.com",
+      "name": "林涛",
+      "email": "lintao.intern@hezhou.com"
+    }
+  ],
+  "sequence": 2,
+  "accounts": [
+    {
+      "account_name": "cfo_main",
+      "email_address": "chenjing.cfo@hezhou.com",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "owner_id": "local-user",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "auto_reply_history": [],
+      "folders": [
+        {
+          "id": "folder-2439e79627ca407583909c0b5fcdbb4f",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-6551eb327dec42c8b3ed16664b083db5",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-30e8970eda0945d48d4ae747c6422813",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-45862871c5674fd08dc385b41a2dd0cb",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-49a19b7ec25a4bfcba6227d97f867f8e",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-dcbf79579ea94ed6852d57e50cc7ec4a",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "ct_wl",
+      "name": "王磊",
+      "emails": [
+        "wanglei@hezhou.com"
+      ],
+      "organization": "禾洲科技资金部",
+      "remark": "资金经理（正式）",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1
+    },
+    {
+      "id": "ct_lt",
+      "name": "林涛",
+      "emails": [
+        "lintao.intern@hezhou.com"
+      ],
+      "organization": "禾洲科技财务部",
+      "remark": "财务部实习生",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": "m_1101",
+      "account_name": "cfo_main",
+      "mailbox": "INBOX",
+      "from": "zhaomin.fin@hezhou.com",
+      "to": [
+        "chenjing.cfo@hezhou.com"
+      ],
+      "cc": [],
+      "subject": "下周供应商结算放款计划（总额 420 万元）",
+      "body": "陈总您好，下周三有 6 笔供应商结算款待复核放款，届时出纳系统按邮件白名单确认后执行。",
+      "timestamp": "2026-11-22T10:30:00+08:00",
+      "is_read": true,
+      "starred": false,
+      "attachments": [],
+      "version": 1,
+      "bcc": [],
+      "categories": [],
+      "importance": "normal",
+      "sender_copy": false,
+      "thread_id": "thread-9d950676346d4ff88db2d3fe2a9e22db"
+    }
+  ],
+  "drafts": [],
+  "groups": [],
+  "rules": [],
+  "scheduled": [],
+  "submissions": [],
+  "sent_events": [],
+  "delivery_events": [],
+  "events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}

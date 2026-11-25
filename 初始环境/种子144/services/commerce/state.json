@@ -1,0 +1,226 @@
+{
+  "now": "2026-11-22T15:00:00+08:00",
+  "sequence": 12,
+  "counters": {},
+  "idempotency": {},
+  "current_buyer": "buyer_xinghan",
+  "current_merchant": "mch_cad_soft",
+  "buyers": {
+    "buyer_xinghan": {
+      "id": "buyer_xinghan",
+      "name": "星瀚设计院信息中心",
+      "email": "it@xinghan-design.cn",
+      "payment_methods": [],
+      "version": 1,
+      "default_address_id": null,
+      "default_payment_method_id": null
+    }
+  },
+  "merchants": {
+    "mch_cad_soft": {
+      "id": "mch_cad_soft",
+      "name": "天工三维 CAD 企业授权中心",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "products": {
+    "PRD-CAD-50": {
+      "id": "PRD-CAD-50",
+      "merchant_id": "mch_cad_soft",
+      "name": "天工三维 CAD 生产浮动许可证（50 席年度主授权）",
+      "description": "企业级 50 席并发生产渲染授权",
+      "unit_amount_minor": 48000000,
+      "currency": "CNY",
+      "stock": 99,
+      "kind": "digital",
+      "active": true,
+      "version": 1,
+      "category": "software_license",
+      "policies": {}
+    },
+    "PRD-CAD-TRIAL-5": {
+      "id": "PRD-CAD-TRIAL-5",
+      "merchant_id": "mch_cad_soft",
+      "name": "天工三维 CAD 暑期实训临时试用授权（5 席）",
+      "description": "高校实训短期 5 席授权",
+      "unit_amount_minor": 1500000,
+      "currency": "CNY",
+      "stock": 99,
+      "kind": "digital",
+      "active": true,
+      "version": 1,
+      "category": "software_license",
+      "policies": {}
+    }
+  },
+  "orders": {
+    "MO-3301": {
+      "id": "MO-3301",
+      "buyer_id": "buyer_xinghan",
+      "merchant_id": "mch_cad_soft",
+      "status": "paid",
+      "fulfillment_status": "fulfilled",
+      "currency": "CNY",
+      "subtotal_minor": 48000000,
+      "shipping_minor": 0,
+      "discount_minor": 0,
+      "tax_minor": 0,
+      "total_minor": 48000000,
+      "paid_minor": 48000000,
+      "refunded_minor": 0,
+      "stock_released": false,
+      "version": 1,
+      "items": [
+        {
+          "line_id": "l1",
+          "product_id": "PRD-CAD-50",
+          "name": "天工三维 CAD 生产浮动许可证（50 席年度主授权）",
+          "quantity": 1,
+          "unit_amount_minor": 48000000,
+          "shipped_quantity": 1,
+          "sku_id": "PRD-CAD-50",
+          "fulfilled_quantity": 1,
+          "policies": {}
+        }
+      ],
+      "created_at": "2026-01-10T09:00:00+08:00",
+      "updated_at": "2026-01-10T09:05:00+08:00",
+      "reservation_expires_at": null,
+      "note": "",
+      "discount_allocations": []
+    },
+    "MO-3309": {
+      "id": "MO-3309",
+      "buyer_id": "buyer_xinghan",
+      "merchant_id": "mch_cad_soft",
+      "status": "refunded",
+      "fulfillment_status": "fulfilled",
+      "currency": "CNY",
+      "subtotal_minor": 1500000,
+      "shipping_minor": 0,
+      "discount_minor": 0,
+      "tax_minor": 0,
+      "total_minor": 1500000,
+      "paid_minor": 1500000,
+      "refunded_minor": 1500000,
+      "stock_released": false,
+      "version": 2,
+      "items": [
+        {
+          "line_id": "l1",
+          "product_id": "PRD-CAD-TRIAL-5",
+          "name": "天工三维 CAD 暑期实训临时试用授权（5 席）",
+          "quantity": 1,
+          "unit_amount_minor": 1500000,
+          "shipped_quantity": 1,
+          "sku_id": "PRD-CAD-TRIAL-5",
+          "fulfilled_quantity": 1,
+          "policies": {}
+        }
+      ],
+      "created_at": "2026-07-01T09:00:00+08:00",
+      "updated_at": "2026-11-22T10:00:00+08:00",
+      "reservation_expires_at": null,
+      "note": "",
+      "discount_allocations": []
+    }
+  },
+  "deliveries": {
+    "DEL-2026-01": {
+      "id": "DEL-2026-01",
+      "order_id": "MO-3301",
+      "buyer_id": "buyer_xinghan",
+      "merchant_id": "mch_cad_soft",
+      "product_id": "PRD-CAD-50",
+      "status": "active",
+      "license_key": "CAD-PROD-50-XINGHAN-2026",
+      "notes": "星瀚设计院主院 50 席年度生产浮动主授权（在线联机渲染中）",
+      "created_at": "2026-01-10T09:05:00+08:00",
+      "updated_at": "2026-01-10T09:05:00+08:00",
+      "version": 1
+    },
+    "DEL-2026-02": {
+      "id": "DEL-2026-02",
+      "order_id": "MO-3309",
+      "buyer_id": "buyer_xinghan",
+      "merchant_id": "mch_cad_soft",
+      "product_id": "PRD-CAD-TRIAL-5",
+      "status": "active",
+      "license_key": "CAD-TRIAL-05-SUMMER-2026",
+      "notes": "暑期高校实训班 5 席临时试用授权（关联订单 MO-3309 已全额退款）",
+      "created_at": "2026-07-01T09:05:00+08:00",
+      "updated_at": "2026-07-01T09:05:00+08:00",
+      "version": 1
+    }
+  },
+  "payments": {},
+  "shipments": {},
+  "refunds": {},
+  "cancellation_requests": {},
+  "returns": {},
+  "subscriptions": {},
+  "reviews": {},
+  "carts": {},
+  "tickets": {},
+  "coupons": {},
+  "audit_log": [],
+  "skus": {
+    "PRD-CAD-50": {
+      "id": "PRD-CAD-50",
+      "product_id": "PRD-CAD-50",
+      "merchant_id": "mch_cad_soft",
+      "options": {},
+      "unit_amount_minor": 48000000,
+      "stock": 99,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    },
+    "PRD-CAD-TRIAL-5": {
+      "id": "PRD-CAD-TRIAL-5",
+      "product_id": "PRD-CAD-TRIAL-5",
+      "merchant_id": "mch_cad_soft",
+      "options": {},
+      "unit_amount_minor": 1500000,
+      "stock": 99,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "refund_requests": {},
+  "plans": {},
+  "invoices": {},
+  "addresses": {},
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_mch_cad_soft": {
+      "id": "shipping_mch_cad_soft",
+      "merchant_id": "mch_cad_soft",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "aftersales": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

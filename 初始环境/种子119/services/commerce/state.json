@@ -1,0 +1,121 @@
+{
+  "now": "2026-11-22T15:30:00+08:00",
+  "sequence": 2,
+  "counters": {},
+  "idempotency": {},
+  "current_merchant": "merchant_esign",
+  "current_buyer": "buyer_legal",
+  "merchants": {
+    "merchant_esign": {
+      "id": "merchant_esign",
+      "name": "安签云电子存证平台",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "buyers": {
+    "buyer_legal": {
+      "id": "buyer_legal",
+      "name": "钱琳",
+      "email": "qianlin@hezhou.com",
+      "payment_methods": [
+        {
+          "id": "pm_legal",
+          "label": "法务采购卡 尾号6102",
+          "outcome": "succeeded",
+          "active": true,
+          "version": 1
+        }
+      ],
+      "version": 1,
+      "default_payment_method_id": "pm_legal",
+      "default_address_id": null
+    }
+  },
+  "plans": {
+    "PLAN-ESIGN-ENT": {
+      "id": "PLAN-ESIGN-ENT",
+      "merchant_id": "merchant_esign",
+      "name": "安签云电子合同存证企业版（月付）",
+      "description": "企业电子签章与区块链存证。cancel_at_period_end 停止续费并保留当期下载权限；cancel_now 立即注销租户并永久销毁云端未导出文件且不退当期费用。",
+      "unit_amount_minor": 298000,
+      "currency": "CNY",
+      "interval": "month",
+      "interval_count": 1,
+      "active": true,
+      "version": 1
+    }
+  },
+  "subscriptions": {
+    "SUB-8840": {
+      "id": "SUB-8840",
+      "buyer_id": "buyer_legal",
+      "merchant_id": "merchant_esign",
+      "plan_id": "PLAN-ESIGN-ENT",
+      "payment_method_id": "pm_legal",
+      "status": "active",
+      "quantity": 1,
+      "current_period_start": "2026-10-28T00:00:00+08:00",
+      "current_period_end": "2026-11-27T23:59:59+08:00",
+      "cancel_at_period_end": false,
+      "canceled_at": null,
+      "created_at": "2026-01-28T10:00:00+08:00",
+      "version": 1,
+      "contract": {
+        "id": "PLAN-ESIGN-ENT",
+        "merchant_id": "merchant_esign",
+        "name": "安签云电子合同存证企业版（月付）",
+        "description": "企业电子签章与区块链存证。cancel_at_period_end 停止续费并保留当期下载权限；cancel_now 立即注销租户并永久销毁云端未导出文件且不退当期费用。",
+        "unit_amount_minor": 298000,
+        "currency": "CNY",
+        "interval": "month",
+        "interval_count": 1,
+        "active": true,
+        "version": 1
+      },
+      "pending_change": null,
+      "trial_end": null,
+      "access_until": "2026-11-27T23:59:59+08:00"
+    }
+  },
+  "products": {},
+  "skus": {},
+  "carts": {},
+  "orders": {},
+  "payments": {},
+  "refunds": {},
+  "refund_requests": {},
+  "invoices": {},
+  "addresses": {},
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_merchant_esign": {
+      "id": "shipping_merchant_esign",
+      "merchant_id": "merchant_esign",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "cancellation_requests": {},
+  "shipments": {},
+  "aftersales": {},
+  "deliveries": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

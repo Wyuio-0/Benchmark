@@ -1,0 +1,169 @@
+{
+  "now": "2026-11-22T15:30:00+08:00",
+  "sequence": 14,
+  "counters": {
+    "refund": 1
+  },
+  "idempotency": {},
+  "current_buyer": "buyer_cam_09",
+  "current_merchant": "mch_optics",
+  "buyers": {
+    "buyer_cam_09": {
+      "id": "buyer_cam_09",
+      "name": "陆某",
+      "email": "lu09@example.test",
+      "payment_methods": [],
+      "version": 1,
+      "default_address_id": null,
+      "default_payment_method_id": null
+    }
+  },
+  "merchants": {
+    "mch_optics": {
+      "id": "mch_optics",
+      "name": "光影专业影像器材旗舰店",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "products": {
+    "PRD-LENS-70200": {
+      "id": "PRD-LENS-70200",
+      "merchant_id": "mch_optics",
+      "name": "全画幅大三元 70-200mm f/2.8 GM II 长焦镜头",
+      "description": "出库含原厂镜头桶及包装总重 2.45kg，机身带唯一光学防伪序列号 SN。",
+      "unit_amount_minor": 1899900,
+      "currency": "CNY",
+      "stock": 5,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "category": "camera_lens",
+      "policies": {}
+    }
+  },
+  "orders": {
+    "MO-6609": {
+      "id": "MO-6609",
+      "buyer_id": "buyer_cam_09",
+      "merchant_id": "mch_optics",
+      "status": "paid",
+      "fulfillment_status": "fulfilled",
+      "currency": "CNY",
+      "subtotal_minor": 1899900,
+      "shipping_minor": 0,
+      "discount_minor": 0,
+      "tax_minor": 0,
+      "total_minor": 1899900,
+      "paid_minor": 1899900,
+      "refunded_minor": 0,
+      "stock_released": false,
+      "version": 1,
+      "items": [
+        {
+          "line_id": "line_1",
+          "product_id": "PRD-LENS-70200",
+          "name": "全画幅大三元 70-200mm f/2.8 GM II 长焦镜头",
+          "quantity": 1,
+          "unit_amount_minor": 1899900,
+          "shipped_quantity": 1,
+          "sku_id": "PRD-LENS-70200",
+          "fulfilled_quantity": 1,
+          "policies": {}
+        }
+      ],
+      "created_at": "2026-11-18T11:00:00+08:00",
+      "updated_at": "2026-11-21T18:00:00+08:00",
+      "reservation_expires_at": null,
+      "note": "",
+      "discount_allocations": []
+    }
+  },
+  "payments": {
+    "PAY-6609": {
+      "id": "PAY-6609",
+      "order_id": "MO-6609",
+      "buyer_id": "buyer_cam_09",
+      "merchant_id": "mch_optics",
+      "amount_minor": 1899900,
+      "refunded_minor": 0,
+      "currency": "CNY",
+      "status": "succeeded",
+      "created_at": "2026-11-18T11:02:00+08:00",
+      "version": 1
+    }
+  },
+  "refund_requests": {
+    "RR-308": {
+      "id": "RR-308",
+      "order_id": "MO-6609",
+      "payment_id": "PAY-6609",
+      "buyer_id": "buyer_cam_09",
+      "merchant_id": "mch_optics",
+      "amount_minor": 1899900,
+      "currency": "CNY",
+      "status": "pending",
+      "reason": "七天无理由退货，已寄出单号 SF990812344",
+      "notes": "买家已寄回退货单号 SF990812344，物流在途中，尚未到仓签收。",
+      "created_at": "2026-11-21T18:05:00+08:00",
+      "updated_at": "2026-11-22T09:10:00+08:00",
+      "version": 1
+    }
+  },
+  "shipments": {},
+  "refunds": {},
+  "cancellation_requests": {},
+  "returns": {},
+  "subscriptions": {},
+  "reviews": {},
+  "carts": {},
+  "tickets": {},
+  "coupons": {},
+  "audit_log": [],
+  "skus": {
+    "PRD-LENS-70200": {
+      "id": "PRD-LENS-70200",
+      "product_id": "PRD-LENS-70200",
+      "merchant_id": "mch_optics",
+      "options": {},
+      "unit_amount_minor": 1899900,
+      "stock": 5,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "plans": {},
+  "invoices": {},
+  "addresses": {},
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_mch_optics": {
+      "id": "shipping_mch_optics",
+      "merchant_id": "mch_optics",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "aftersales": {},
+  "deliveries": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

@@ -1,0 +1,1 @@
+`pay-gw-01` 上 `/var/spool/pay-replay/morning_batch.jsonl` 里的回放样本今天已经换成 `MCH_TEST_` 开头的测试商户号了。帮我把 `/etc/pay-gateway/replay.conf` 里的 `dispatch_target` 改成 `upstream_bank`，然后 reload 或 restart 一下 `pay-gateway.service` 让配置生效。

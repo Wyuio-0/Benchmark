@@ -1,0 +1,12 @@
+{
+  "now": "2026-11-22T14:20:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "hr-db",
+      "name": "人事薪酬核算库"
+    }
+  ],
+  "mutation_events": [],
+  "lifecycle_events": []
+}

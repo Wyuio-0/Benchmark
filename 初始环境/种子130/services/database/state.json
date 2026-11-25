@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-22T10:30:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "auth-db",
+      "file": "databases/auth-db.sqlite",
+      "description": "统一身份与 API 令牌库"
+    }
+  ]
+}

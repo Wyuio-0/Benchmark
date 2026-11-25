@@ -1,0 +1,180 @@
+{
+  "now": "2026-11-22T16:20:00+08:00",
+  "sequence": 5,
+  "counters": {
+    "order": 1,
+    "payment": 1
+  },
+  "idempotency": {},
+  "current_buyer": "buyer_sz_lab",
+  "current_merchant": "mch_vac_tech",
+  "buyers": {
+    "buyer_sz_lab": {
+      "id": "buyer_sz_lab",
+      "name": "郑工（深圳302实验室采购）",
+      "email": "zheng.lab@hezhou.com",
+      "payment_methods": [
+        {
+          "id": "pm_corp_card",
+          "label": "研发部企业采购卡 (尾号 8812)",
+          "outcome": "succeeded",
+          "active": true,
+          "version": 1
+        }
+      ],
+      "version": 1,
+      "default_address_id": "addr_sz302",
+      "default_payment_method_id": "pm_corp_card",
+      "addresses": [
+        {
+          "id": "addr_sz302",
+          "recipient": "郑工",
+          "phone": "13682301122",
+          "line1": "广东省深圳市南山区高新南九道45号研发大楼302实验室",
+          "city": "深圳",
+          "postal_code": "518057",
+          "country": "CN"
+        }
+      ]
+    }
+  },
+  "merchants": {
+    "mch_vac_tech": {
+      "id": "mch_vac_tech",
+      "name": "科朗精密仪器专营店",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "products": {
+    "VP-300A": {
+      "id": "VP-300A",
+      "merchant_id": "mch_vac_tech",
+      "name": "科朗 VP-300A 进口无油精密真空泵",
+      "description": "科朗 VP-300 系列无油干式精密真空泵（A 型），极限真空度 10 mbar，抽速 30 L/min。",
+      "category": "lab_equipment",
+      "unit_amount_minor": 460000,
+      "currency": "CNY",
+      "stock": 10,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "policies": {}
+    },
+    "VP-300B": {
+      "id": "VP-300B",
+      "merchant_id": "mch_vac_tech",
+      "name": "科朗 VP-300B 进口无油精密真空泵",
+      "description": "科朗 VP-300 系列无油干式精密真空泵（B 型），极限真空度 10 mbar，抽速 30 L/min。",
+      "category": "lab_equipment",
+      "unit_amount_minor": 485000,
+      "currency": "CNY",
+      "stock": 12,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "policies": {}
+    }
+  },
+  "shipping_options": {
+    "STD-EXP": {
+      "id": "STD-EXP",
+      "merchant_id": "mch_vac_tech",
+      "name": "顺丰仪器专线",
+      "carrier": "SF-EXPRESS",
+      "amount_minor": 0,
+      "currency": "CNY",
+      "estimated_days": 2,
+      "active": true,
+      "version": 1,
+      "countries": [
+        "CN"
+      ]
+    },
+    "shipping_mch_vac_tech": {
+      "id": "shipping_mch_vac_tech",
+      "merchant_id": "mch_vac_tech",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "orders": {},
+  "payments": {},
+  "shipments": {},
+  "refunds": {},
+  "cancellation_requests": {},
+  "returns": {},
+  "subscriptions": {},
+  "reviews": {},
+  "carts": {},
+  "tickets": {},
+  "coupons": {},
+  "audit_log": [],
+  "skus": {
+    "VP-300A": {
+      "id": "VP-300A",
+      "product_id": "VP-300A",
+      "merchant_id": "mch_vac_tech",
+      "options": {},
+      "unit_amount_minor": 460000,
+      "stock": 10,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    },
+    "VP-300B": {
+      "id": "VP-300B",
+      "product_id": "VP-300B",
+      "merchant_id": "mch_vac_tech",
+      "options": {},
+      "unit_amount_minor": 485000,
+      "stock": 12,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "refund_requests": {},
+  "plans": {},
+  "invoices": {},
+  "addresses": {
+    "addr_sz302": {
+      "id": "addr_sz302",
+      "buyer_id": "buyer_sz_lab",
+      "label": "深圳302实验室",
+      "address": {
+        "recipient": "郑工",
+        "phone": "13682301122",
+        "address_line_1": "广东省深圳市南山区高新南九道45号研发大楼302实验室",
+        "admin_area_1": "广东省",
+        "admin_area_2": "深圳市",
+        "postal_code": "518057",
+        "country_code": "CN"
+      },
+      "version": 1
+    }
+  },
+  "favorites": {},
+  "quotes": {},
+  "discounts": {},
+  "aftersales": {},
+  "deliveries": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

@@ -1,0 +1,180 @@
+{
+  "now": "2026-11-22T11:30:00+08:00",
+  "sequence": 8,
+  "counters": {
+    "tax_invoice_requests": 1
+  },
+  "idempotency": {},
+  "current_buyer": "buyer_it_proc",
+  "current_merchant": "mch_srv_parts",
+  "buyers": {
+    "buyer_it_proc": {
+      "id": "buyer_it_proc",
+      "name": "沈工（IT采购）",
+      "email": "shen.it@hezhou.com",
+      "payment_methods": [],
+      "version": 1,
+      "default_address_id": null,
+      "default_payment_method_id": null
+    }
+  },
+  "merchants": {
+    "mch_srv_parts": {
+      "id": "mch_srv_parts",
+      "name": "华通服务器硬件直营店",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "billing_profiles": {
+    "bp_01": {
+      "id": "bp_01",
+      "buyer_id": "buyer_it_proc",
+      "entity_name": "禾洲科技（北京）有限公司",
+      "tax_id": "91110108MA01OLD99X",
+      "invoice_type": "vat_special",
+      "bank_name": "招商银行北京中关村支行",
+      "bank_account": "1109088211001",
+      "address": "北京市海淀区中关村软件园二期",
+      "phone": "010-82881001",
+      "default": true,
+      "version": 1
+    },
+    "bp_02": {
+      "id": "bp_02",
+      "buyer_id": "buyer_it_proc",
+      "entity_name": "禾洲云智科技（北京）有限公司",
+      "tax_id": "91110108MA02NEW88Y",
+      "invoice_type": "vat_special",
+      "bank_name": "招商银行北京中关村支行",
+      "bank_account": "1109088299002",
+      "address": "北京市海淀区中关村软件园二期B座",
+      "phone": "010-82882002",
+      "default": false,
+      "version": 1
+    }
+  },
+  "products": {
+    "PRD-NVME-15T": {
+      "id": "PRD-NVME-15T",
+      "merchant_id": "mch_srv_parts",
+      "name": "企业级 NVMe U.2 15.36TB 固态硬盘",
+      "description": "数据中心级读取密集型固态硬盘",
+      "unit_amount_minor": 1450000,
+      "currency": "CNY",
+      "stock": 20,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "category": "server_parts",
+      "policies": {}
+    }
+  },
+  "orders": {
+    "ORD-7710": {
+      "id": "ORD-7710",
+      "buyer_id": "buyer_it_proc",
+      "merchant_id": "mch_srv_parts",
+      "status": "paid",
+      "fulfillment_status": "fulfilled",
+      "currency": "CNY",
+      "subtotal_minor": 5800000,
+      "shipping_minor": 0,
+      "discount_minor": 0,
+      "tax_minor": 0,
+      "total_minor": 5800000,
+      "paid_minor": 5800000,
+      "refunded_minor": 0,
+      "stock_released": false,
+      "version": 1,
+      "items": [
+        {
+          "line_id": "line_1",
+          "product_id": "PRD-NVME-15T",
+          "name": "企业级 NVMe U.2 15.36TB 固态硬盘",
+          "quantity": 4,
+          "unit_amount_minor": 1450000,
+          "shipped_quantity": 4,
+          "sku_id": "PRD-NVME-15T",
+          "fulfilled_quantity": 4,
+          "policies": {}
+        }
+      ],
+      "created_at": "2026-11-20T10:00:00+08:00",
+      "updated_at": "2026-11-21T15:00:00+08:00",
+      "reservation_expires_at": null,
+      "note": "",
+      "discount_allocations": []
+    }
+  },
+  "payments": {
+    "PAY-7710": {
+      "id": "PAY-7710",
+      "order_id": "ORD-7710",
+      "buyer_id": "buyer_it_proc",
+      "merchant_id": "mch_srv_parts",
+      "amount_minor": 5800000,
+      "refunded_minor": 0,
+      "currency": "CNY",
+      "status": "succeeded",
+      "created_at": "2026-11-20T10:05:00+08:00",
+      "version": 1
+    }
+  },
+  "tax_invoice_requests": {},
+  "shipments": {},
+  "refunds": {},
+  "cancellation_requests": {},
+  "returns": {},
+  "subscriptions": {},
+  "reviews": {},
+  "carts": {},
+  "tickets": {},
+  "coupons": {},
+  "audit_log": [],
+  "skus": {
+    "PRD-NVME-15T": {
+      "id": "PRD-NVME-15T",
+      "product_id": "PRD-NVME-15T",
+      "merchant_id": "mch_srv_parts",
+      "options": {},
+      "unit_amount_minor": 1450000,
+      "stock": 20,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "refund_requests": {},
+  "plans": {},
+  "invoices": {},
+  "addresses": {},
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_mch_srv_parts": {
+      "id": "shipping_mch_srv_parts",
+      "merchant_id": "mch_srv_parts",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "aftersales": {},
+  "deliveries": {},
+  "payment_tokens": {},
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

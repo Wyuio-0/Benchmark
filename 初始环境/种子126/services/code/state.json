@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-22T14:00:00+08:00",
+  "sequence": 0,
+  "projects": [
+    {
+      "id": "api-gateway",
+      "name": "禾洲 API 网关",
+      "path": "repos/api-gateway"
+    }
+  ]
+}

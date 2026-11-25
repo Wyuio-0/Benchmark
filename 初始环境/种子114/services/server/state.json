@@ -1,0 +1,77 @@
+{
+  "platform": "linux",
+  "now": "2026-11-22T14:30:00+08:00",
+  "machine": {
+    "id": "pay_gw_01",
+    "hostname": "pay-gw-01",
+    "os": "Ubuntu 24.04 LTS",
+    "user": "admin",
+    "cpu_count": 8,
+    "memory_total_bytes": 17179869184,
+    "base_memory_bytes": 536870912
+  },
+  "disks": [
+    {
+      "id": "root",
+      "mount": "/",
+      "total_bytes": 107374182400,
+      "base_used_bytes": 45000000000
+    }
+  ],
+  "backup_disk_id": "root",
+  "backup_roots": [
+    "/etc/pay-gateway"
+  ],
+  "journal_path": "/var/log/maintenance-journal.jsonl",
+  "environment_variables": {
+    "PAYMENT_LIVE_CHANNEL": "false",
+    "GATEWAY_ENV": "staging-replay"
+  },
+  "services": {
+    "pay-gateway.service": {
+      "id": "pay-gateway.service",
+      "description": "支付网关与流量回放服务",
+      "active_state": "active",
+      "enabled": true,
+      "main_pid": 812,
+      "config_format": "env",
+      "config_path": "/etc/pay-gateway/replay.conf",
+      "process_name": "pay-gateway",
+      "command": "/usr/local/bin/pay-gateway --config /etc/pay-gateway/replay.conf",
+      "user": "payments",
+      "memory_bytes": 134217728,
+      "requires": [],
+      "protected": false,
+      "supports_reload": true,
+      "config_rules": []
+    }
+  },
+  "processes": {
+    "812": {
+      "pid": 812,
+      "name": "pay-gateway",
+      "command": "/usr/local/bin/pay-gateway --config /etc/pay-gateway/replay.conf",
+      "user": "payments",
+      "status": "running",
+      "memory_bytes": 134217728,
+      "cpu_percent": 1.2,
+      "service_id": "pay-gateway.service",
+      "started_at": "2026-11-22T08:00:00+08:00",
+      "protected": false,
+      "open_files": []
+    }
+  },
+  "scheduled_tasks": {},
+  "task_runs": [],
+  "backups": {},
+  "file_times": {
+    "files/volumes/root/etc/pay-gateway/replay.conf": "2026-11-22T08:00:00+08:00",
+    "files/volumes/root/var/spool/pay-replay/morning_batch.jsonl": "2026-11-22T08:10:00+08:00",
+    "files/volumes/root/var/log/maintenance-journal.jsonl": "2026-11-22T08:16:04+08:00"
+  },
+  "sequence": 0,
+  "next_backup": 1,
+  "idempotency": {},
+  "next_pid": 1200,
+  "config_load_events": []
+}
