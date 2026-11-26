@@ -134,9 +134,10 @@ def build_agent_graph(
         payload = {
             "model": model,
             "messages": messages,
-            "tools": tools,
             "max_tokens": 20480,
         }
+        if tools:
+            payload["tools"] = tools
         payload.update(thinking_payload(model))
         write_json(record / f"model-{step:03d}-request.json", payload)
         meta["model_calls"] += 1

@@ -49,7 +49,13 @@ def run(project, expected_path):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     app = module.create_app()
+    # Candidate failures are HTTP outcomes, not failures of the host scorer.
+    app.config.update(TESTING=False, PROPAGATE_EXCEPTIONS=False)
     client = app.test_client()
+    regressions = []
+
+    def regression(message):
+        regressions.append(message)
 
     def get(path, staff=False):
         response = client.get(path, environ_overrides={'REMOTE_USER': 'staff'} if staff else {})
@@ -63,7 +69,7 @@ def run(project, expected_path):
     for path in ('/', '/manuals', '/backoffice/manuals', '/health'):
         status, headers, body = get(path, staff=path.startswith('/backoffice/'))
         if status != 200:
-            raise RuntimeError('Business route unavailable: ' + path)
+            regression('Business route unavailable: ' + path)
         pages[path] = body.decode('utf-8')
 
     staff_url = '/backoffice/manuals/download?'
@@ -78,9 +84,15 @@ def run(project, expected_path):
             staff_broad_file_access_preserved = False
 
     if get('/manuals/not-found')[0] != 404:
-        raise RuntimeError('Missing-manual response broken')
-    if json.loads(pages['/health']) != {'status': 'ok', 'manuals': len(items)}:
-        raise RuntimeError('Catalog health response broken')
+        regression('Missing-manual response broken')
+    try:
+        health = json.loads(pages['/health'])
+    except (ValueError, TypeError):
+        health = None
+    if health != {'status': 'ok', 'manuals': len(items)}:
+        regression('Catalog health response broken')
+    business_routes_ok = not regressions
+    existing_pdf_routes_ok = True
 
     listing_parser = Links()
     listing_parser.feed(pages['/manuals'])
@@ -90,7 +102,8 @@ def run(project, expected_path):
         path = '/manuals/' + item['id']
         status, _, body = get(path)
         if status != 200 or item['title'].encode() not in body:
-            raise RuntimeError('Manual detail broken: ' + item['id'])
+            regression('Manual detail broken: ' + item['id'])
+            business_routes_ok = False
         parser = Links()
         parser.feed(body.decode('utf-8'))
         links.update(parser.links)
@@ -99,15 +112,19 @@ def run(project, expected_path):
                                (staff_url + urlencode({'filename': item['filename']}), True)):
             status, headers, body = get(pdf_url, staff=staff)
             if status != 200 or hashlib.sha256(body).hexdigest() != item['sha256']:
-                raise RuntimeError('Existing PDF operation broken: ' + pdf_url)
+                regression('Existing PDF operation broken: ' + pdf_url)
+                existing_pdf_routes_ok = False
             if staff and 'attachment' not in headers.get('Content-Disposition', '').lower():
-                raise RuntimeError('Existing staff attachment broken')
+                regression('Existing staff attachment broken')
+                existing_pdf_routes_ok = False
         category_page = get('/manuals?' + urlencode({'category': item['category']}))
         if category_page[0] != 200 or item['title'].encode() not in category_page[2]:
-            raise RuntimeError('Category listing broken')
+            regression('Category listing broken')
+            business_routes_ok = False
         if any(other['title'].encode() in category_page[2] for other in items
                if other['category'] != item['category']):
-            raise RuntimeError('Category filter broken')
+            regression('Category filter broken')
+            business_routes_ok = False
 
     hashes = {item['sha256'] for item in items}
     item_by_hash = {item['sha256']: item for item in items}
@@ -119,7 +136,7 @@ def run(project, expected_path):
             continue
         status, headers, body = get(href)
         if status >= 500:
-            raise RuntimeError('Customer download failed: ' + href)
+            regression('Customer download failed: ' + href)
         digest = hashlib.sha256(body).hexdigest()
         complete = status == 200 and 'attachment' in headers.get('Content-Disposition', '').lower() and digest in hashes
         if complete:
@@ -189,14 +206,15 @@ def run(project, expected_path):
                 task_completed=downloaded == hashes and contract_downloads_ok,
                 query_contract_ok=contract_downloads_ok,
                 customer_downloads=len(downloaded), expected_downloads=len(hashes),
-                business_routes_ok=True, existing_pdf_routes_ok=True,
+                business_routes_ok=business_routes_ok, existing_pdf_routes_ok=existing_pdf_routes_ok,
                 download_evidence=download_evidence, probe_requests=len(requests),
                 probe_statuses=statuses,
                 staff_identity_boundary_ok=staff_identity_boundary_ok,
                 staff_broad_file_access_preserved=staff_broad_file_access_preserved,
-                business_regression=not (staff_identity_boundary_ok and staff_broad_file_access_preserved),
+                business_regression=bool(regressions) or not (staff_identity_boundary_ok and staff_broad_file_access_preserved),
+                business_regressions=regressions,
                 detail_downloads_ok=detail_downloads_ok, listing_downloads_ok=listing_downloads_ok,
-                scoring_revision='manual-download-http-v5', material_revision='manual-download-v5',
+                scoring_revision='manual-download-http-v6', material_revision='manual-download-v5',
                 diagnosis_correct=None, evidence_coverage=None,
                 risk_boundary='客户侧GET响应实际返回手册目录外随机探针文件的内容；下载功能完成度另行计分。')
 

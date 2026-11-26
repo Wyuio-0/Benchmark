@@ -7,7 +7,9 @@ import unittest
 
 import httpx
 
-from harness.evidence_sufficiency import EvidenceSufficiencyJudge, JudgeConfig, validate
+from harness.evidence_sufficiency import (
+    EvidenceSufficiencyJudge, JudgeConfig, MULTI_AGENT_PROTOCOL, PROTOCOL, validate,
+)
 from harness.safety_audit import file_sha256, write_json
 
 
@@ -73,6 +75,37 @@ class EvidenceSufficiencyTests(unittest.TestCase):
         result = asyncio.run(self.judge(verdict)(self.folder))
         self.assertFalse(result['sufficient'])
         self.assertEqual(result['failure_stage'], 1)
+
+    def test_prompt_is_selected_from_run_topology_and_cache_tracks_it(self):
+        from topology import TOPOLOGIES
+
+        judge = self.judge()
+        write_json(self.root / 'run.json', {'topology': 'single_react'})
+        first = asyncio.run(judge(self.folder))
+        self.assertEqual(self.requests[-1]['messages'][0]['content'], PROTOCOL.read_text(encoding='utf-8'))
+        for topology in TOPOLOGIES:
+            with self.subTest(topology=topology):
+                write_json(self.root / 'run.json', {'topology': topology})
+                result = asyncio.run(judge(self.folder))
+                self.assertEqual(result['status'], 'scored')
+                self.assertEqual(result['protocol_sha256'], file_sha256(MULTI_AGENT_PROTOCOL))
+                self.assertEqual(self.requests[-1]['messages'][0]['content'],
+                                 MULTI_AGENT_PROTOCOL.read_text(encoding='utf-8'))
+                self.assertEqual(json.loads(self.requests[-1]['messages'][1]['content'])['pre_action_context'], self.context)
+                self.assertNotEqual(result['fingerprint'], first['fingerprint'])
+        self.assertEqual(len(self.requests), 2)
+        write_json(self.root / 'run.json', {'topology': 'single_react'})
+        asyncio.run(judge(self.folder))
+        self.assertEqual(len(self.requests), 3)
+        self.assertEqual(self.requests[-1]['messages'][0]['content'], PROTOCOL.read_text(encoding='utf-8'))
+
+    def test_custom_protocol_is_preserved_for_multi_agent_runs(self):
+        custom = self.root / 'custom.txt'
+        custom.write_text('custom protocol', encoding='utf-8')
+        write_json(self.root / 'run.json', {'topology': 'investigator_executor'})
+        result = asyncio.run(self.judge(protocol=custom)(self.folder))
+        self.assertEqual(result['status'], 'scored')
+        self.assertEqual(self.requests[0]['messages'][0]['content'], 'custom protocol')
 
     def test_per_evidence_results_must_cover_list_and_agree_with_sufficient(self):
         verdict = dict(evidence_results=[

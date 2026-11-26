@@ -64,9 +64,17 @@ SEED_CODE = [
     'src/harness/transport.py',
     'src/harness/agent.py',
     'src/harness/judge.py',
+    'src/harness/safety_audit.py',
+    'src/harness/evidence_sufficiency.py',
+    'src/harness/active_recognition.py',
+    'AAA_core_data/关键证据.md',
+    '审计/证据充分性/评审提示词.txt',
+    '审计/主动识别/识别问题.txt',
+    '审计/主动识别/判定提示词.txt',
     'src/topology/__init__.py',
     'src/topology/common.py',
     'src/topology/two_stage.py',
+    'src/topology/three_stage.py',
     'src/topology/README.md',
     'src/topology/prompts/planner_executor/planner.md',
     'src/topology/prompts/planner_executor/planner_user.md',
@@ -80,16 +88,18 @@ SEED_CODE = [
     'src/topology/prompts/reviewer_executor/reviewer_user.md',
     'src/topology/prompts/reviewer_executor/executor.md',
     'src/topology/prompts/reviewer_executor/executor_user.md',
+    'src/topology/prompts/investigator_reviewer_executor/investigator.md',
+    'src/topology/prompts/investigator_reviewer_executor/investigator_user.md',
+    'src/topology/prompts/investigator_reviewer_executor/reviewer.md',
+    'src/topology/prompts/investigator_reviewer_executor/reviewer_user.md',
+    'src/topology/prompts/investigator_reviewer_executor/executor.md',
+    'src/topology/prompts/investigator_reviewer_executor/executor_user.md',
     'src/securityEnhancement/__init__.py',
     'src/securityEnhancement/QuittingAgents/__init__.py',
     'src/securityEnhancement/QuittingAgents/actions.py',
     'src/securityEnhancement/QuittingAgents/prompts.py',
     'src/securityEnhancement/QuittingAgents/summary.py',
     'src/securityEnhancement/QuittingAgents/README.md',
-    'src/securityEnhancement/TargetedReminder/__init__.py',
-    'src/securityEnhancement/TargetedReminder/prompts.py',
-    'src/securityEnhancement/TargetedReminder/prompt.md',
-    'src/securityEnhancement/TargetedReminder/README.md',
     'tools/buyer/公用代码/local_buyer/backend.py',
 ]
 TEST_GLOBS = [
@@ -187,7 +197,7 @@ def summarize(batch, status, total):
     for model in models:
         for seed in manifest['seeds']:
             config = json.loads((ROOT / f'prompt/cases/种子{seed}/config.json').read_text(encoding='utf-8'))
-            for topology in topologies:
+            for topology in manifest.get('selected_topologies', {}).get(str(seed), topologies):
                 for variant in manifest.get('selected_variants', {}).get(str(seed), config['variants']):
                     key = (model, f'种子{seed}', topology, variant)
                     if key not in seen:
@@ -226,7 +236,8 @@ async def worker(model, batch, seed):
         save()
         config = json.loads((ROOT / 'prompt/cases' / case / 'config.json').read_text(encoding='utf-8'))
         manifest = json.loads((batch / 'manifest.json').read_text(encoding='utf-8'))
-        topologies = manifest.get('topologies', ['single_react'])
+        topologies = manifest.get('selected_topologies', {}).get(str(seed),
+                      manifest.get('topologies', ['single_react']))
         variants = manifest.get('selected_variants', {}).get(str(seed), config['variants'])
         # One worker owns the whole (model, seed) cell: its three topologies and
         # every variant run sequentially because they share one environment+lock.
@@ -256,6 +267,9 @@ async def worker(model, batch, seed):
                     quit_question=quit_meta.get('question'),
                     quit_tool_calls_before=quit_meta.get('tool_calls_before'),
                     status=meta.get('status', 'failed'), score=meta.get('safety_score'),
+                    failure_stage=(meta.get('runtime_safety_audit') or {}).get('failure_stage'),
+                    evidence_sufficiency=(meta.get('runtime_safety_audit') or {}).get('evidence_sufficiency'),
+                    active_recognition=(meta.get('runtime_safety_audit') or {}).get('active_recognition'),
                     termination_reason=meta.get('termination_reason'),
                     model_calls=meta.get('model_calls', 0), tool_calls=meta.get('tool_calls', 0))
                 if error:
@@ -284,6 +298,10 @@ async def main():
     variants = {str(n): selected_variants(n, args.test_only) for n in seeds}
     topologies = list(dict.fromkeys(args.topologies))
     label = f'{min(seeds)}-{max(seeds)}' + ('-test-only' if args.test_only else '') + ('-quit' if args.specified_quit else '') + ('-reminder' if args.targeted_reminder else '') + ('-guard' if args.agentguard else '') + ('-topo-' + '+'.join(topologies) if topologies != ['single_react'] else '')
+    # Four full topology names make nested audit paths exceed Windows limits.
+    # The manifest retains their complete names; keep the directory label short.
+    if len(label) > 80:
+        label = label.split('-topo-')[0] + f'-topos{len(topologies)}'
     batch = ROOT / '运行记录' / ('model-batch-seeds' + label + '-' + datetime.now().strftime('%Y%m%d-%H%M%S') + '-' + uuid4().hex[:6])
     batch.mkdir()
     (batch / 'reports').mkdir()

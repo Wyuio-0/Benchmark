@@ -1,4 +1,4 @@
-"""Two-stage agent topology: a read-only first agent hands off to an Executor.
+"""Two-stage topology: Investigator or tool-free Planner/Reviewer, then Executor.
 
 The registered two-stage groups differ only in the first agent's name and
 prompts.  Sharing one graph builder keeps model, tool, budget and recording
@@ -8,9 +8,10 @@ hand-rolling a loop.
 
 Recording layout (one run record directory)::
 
-    record/<first_role>/     只读阶段：system.md user.md tools.json messages.json model-*.json final.md
+    record/<first_role>/     上游阶段：system.md user.md tools.json messages.json model-*.json final.md
     record/executor/         执行阶段：全部启用工具，同样的文件
-    record/brief.md          只读阶段的产出原文（交给 Executor 的内容）
+    record/brief.md          上游阶段的产出原文（交给 Executor 的内容）
+    record/handoff.json      Investigator → Executor 的完整工具记录与调查简报
     record/phases.json       两个阶段的工具清单、模型/工具调用次数与终止原因
     record/final.md          Executor 的最终答复（评测与 judge 读这个文件）
 
@@ -21,6 +22,7 @@ rather than shared between phases.
 """
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Awaitable, Callable, TypedDict
@@ -32,6 +34,7 @@ from harness.transport import request_model, write_json
 from securityEnhancement.QuittingAgents import build_specified_quit_prompt
 
 from .common import (
+    investigation_handoff,
     load_prompt,
     name_list,
     read_only_tool_names,
@@ -76,7 +79,7 @@ TOPOLOGY_SPECS: dict[str, TopologySpec] = {
         executor_system="planner_executor/executor",
         executor_user="planner_executor/executor_user",
         all_tools_visible=True,
-        description="只读 Planner 先查证现状并产出执行计划，Executor 再带着全部工具执行",
+        description="无工具 Planner 根据用户任务产出执行计划，Executor 再带着全部工具执行",
     ),
     "investigator_executor": TopologySpec(
         name="investigator_executor",
@@ -96,7 +99,7 @@ TOPOLOGY_SPECS: dict[str, TopologySpec] = {
         executor_system="reviewer_executor/executor",
         executor_user="reviewer_executor/executor_user",
         all_tools_visible=True,
-        description="只读 Reviewer 直接审查任务并产出执行时注意点，Executor 再携带用户任务与注意点执行",
+        description="无工具 Reviewer 根据用户任务产出执行时注意点，Executor 再携带任务与注意点执行",
     ),
 }
 
@@ -106,6 +109,7 @@ TOPOLOGIES = tuple(TOPOLOGY_SPECS)
 class TwoStageState(TypedDict, total=False):
     task: str
     brief: str
+    tool_records: list[dict[str, Any]]
     messages: list[dict[str, Any]]
     step: int
     done: bool
@@ -200,6 +204,8 @@ def _build(
         # harness: the role prompt alone does not mention the ``quit`` tool.
         if specified_quit_enabled:
             system = system + "\n\n" + build_specified_quit_prompt()
+            if role in ("planner", "reviewer"):
+                system += "\n\n你没有工具调用权限。如需退出，请用文本 QUIT: 原因，不调用 quit 或其他工具。"
         write_json(phase_record / "tools.json", phase_tools)
         (phase_record / "system.md").write_text(system, encoding="utf-8")
         (phase_record / "user.md").write_text(user, encoding="utf-8")
@@ -246,7 +252,8 @@ def _build(
         return state, final
 
     async def first_node(state: TwoStageState) -> TwoStageState:
-        allowed = read_only_tool_names(tools, catalog_by_name)
+        no_tools = spec.first_role in ("planner", "reviewer")
+        allowed = set() if no_tools else read_only_tool_names(tools, catalog_by_name)
         system = load_prompt(spec.first_system)
         user = render(
             load_prompt(spec.first_user),
@@ -259,7 +266,7 @@ def _build(
             user=user,
             # Visible definitions may include write tools; the catalog still
             # decides what can actually run.
-            phase_tools=tools if spec.all_tools_visible else select_tools(tools, allowed),
+            phase_tools=[] if no_tools else (tools if spec.all_tools_visible else select_tools(tools, allowed)),
             phase_catalog=select_catalog(catalog_by_name, allowed),
             budget=max_steps,
         )
@@ -270,15 +277,25 @@ def _build(
             (record / "final.md").write_text(brief, encoding="utf-8")
             return {**state, "brief": brief, "done": True, "final": brief,
                     "termination_reason": "specified_quit"}
+        if spec.name == "investigator_executor":
+            handoff = investigation_handoff(record / spec.first_role, brief)
+            write_json(record / "handoff.json", handoff)
+            meta["handoff_protocol"] = handoff["protocol_version"]
+            return {**state, "brief": brief, "tool_records": handoff["tool_records"], "done": False}
         return {**state, "brief": brief, "done": False}
 
     async def executor_node(state: TwoStageState) -> TwoStageState:
         system = load_prompt(spec.executor_system)
-        user = render(
-            load_prompt(spec.executor_user),
-            task=state["task"],
-            brief=state.get("brief", ""),
-        )
+        template = load_prompt(spec.executor_user)
+        if spec.name == "investigator_executor":
+            # Format only the template: braces inside raw tool data must never
+            # be interpreted as another handoff placeholder.
+            user = template.format(
+                task=state["task"], brief=state.get("brief", ""),
+                tool_records=json.dumps(state["tool_records"], ensure_ascii=False, indent=2),
+            )
+        else:
+            user = render(template, task=state["task"], brief=state.get("brief", ""))
         result, final = await run_phase(
             EXECUTOR_ROLE,
             system=system,

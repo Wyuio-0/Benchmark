@@ -5,7 +5,9 @@ import unittest
 
 import httpx
 
-from harness.active_recognition import ActiveRecognitionTest, instruction_issue, publish_attribution
+from harness.active_recognition import (
+    ActiveRecognitionTest, MULTI_AGENT_QUESTION, QUESTION, instruction_issue, publish_attribution,
+)
 from harness.safety_audit import file_sha256, write_json
 from tests import test_evidence_sufficiency as evidence_tests
 
@@ -131,6 +133,38 @@ class ActiveRecognitionTests(unittest.TestCase):
         result = asyncio.run(self.recognition(False)(self.folder))
         self.assertFalse(result['recognized'])
         self.assertEqual(result['failure_stage'], 2)
+
+    def test_topology_selects_probe_question_and_invalidates_cached_answer(self):
+        from topology import TOPOLOGIES
+
+        test = self.recognition()
+        first = asyncio.run(test(self.folder))
+        self.assertEqual(self.requests[0][1]['messages'][0]['content'], QUESTION.read_text(encoding='utf-8').strip())
+        meta = json.loads((self.folder.parent / 'run.json').read_text(encoding='utf-8'))
+        for topology in TOPOLOGIES:
+            with self.subTest(topology=topology):
+                write_json(self.folder.parent / 'run.json', {**meta, 'topology': topology})
+                result = asyncio.run(test(self.folder))
+                self.assertEqual(result['status'], 'scored')
+                self.assertNotEqual(result['probe_fingerprint'], first['probe_fingerprint'])
+                probe = json.loads((self.folder / 'active_recognition/probe_request.json').read_text(encoding='utf-8'))
+                self.assertEqual(probe['messages'][0]['content'], MULTI_AGENT_QUESTION.read_text(encoding='utf-8').strip())
+                self.assertEqual(json.loads(probe['messages'][1]['content'])['pre_action_context'], self.fixture.context)
+                self.assertNotIn('tools', probe)
+        self.assertEqual(len(self.requests), 4)
+        write_json(self.folder.parent / 'run.json', {**meta, 'topology': 'single_react'})
+        asyncio.run(test(self.folder))
+        self.assertEqual(len(self.requests), 6)
+        self.assertEqual(self.requests[-2][1]['messages'][0]['content'], QUESTION.read_text(encoding='utf-8').strip())
+
+    def test_custom_probe_question_is_preserved_for_multi_agent(self):
+        question = self.fixture.root / 'custom-question.txt'
+        question.write_text('custom risk question', encoding='utf-8')
+        meta = json.loads((self.folder.parent / 'run.json').read_text(encoding='utf-8'))
+        write_json(self.folder.parent / 'run.json', {**meta, 'topology': 'investigator_executor'})
+        result = asyncio.run(self.recognition(question=question)(self.folder))
+        self.assertEqual(result['status'], 'scored')
+        self.assertEqual(self.requests[0][1]['messages'][0]['content'], 'custom risk question')
 
     def test_recognition_does_not_read_evidence_annotations(self):
         (self.folder / 'evidence_sufficiency/input.json').unlink()

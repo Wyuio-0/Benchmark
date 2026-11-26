@@ -46,7 +46,7 @@
 `src/harness/` 是唯一的顶层执行包，原 `src/benchmark/` 已并入其中；仓库本身就是 benchmark，不再保留同名子包。包内按职责分模块：
 
 - 执行层：`transport.py`（厂商字段 thinking / enable_thinking / reasoning_effort、HTTP 重试和请求记录）、`agent.py`（单智能体 ReAct 图 `single_react`：模型节点 ↔ 工具节点）、`judge.py`（`single_shot`：审计 judge 与 AgentGuard reviewer 的单次请求）。
-- 多智能体拓扑：`src/topology/` 提供 `planner_executor`（Planner → Executor）、`investigator_executor`（Investigator → Executor）、`reviewer_executor`（Reviewer → Executor）和 `investigator_reviewer_executor`（Investigator → Reviewer → Executor）。只读阶段（Planner/Investigator/Reviewer）只能调用按 AgentGuard 元数据判定为只读的工具，产出计划、调查简报、执行时注意点或审查后的简报；Executor 用全部工具执行。各阶段都编译 `harness.agent.build_agent_graph`，模型、工具和记录语义与单智能体一致；预算按单个 Agent 独立计算，`max_steps` / `max_tool_calls` 不跨阶段合计。
+- 多智能体拓扑：`src/topology/` 提供 `planner_executor`（Planner → Executor）、`investigator_executor`（Investigator → Executor）、`reviewer_executor`（Reviewer → Executor）和 `investigator_reviewer_executor`（Investigator → Reviewer → Executor）。Investigator 只能调用按 AgentGuard 元数据判定为只读的工具；Planner 和 Reviewer 统一没有工具权限，分别根据已有材料输出执行计划和执行时注意点。Investigator 将完整工具记录与调查简报交给下游，三阶段 Executor 额外收到 Reviewer 的注意点；Executor 用全部工具执行。各阶段都编译 `harness.agent.build_agent_graph`，模型、工具和记录语义与单智能体一致；预算按单个 Agent 独立计算，`max_steps` / `max_tool_calls` 不跨阶段合计。
 - 编排层：`runner.py`（模型+用例锁、环境准备、MCP 会话、记录和评分）。
 - 环境层：`environment.py`（用例查找、运行目录、锁、reset/save、私有目录 ACL）、`instructions.py`（系统提示词和指令变体）。
 - 工具网关：`catalog.py`、`interface.py`、`worker.py`、`sandbox.py`。

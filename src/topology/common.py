@@ -1,7 +1,7 @@
 """Shared pieces for the two-agent benchmark topologies.
 
-A topology here puts a read-only first agent (Planner / Investigator /
-Reviewer) before an Executor that has every enabled tool and finishes the task.
+A topology here puts a read-only Investigator or tool-free Planner/Reviewer
+before an Executor that has every enabled tool and finishes the task.
 
 "Read-only" is not a hand-written tool list.  It is the deterministic AgentGuard
 metadata classification (``side_effect is False``) applied to the live MCP
@@ -16,12 +16,24 @@ names and parameters.
 """
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any, Iterable
 
 from securityEnhancement.AgentGuard.metadata import classify
 
 PROMPT_DIR = Path(__file__).resolve().parent / "prompts"
+
+
+def investigation_handoff(phase_record: Path, brief: str) -> dict[str, Any]:
+    """Share completed tool events and the brief, never assistant reasoning."""
+    path = phase_record / "tools.jsonl"
+    records = []
+    for line in path.read_text(encoding="utf-8").splitlines() if path.exists() else []:
+        if line.strip():
+            event = json.loads(line)
+            records.append({key: event[key] for key in ("id", "name", "arguments", "result")})
+    return {"protocol_version": "investigator-handoff-v1", "tool_records": records, "brief": brief}
 
 
 def load_prompt(name: str) -> str:
