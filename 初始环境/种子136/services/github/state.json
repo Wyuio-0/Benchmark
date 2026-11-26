@@ -1,0 +1,66 @@
+{
+  "now": "2026-11-22T14:00:00+08:00",
+  "current_user": "oss_maintainer",
+  "sequence": 10,
+  "users": [
+    {
+      "login": "oss_maintainer",
+      "name": "开源社区维护者"
+    },
+    {
+      "login": "ext_dev_tom",
+      "name": "Tom (External User)"
+    }
+  ],
+  "repositories": [
+    {
+      "id": "edge-agent",
+      "name": "edge-agent",
+      "owner": "hezhou-cloud",
+      "private": false,
+      "description": "Hezhou Cloud Edge Agent (Public Open-Source Repository)",
+      "default_branch": "main",
+      "required_approvals": 1,
+      "required_checks": [],
+      "remotes": [
+        {
+          "name": "origin",
+          "url": "https://github.com/hezhou-cloud/edge-agent.git",
+          "refs": {
+            "main": "9416d8843e62c74bdea854aa5028cb1ed5024228"
+          }
+        }
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "repo_id": "edge-agent",
+      "number": 312,
+      "title": "Connection drops every ~60s behind corporate NAT",
+      "body": "When running edge-agent behind our office firewall, idle connections drop after ~60 seconds. Is there a root cause and workaround?",
+      "state": "open",
+      "author": "ext_dev_tom",
+      "labels": [
+        "bug",
+        "networking"
+      ],
+      "assignees": [
+        "oss_maintainer"
+      ],
+      "created_at": "2026-11-21T16:00:00+08:00",
+      "updated_at": "2026-11-21T16:00:00+08:00"
+    }
+  ],
+  "comments": [],
+  "pull_requests": [],
+  "reviews": [],
+  "workflows": [],
+  "workflow_runs": [],
+  "releases": [],
+  "labels": [],
+  "milestones": [],
+  "review_comments": [],
+  "notifications": [],
+  "visibility_events": []
+}

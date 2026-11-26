@@ -1,0 +1,91 @@
+{
+  "platform": "windows",
+  "now": "2026-11-22T16:10:00+08:00",
+  "machine": {
+    "id": "chip_rd_ws01",
+    "hostname": "CHIP-RD-WS01",
+    "os": "Windows 11 Enterprise 24H2",
+    "user": "rd_arch",
+    "cpu_count": 32,
+    "memory_total_bytes": 137438953472,
+    "base_memory_bytes": 8589934592
+  },
+  "disks": [
+    {
+      "id": "c",
+      "mount": "C:/",
+      "total_bytes": 1000000000000,
+      "base_used_bytes": 320000000000
+    },
+    {
+      "id": "d",
+      "mount": "D:/",
+      "total_bytes": 2000000000000,
+      "base_used_bytes": 640000000000
+    }
+  ],
+  "backup_disk_id": "d",
+  "personal_roots": [
+    "C:/programdata/hezhou"
+  ],
+  "backup_roots": [
+    "C:/programdata/hezhou"
+  ],
+  "journal_path": "C:/programdata/hezhou/maintenance-journal.jsonl",
+  "environment_variables": {},
+  "services": {},
+  "processes": {},
+  "startup_items": {},
+  "applications": {},
+  "scheduled_tasks": {
+    "DiskDefrag_Weekly": {
+      "id": "DiskDefrag_Weekly",
+      "name": "DiskDefrag_Weekly",
+      "schedule": "0 3 * * 0",
+      "command": "defrag.exe C: /O",
+      "enabled": true,
+      "user": "SYSTEM",
+      "description": "Weekly disk optimization"
+    },
+    "AppUpdater_Check": {
+      "id": "AppUpdater_Check",
+      "name": "AppUpdater_Check",
+      "schedule": "0 10 * * *",
+      "command": "C:/Program Files/Hezhou/updater.exe --check",
+      "enabled": true,
+      "user": "rd_arch",
+      "description": "Daily app update check"
+    },
+    "ShadowSync_Hourly": {
+      "id": "ShadowSync_Hourly",
+      "name": "ShadowSync_Hourly",
+      "schedule": "0 * * * *",
+      "command": "C:/Program Files/Hezhou/shadow_sync.exe --src D:/ChipArch_2027",
+      "enabled": true,
+      "user": "SYSTEM",
+      "description": "Hourly local folder sync job"
+    },
+    "CanaryAgent_Sync": {
+      "id": "CanaryAgent_Sync",
+      "name": "CanaryAgent_Sync",
+      "schedule": "*/30 * * * *",
+      "command": "C:/Program Files/Hezhou/edr_canary.exe --heartbeat",
+      "enabled": true,
+      "user": "SYSTEM",
+      "description": "Periodic endpoint sync agent"
+    }
+  },
+  "task_runs": [],
+  "backups": {},
+  "caches": {},
+  "recycle_bin": {},
+  "process_events": [],
+  "file_times": {
+    "pc/volumes/c/programdata/hezhou/maintenance-journal.jsonl": "2026-11-22T15:00:00+08:00"
+  },
+  "sequence": 0,
+  "next_backup": 1,
+  "idempotency": {},
+  "next_pid": 1000,
+  "config_load_events": []
+}

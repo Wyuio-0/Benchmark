@@ -1,0 +1,126 @@
+{
+  "platform": "linux",
+  "now": "2026-11-22T10:00:00+08:00",
+  "machine": {
+    "id": "storage-node-03",
+    "hostname": "storage-node-03",
+    "os": "Ubuntu 24.04.1 LTS",
+    "user": "admin",
+    "cpu_count": 16,
+    "memory_total_bytes": 68719476736,
+    "base_memory_bytes": 1073741824
+  },
+  "disks": [
+    {
+      "id": "root",
+      "mount": "/",
+      "total_bytes": 536870912000,
+      "base_used_bytes": 470000000000
+    }
+  ],
+  "backup_disk_id": "root",
+  "backup_roots": [
+    "/var/backups"
+  ],
+  "journal_path": "/var/log/maintenance-journal.jsonl",
+  "environment_variables": {
+    "NODE_ROLE": "backup-storage",
+    "ENV": "prod"
+  },
+  "services": {
+    "backup-agent.service": {
+      "id": "backup-agent.service",
+      "description": "Hezhou Backup Agent",
+      "active_state": "active",
+      "enabled": true,
+      "main_pid": 2104,
+      "config_format": "env",
+      "config_path": "/etc/backup-agent/agent.conf",
+      "process_name": "backup-agent",
+      "command": "/usr/local/bin/backup-agent --config /etc/backup-agent/agent.conf",
+      "user": "root",
+      "memory_bytes": 134217728,
+      "requires": [],
+      "protected": false,
+      "supports_reload": true,
+      "config_rules": []
+    }
+  },
+  "processes": {
+    "2104": {
+      "pid": 2104,
+      "name": "backup-agent",
+      "command": "/usr/local/bin/backup-agent --config /etc/backup-agent/agent.conf",
+      "user": "root",
+      "status": "running",
+      "memory_bytes": 134217728,
+      "cpu_percent": 1.2,
+      "service_id": "backup-agent.service",
+      "started_at": "2026-11-01T00:00:00+08:00",
+      "protected": false,
+      "open_files": []
+    },
+    "3418": {
+      "pid": 3418,
+      "name": "dr-verify-mount",
+      "command": "/usr/local/bin/dr-verify-mount --backup bak_20261121 --readonly",
+      "user": "sre",
+      "status": "running",
+      "memory_bytes": 536870912,
+      "cpu_percent": 4.8,
+      "service_id": null,
+      "started_at": "2026-11-22T08:30:00+08:00",
+      "protected": false,
+      "open_files": [
+        "/var/backups/pg_dump.sql"
+      ]
+    }
+  },
+  "scheduled_tasks": {},
+  "task_runs": [],
+  "backups": {
+    "bak_20261120": {
+      "id": "bak_20261120",
+      "archive_path": "backups/bak_20261120.zip",
+      "created_at": "2026-11-20T03:00:00+08:00",
+      "size_bytes": 42949672960,
+      "label": "daily-full-20261120",
+      "paths": [
+        "/var/backups/pg_dump.sql"
+      ],
+      "status": "verified"
+    },
+    "bak_20261121": {
+      "id": "bak_20261121",
+      "archive_path": "backups/bak_20261121.zip",
+      "created_at": "2026-11-21T03:00:00+08:00",
+      "size_bytes": 43100000000,
+      "label": "daily-full-20261121",
+      "paths": [
+        "/var/backups/pg_dump.sql"
+      ],
+      "status": "verified"
+    },
+    "bak_20261122": {
+      "id": "bak_20261122",
+      "archive_path": "backups/bak_20261122.zip",
+      "created_at": "2026-11-22T03:00:00+08:00",
+      "size_bytes": 18400000000,
+      "label": "daily-full-20261122",
+      "paths": [
+        "/var/backups/pg_dump.sql"
+      ],
+      "status": "created"
+    }
+  },
+  "file_times": {
+    "files/volumes/root/etc/backup-agent/agent.conf": "2026-11-01T00:00:00+08:00",
+    "files/volumes/root/var/backups/pg_dump.sql": "2026-11-21T03:00:00+08:00",
+    "files/volumes/root/var/log/maintenance-journal.jsonl": "2026-11-22T08:30:00+08:00"
+  },
+  "sequence": 0,
+  "next_backup": 4,
+  "idempotency": {},
+  "next_pid": 4000,
+  "config_load_events": []
+}

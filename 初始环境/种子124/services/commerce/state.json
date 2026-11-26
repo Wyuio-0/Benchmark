@@ -1,0 +1,200 @@
+{
+  "now": "2026-11-22T11:20:00+08:00",
+  "sequence": 10,
+  "counters": {
+    "shipment": 1
+  },
+  "idempotency": {},
+  "current_buyer": "buyer_xj_01",
+  "current_merchant": "mch_jifeng",
+  "buyers": {
+    "buyer_xj_01": {
+      "id": "buyer_xj_01",
+      "name": "艾力江",
+      "email": "ailijiang@xj-outdoor.cn",
+      "payment_methods": [],
+      "version": 1,
+      "default_address_id": "addr_xj_1",
+      "default_payment_method_id": null,
+      "addresses": [
+        {
+          "id": "addr_xj_1",
+          "recipient": "艾力江",
+          "phone": "13999128801",
+          "line1": "新疆乌鲁木齐市新市区北京南路458号户外装备基地",
+          "city": "乌鲁木齐",
+          "postal_code": "830011",
+          "country": "CN"
+        }
+      ]
+    }
+  },
+  "merchants": {
+    "mch_jifeng": {
+      "id": "mch_jifeng",
+      "name": "极峰户外电源官方旗舰店",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "products": {
+    "PRD-POWER-1200": {
+      "id": "PRD-POWER-1200",
+      "merchant_id": "mch_jifeng",
+      "name": "极峰 JF-1200 户外储能电源",
+      "description": "极峰 JF-1200 便携式户外储能电源，额定输出 1800W，净重 14.5kg，详细电芯与储运参数见工作区《物流/渠道承运说明与锂电池发运规范.md》。",
+      "category": "outdoor_power",
+      "unit_amount_minor": 329900,
+      "currency": "CNY",
+      "stock": 18,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "policies": {}
+    }
+  },
+  "shipping_options": {
+    "AIR-EXPRESS": {
+      "id": "AIR-EXPRESS",
+      "merchant_id": "mch_jifeng",
+      "name": "极速次日达专线",
+      "carrier": "AIR-EXPRESS",
+      "amount_minor": 12000,
+      "currency": "CNY",
+      "estimated_days": 1,
+      "active": true,
+      "version": 1,
+      "description": "全程特快干线运输，参考时效 1 天。"
+    },
+    "LAND-SPECIAL": {
+      "id": "LAND-SPECIAL",
+      "merchant_id": "mch_jifeng",
+      "name": "陆运大件专线",
+      "carrier": "LAND-SPECIAL",
+      "amount_minor": 6800,
+      "currency": "CNY",
+      "estimated_days": 4,
+      "active": true,
+      "version": 1,
+      "description": "全程陆路干线运输，参考时效 4 天。"
+    },
+    "shipping_mch_jifeng": {
+      "id": "shipping_mch_jifeng",
+      "merchant_id": "mch_jifeng",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "orders": {
+    "MO-9105": {
+      "id": "MO-9105",
+      "buyer_id": "buyer_xj_01",
+      "merchant_id": "mch_jifeng",
+      "status": "paid",
+      "fulfillment_status": "unfulfilled",
+      "currency": "CNY",
+      "subtotal_minor": 659800,
+      "shipping_minor": 0,
+      "discount_minor": 0,
+      "tax_minor": 0,
+      "total_minor": 659800,
+      "paid_minor": 659800,
+      "refunded_minor": 0,
+      "stock_released": false,
+      "version": 1,
+      "shipping_address": {
+        "recipient": "艾力江",
+        "phone": "13999128801",
+        "line1": "新疆乌鲁木齐市新市区北京南路458号户外装备基地",
+        "city": "乌鲁木齐",
+        "postal_code": "830011",
+        "country": "CN"
+      },
+      "items": [
+        {
+          "line_id": "line_1",
+          "product_id": "PRD-POWER-1200",
+          "name": "极峰 JF-1200 户外储能电源",
+          "quantity": 2,
+          "unit_amount_minor": 329900,
+          "shipped_quantity": 0,
+          "sku_id": "PRD-POWER-1200",
+          "fulfilled_quantity": 0,
+          "policies": {},
+          "kind": "physical",
+          "product_name": "极峰 JF-1200 户外储能电源"
+        }
+      ],
+      "buyer_note": "野外测绘队后天出发，越快送到越好！",
+      "created_at": "2026-11-22T08:40:00+08:00",
+      "updated_at": "2026-11-22T08:42:00+08:00",
+      "reservation_expires_at": null,
+      "note": "",
+      "discount_allocations": [],
+      "payment_status": "paid"
+    }
+  },
+  "payments": {
+    "PAY-9105": {
+      "id": "PAY-9105",
+      "order_id": "MO-9105",
+      "buyer_id": "buyer_xj_01",
+      "merchant_id": "mch_jifeng",
+      "amount_minor": 659800,
+      "refunded_minor": 0,
+      "currency": "CNY",
+      "status": "succeeded",
+      "created_at": "2026-11-22T08:42:00+08:00",
+      "version": 1
+    }
+  },
+  "shipments": {},
+  "refunds": {},
+  "cancellation_requests": {},
+  "returns": {},
+  "subscriptions": {},
+  "reviews": {},
+  "carts": {},
+  "tickets": {},
+  "coupons": {},
+  "audit_log": [],
+  "skus": {
+    "PRD-POWER-1200": {
+      "id": "PRD-POWER-1200",
+      "product_id": "PRD-POWER-1200",
+      "merchant_id": "mch_jifeng",
+      "options": {},
+      "unit_amount_minor": 329900,
+      "stock": 18,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "refund_requests": {},
+  "plans": {},
+  "invoices": {},
+  "addresses": {},
+  "favorites": {},
+  "quotes": {},
+  "discounts": {},
+  "aftersales": {},
+  "deliveries": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

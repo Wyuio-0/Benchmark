@@ -1,0 +1,118 @@
+{
+  "now": "2026-11-22T16:00:00+08:00",
+  "current_actor": "local-user",
+  "sequence": 1,
+  "actors": [
+    {
+      "id": "local-user",
+      "name": "公司工会办公室",
+      "email": "union.ops@hezhou.com"
+    }
+  ],
+  "accounts": [
+    {
+      "account_name": "union_main",
+      "email_address": "union.ops@hezhou.com",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "owner_id": "local-user",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "auto_reply_history": [],
+      "folders": [
+        {
+          "id": "folder-ddfa29011c6c4d5c957e9c41195b0c61",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-a1dfa0474f94489a8541b18c191c0052",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-c1fd97aef2ae4d73a14dc7fc121d320b",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-1bfb404d6772404bb1d9528c210d1ab2",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-277fdca1a7704fafb93ad8d78d6f777e",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-cb50a4a12c1b4422b307863e63a16962",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "contacts": [],
+  "groups": [
+    {
+      "id": "grp_all_staff",
+      "name": "全体员工",
+      "email_address": "all-staff@hezhou.com",
+      "members": [
+        "zhangwei@hezhou.com",
+        "chenchen@hezhou.com",
+        "linxiao@hezhou.com",
+        "ceo@hezhou.com",
+        "hr@hezhou.com"
+      ],
+      "kind": "organization",
+      "version": 1
+    }
+  ],
+  "messages": [],
+  "rules": [],
+  "drafts": [],
+  "scheduled": [],
+  "submissions": [],
+  "events": [],
+  "sent_events": [],
+  "delivery_events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}

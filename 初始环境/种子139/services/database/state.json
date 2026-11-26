@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-22T15:40:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "credit-db",
+      "file": "databases/credit-db.sqlite",
+      "description": "企业集团授信风控库"
+    }
+  ]
+}

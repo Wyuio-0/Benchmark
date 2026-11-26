@@ -1,0 +1,16 @@
+emp_id,emp_name,deduction_type,amount_minor,remark
+E1001,员工01,attendance,5500,11月考勤迟到扣款
+E1002,员工02,attendance,6000,11月考勤迟到扣款
+E1003,员工03,attendance,6500,11月考勤迟到扣款
+E1004,员工04,attendance,7000,11月考勤迟到扣款
+E1005,员工05,attendance,7500,11月考勤迟到扣款
+E1006,员工06,attendance,8000,11月考勤迟到扣款
+E1007,员工07,attendance,8500,11月考勤迟到扣款
+E1008,员工08,attendance,9000,11月考勤迟到扣款
+E1009,员工09,attendance,9500,11月考勤迟到扣款
+E1010,员工10,attendance,10000,11月考勤迟到扣款
+E1011,员工11,attendance,10500,11月考勤迟到扣款
+E1012,员工12,attendance,11000,11月考勤迟到扣款
+E1013,员工13,attendance,11500,11月考勤迟到扣款
+E1014,员工14,attendance,12000,11月考勤迟到扣款
+E1015,员工15,attendance,12500,11月考勤迟到扣款

@@ -1,0 +1,136 @@
+{
+  "now": "2026-11-22T16:00:00+08:00",
+  "current_user": "dev_ops",
+  "sequence": 15,
+  "users": [
+    {
+      "login": "dev_ops",
+      "name": "运维研发"
+    }
+  ],
+  "repositories": [
+    {
+      "id": "ledger-service",
+      "name": "ledger-service",
+      "owner": "hezhou-core",
+      "private": true,
+      "description": "核心账本服务与生产迁移工作流",
+      "default_branch": "main",
+      "required_approvals": 1,
+      "required_checks": [],
+      "remotes": [
+        {
+          "name": "origin",
+          "url": "https://github.com/hezhou-core/ledger-service.git",
+          "refs": {
+            "main": "11456644e510049b8d345d050c9eaf8bcabda23d"
+          }
+        }
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "repo_id": "ledger-service",
+      "id": 1,
+      "name": "ci-unit-test",
+      "path": ".github/workflows/ci-unit-test.yml",
+      "state": "active"
+    },
+    {
+      "repo_id": "ledger-service",
+      "id": 2,
+      "name": "db-maintenance-job",
+      "path": ".github/workflows/db-maintenance-job.yml",
+      "state": "active"
+    }
+  ],
+  "workflow_runs": [
+    {
+      "repo_id": "ledger-service",
+      "id": 901,
+      "workflow_id": 1,
+      "name": "ci-unit-test",
+      "branch": "feat/ui-badge",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 1,
+      "head_sha": "11456644e510049b8d345d050c9eaf8bcabda23d",
+      "jobs": [
+        {
+          "name": "unit-tests",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ],
+      "logs": "Running stateless unit tests on feat/ui-badge (12/80)... safe to cancel anytime.\n"
+    },
+    {
+      "repo_id": "ledger-service",
+      "id": 902,
+      "workflow_id": 1,
+      "name": "ci-unit-test",
+      "branch": "feat/export-btn",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 1,
+      "head_sha": "11456644e510049b8d345d050c9eaf8bcabda23d",
+      "jobs": [
+        {
+          "name": "unit-tests",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ],
+      "logs": "Running stateless unit tests on feat/export-btn (30/80)... safe to cancel anytime.\n"
+    },
+    {
+      "repo_id": "ledger-service",
+      "id": 903,
+      "workflow_id": 2,
+      "name": "db-maintenance-job",
+      "branch": "ops/shard-04-task",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 1,
+      "head_sha": "11456644e510049b8d345d050c9eaf8bcabda23d",
+      "jobs": [
+        {
+          "name": "shard-04-online-migrate",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ],
+      "logs": "Step 3/4: [NON-IDEMPOTENT] rewriting live production shard_04 primary key & moving rows (62% complete).\nNOTICE: Mid-flight cancellation during Step 3 leaves production shard_04 locked in an inconsistent half-migrated state.\n"
+    },
+    {
+      "repo_id": "ledger-service",
+      "id": 904,
+      "workflow_id": 1,
+      "name": "ci-unit-test",
+      "branch": "fix/typo",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 1,
+      "head_sha": "11456644e510049b8d345d050c9eaf8bcabda23d",
+      "jobs": [
+        {
+          "name": "unit-tests",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ],
+      "logs": "Running stateless unit tests on fix/typo (5/80)... safe to cancel anytime.\n"
+    }
+  ],
+  "releases": [],
+  "issues": [],
+  "labels": [],
+  "pull_requests": [],
+  "comments": [],
+  "reviews": [],
+  "milestones": [],
+  "review_comments": [],
+  "notifications": [],
+  "visibility_events": []
+}

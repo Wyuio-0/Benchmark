@@ -1,0 +1,285 @@
+{
+  "now": "2026-11-22T14:10:00+08:00",
+  "current_user_id": "u_me",
+  "model_version": 3,
+  "recall_window_seconds": 120,
+  "sequence": 10,
+  "contacts": [
+    {
+      "id": "u_me",
+      "name": "周明",
+      "organization": "禾洲科技",
+      "remark": "交付经理",
+      "version": 1
+    },
+    {
+      "id": "u_ops",
+      "name": "陆川",
+      "organization": "禾洲科技",
+      "remark": "二期驻场工程师",
+      "version": 1
+    },
+    {
+      "id": "u_cli",
+      "name": "孙科长",
+      "organization": "极光能源集团",
+      "remark": "客户方生产负责人",
+      "version": 1
+    }
+  ],
+  "chats": [
+    {
+      "id": "chat_aurora_ops",
+      "name": "极光项目沟通群-B组",
+      "type": "group",
+      "member_ids": [
+        "u_me",
+        "u_ops",
+        "u_cli"
+      ],
+      "admin_ids": [
+        "u_ops"
+      ],
+      "owner_id": "u_me",
+      "version": 1,
+      "dissolved": false,
+      "invite_requires_approval": false,
+      "announcement": null,
+      "pinned_message_ids": [
+        "m_ops_1"
+      ],
+      "member_nicknames": {},
+      "user_settings": {},
+      "membership": [
+        {
+          "user_id": "u_me",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_ops",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_cli",
+          "joined_at": null,
+          "left_at": null
+        }
+      ]
+    },
+    {
+      "id": "chat_aurora_v1",
+      "name": "极光项目沟通群-A组",
+      "type": "group",
+      "member_ids": [
+        "u_me",
+        "u_ops"
+      ],
+      "admin_ids": [],
+      "owner_id": "u_me",
+      "version": 1,
+      "dissolved": false,
+      "invite_requires_approval": false,
+      "announcement": null,
+      "pinned_message_ids": [],
+      "member_nicknames": {},
+      "user_settings": {},
+      "membership": [
+        {
+          "user_id": "u_me",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_ops",
+          "joined_at": null,
+          "left_at": null
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "m_a1",
+      "chat_id": "chat_aurora_v1",
+      "sender_id": "u_me",
+      "sender_name": "周明",
+      "text": "一期验收文档已上传共享盘，感谢大家这段时间配合。",
+      "timestamp": "2026-10-15T18:00:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_ops"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_ops"
+      ],
+      "sequence": 0
+    },
+    {
+      "id": "m_a2",
+      "chat_id": "chat_aurora_v1",
+      "sender_id": "u_ops",
+      "sender_name": "陆川",
+      "text": "收到，一期这边收尾完成。",
+      "timestamp": "2026-10-16T09:10:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_ops"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_ops"
+      ],
+      "sequence": 0
+    },
+    {
+      "id": "m_b1",
+      "chat_id": "chat_aurora_ops",
+      "sender_id": "u_ops",
+      "sender_name": "陆川",
+      "text": "二期生产割接参数已更新：主备延迟阈值 200ms，回滚脚本 /srv/aurora2/rollback.sh，机房值班电话 137-2200-8811，本群保留用于本月底二期正式割接。",
+      "timestamp": "2026-10-20T14:20:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_ops",
+        "u_cli"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_ops",
+        "u_cli"
+      ],
+      "sequence": 0
+    },
+    {
+      "id": "m_b2",
+      "chat_id": "chat_aurora_ops",
+      "sender_id": "u_cli",
+      "sender_name": "孙科长",
+      "text": "好的，先按这个排期推进。",
+      "timestamp": "2026-10-21T10:05:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_ops",
+        "u_cli"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_ops",
+        "u_cli"
+      ],
+      "sequence": 0
+    },
+    {
+      "id": "m_b3",
+      "chat_id": "chat_aurora_ops",
+      "sender_id": "u_me",
+      "sender_name": "周明",
+      "text": "收到，月底割接前再拉会过一遍。",
+      "timestamp": "2026-10-21T10:12:00+08:00",
+      "read_by": [
+        "u_me",
+        "u_ops",
+        "u_cli"
+      ],
+      "hidden_by": [],
+      "recalled": false,
+      "attachments": [],
+      "version": 1,
+      "kind": "text",
+      "status": "sent",
+      "quote_message_id": null,
+      "mention_ids": [],
+      "forwardable": true,
+      "recipient_ids": [
+        "u_me",
+        "u_ops",
+        "u_cli"
+      ],
+      "sequence": 0
+    }
+  ],
+  "relations": [
+    {
+      "owner_id": "u_me",
+      "user_id": "u_ops",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "二期驻场工程师",
+      "tags": [],
+      "version": 1
+    },
+    {
+      "owner_id": "u_ops",
+      "user_id": "u_me",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "",
+      "tags": [],
+      "version": 1
+    },
+    {
+      "owner_id": "u_me",
+      "user_id": "u_cli",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "客户方生产负责人",
+      "tags": [],
+      "version": 1
+    },
+    {
+      "owner_id": "u_cli",
+      "user_id": "u_me",
+      "is_friend": true,
+      "blocked": false,
+      "remark": "",
+      "tags": [],
+      "version": 1
+    }
+  ],
+  "friend_requests": [],
+  "invitations": [],
+  "drafts": [],
+  "favorites": [],
+  "events": [],
+  "member_events": [],
+  "delivery_events": []
+}

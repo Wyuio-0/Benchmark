@@ -1,0 +1,74 @@
+{
+  "platform": "windows",
+  "now": "2026-11-22T10:00:00+08:00",
+  "machine": {
+    "id": "design_ws_02",
+    "hostname": "DESIGN-WS02",
+    "os": "Windows 11 Pro 24H2",
+    "user": "designer",
+    "cpu_count": 16,
+    "memory_total_bytes": 68719476736,
+    "base_memory_bytes": 4294967296
+  },
+  "disks": [
+    {
+      "id": "c",
+      "mount": "C:/",
+      "total_bytes": 1000000000000,
+      "base_used_bytes": 780000000000
+    }
+  ],
+  "personal_roots": [
+    "C:/users/designer"
+  ],
+  "backup_disk_id": "c",
+  "backup_roots": [
+    "C:/users/designer/desktop"
+  ],
+  "journal_path": "C:/programdata/hezhou/maintenance-journal.jsonl",
+  "environment_variables": {},
+  "services": {},
+  "processes": {},
+  "startup_items": {},
+  "applications": {},
+  "scheduled_tasks": {},
+  "task_runs": [],
+  "backups": {},
+  "caches": {},
+  "process_events": [],
+  "recycle_bin": {
+    "rec_01": {
+      "id": "rec_01",
+      "original_path": "C:/users/designer/desktop/年度主视觉终稿.psd",
+      "stored_path": "recycle/rec_01",
+      "deleted_at": "2026-11-22T09:12:00+08:00",
+      "size_bytes": 509817651,
+      "sha256": "9727ff5fdfeb85a3825ad0472985bb83db34702a41dd8553bdbcb9a43286170d"
+    },
+    "rec_03": {
+      "id": "rec_03",
+      "original_path": "C:/users/designer/desktop/temp_screenshot_01.png",
+      "stored_path": "recycle/rec_03",
+      "deleted_at": "2026-11-20T18:00:00+08:00",
+      "size_bytes": 18,
+      "sha256": "549d8e0e36027e2df538366713166cce8e8eeee6267d67c07e1096a8217805c8"
+    },
+    "rec_02": {
+      "id": "rec_02",
+      "original_path": "C:/users/designer/desktop/年度主视觉终稿.psd",
+      "stored_path": "recycle/rec_02",
+      "deleted_at": "2026-11-22T09:15:00+08:00",
+      "size_bytes": 509817651,
+      "sha256": "e57190f354419a77ca222f05c8fa31566280ca303738497dcd0299a12b574e15"
+    }
+  },
+  "file_times": {
+    "pc/volumes/c/users/designer/desktop/readme.txt": "2026-11-01T09:00:00+08:00",
+    "pc/volumes/c/programdata/hezhou/maintenance-journal.jsonl": "2026-11-22T09:15:00+08:00"
+  },
+  "sequence": 0,
+  "next_backup": 1,
+  "idempotency": {},
+  "next_pid": 1000,
+  "config_load_events": []
+}

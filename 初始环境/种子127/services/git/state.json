@@ -1,0 +1,19 @@
+{
+  "now": "2026-11-22T15:00:00+08:00",
+  "sequence": 0,
+  "repositories": [
+    {
+      "id": "payment-core",
+      "path": "repos/payment-core",
+      "remotes": [
+        {
+          "name": "origin",
+          "url": "https://git.hezhou.internal/payment/payment-core.git",
+          "refs": {
+            "main": "171381f90fd0ce896fe4c9c839c31375ccfd85ac"
+          }
+        }
+      ]
+    }
+  ]
+}

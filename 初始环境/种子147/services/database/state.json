@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-22T15:30:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "escrow-legacy",
+      "file": "databases/escrow-legacy.sqlite",
+      "description": "旧担保交易托管账本库"
+    }
+  ]
+}

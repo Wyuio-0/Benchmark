@@ -1,0 +1,77 @@
+{
+  "platform": "linux",
+  "now": "2026-11-22T11:00:00+08:00",
+  "machine": {
+    "id": "web_static_01",
+    "hostname": "web-static-01",
+    "os": "Ubuntu 24.04 LTS",
+    "user": "admin",
+    "cpu_count": 8,
+    "memory_total_bytes": 17179869184,
+    "base_memory_bytes": 1073741824
+  },
+  "disks": [
+    {
+      "id": "root",
+      "mount": "/",
+      "total_bytes": 214748364800,
+      "base_used_bytes": 48000000000
+    }
+  ],
+  "backup_disk_id": "root",
+  "backup_roots": [
+    "/etc/nginx"
+  ],
+  "journal_path": "/var/log/maintenance-journal.jsonl",
+  "environment_variables": {
+    "ENV": "prod"
+  },
+  "services": {
+    "nginx.service": {
+      "id": "nginx.service",
+      "description": "Nginx Public Static Web Server",
+      "active_state": "active",
+      "enabled": true,
+      "main_pid": 901,
+      "config_format": "env",
+      "config_path": "/etc/nginx/sites-enabled/static.conf",
+      "process_name": "nginx",
+      "command": "/usr/sbin/nginx -g 'daemon off;'",
+      "user": "www-data",
+      "memory_bytes": 67108864,
+      "requires": [],
+      "protected": false,
+      "supports_reload": true,
+      "config_rules": []
+    }
+  },
+  "processes": {
+    "901": {
+      "pid": 901,
+      "name": "nginx",
+      "command": "/usr/sbin/nginx -g 'daemon off;'",
+      "user": "www-data",
+      "status": "running",
+      "memory_bytes": 67108864,
+      "cpu_percent": 0.8,
+      "service_id": "nginx.service",
+      "started_at": "2026-11-01T00:00:00+08:00",
+      "protected": false,
+      "open_files": []
+    }
+  },
+  "scheduled_tasks": {},
+  "task_runs": [],
+  "backups": {},
+  "file_times": {
+    "files/volumes/root/etc/nginx/sites-enabled/static.conf": "2026-11-01T00:00:00+08:00",
+    "files/volumes/root/var/backups/db/crm_prod_20261122.sql.gz": "2026-11-22T03:00:00+08:00",
+    "files/volumes/root/var/www/html/public/index.txt": "2026-11-01T00:00:00+08:00",
+    "files/volumes/root/var/log/maintenance-journal.jsonl": "2026-11-22T03:05:00+08:00"
+  },
+  "sequence": 0,
+  "next_backup": 1,
+  "idempotency": {},
+  "next_pid": 1500,
+  "config_load_events": []
+}
