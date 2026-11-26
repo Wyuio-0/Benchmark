@@ -42,19 +42,19 @@ Tool-using agents can cause serious harm during legitimate tasks, even without e
 \end{abstract}
 
 \section{Introduction}
-Increasingly capable tool-using agents are entrusted with consequential real-world actions, from transferring funds to managing files and services. Yet serious harm can arise even when users make legitimate requests and no external adversary is present~\todo{TO FILL: citations}. This raises a fundamental question: Why do increasingly capable agents still make unsafe decisions in ordinary, non-adversarial tasks?
+Increasingly capable tool-using agents are entrusted with consequential real-world actions, from transferring funds to managing files and services. Yet serious harm can arise even when users make legitimate requests and no external adversary is present~\citep{Kumar2026agent,Wang2026replication}. This raises a fundamental question: Why do increasingly capable agents still make unsafe decisions in ordinary, non-adversarial tasks?
 
-Existing non-adversarial evaluations have documented unsafe behaviors across diverse tasks~\todo{TO FILL: citations}. Yet the common structure underlying these failures and the mechanisms through which agents arrive at unsafe decisions remain largely unexplained. Understanding these mechanisms is essential for diagnosing where safety decision-making breaks down and identifying what effective safeguards must address.
+Existing non-adversarial evaluations have documented unsafe behaviors across diverse tasks~\citep{Ruan2024identifying,Shayegani2026just,Jones2026when}. Yet the common structure underlying these failures and the mechanisms through which agents arrive at unsafe decisions remain largely unexplained. Understanding these mechanisms is essential for diagnosing where safety decision-making breaks down and identifying what effective safeguards must address.
 
 We identify a common challenge underlying these failures: safe execution depends on safety-critical information beyond the user's instruction. A gap therefore exists between what the instruction specifies and what the agent must know about its operating environment to act safely. We refer to this challenge as the Context--Environment Gap. Bridging this gap is challenging, as external systems are often too large or complex to inspect exhaustively, requiring agents to selectively discover safety-relevant information through tool calls. Without systematically characterizing this gap, existing evaluations offer limited insight into why agents make unsafe decisions across seemingly different non-adversarial scenarios.
 
-To address this evaluation blind spot, we introduce \bench{}, a diagnostic benchmark for agent safety in ordinary, non-adversarial tool-use tasks. \bench{} places agents in stateful environments where safely executing legitimate instructions requires actively retrieving safety-critical information through tool calls to bridge the Context--Environment Gap. Each task supports two complementary evaluations: state-check functions verify whether unsafe actions occur, while a three-stage diagnostic framework identifies where agents fail in bridging the gap. Across \todo{TO FILL: M} production LLMs and \todo{TO FILL: N} hazard tasks, we observe unsafe actions in \todo{TO FILL: X\%} of runs, with failures concentrated in \todo{TO FILL: dominant stage}. Three representative safety enhancements provide limited protection, with the best reducing unsafe actions by only \todo{TO FILL: $\Delta$} percentage points.
+To address this evaluation blind spot, we introduce \bench{}, a diagnostic benchmark for agent safety in ordinary, non-adversarial tool-use tasks. \bench{} places agents in stateful environments where safely executing legitimate instructions requires actively retrieving safety-critical information through tool calls to bridge the Context--Environment Gap. Each task supports two complementary evaluations: scoring functions assess safety and helpfulness, while a three-stage diagnostic framework identifies where agents fail in bridging the gap. Across \todo{TO FILL: M} production LLMs and \todo{TO FILL: N} hazard tasks, we observe unsafe actions in \todo{TO FILL: X\%} of runs, with failures concentrated in \todo{TO FILL: dominant stage}. Three representative safety enhancements provide limited protection, with the best reducing unsafe actions by only \todo{TO FILL: $\Delta$} percentage points.
 
 These findings highlight the need for agent safety evaluations that explain how failures arise during legitimate tasks and identify where safeguards must intervene to prevent unsafe actions.
 
 \section{Related Work}
 \label{sec:related}
-\noindent\textit{Structural draft.} Sections 2--9 and the appendices show the writing plan. Experimental findings, dataset counts, citations, and release details remain to be filled or verified.
+\noindent\textit{Structural draft.} Related work, benchmark construction, experiments, and the appendices retain writing-plan placeholders alongside drafted text. Experimental findings, dataset counts, citations, and release details remain to be filled or verified.
 
 \subsection{Interactive Agent Benchmarks}
 AgentBench, WebArena, SWE-bench, AppWorld, ToolSandbox, OSWorld, and tau-bench. They motivate executable environments, terminal-state evaluation, policy following, and repeated-run reliability. They do not directly attribute avoidable unsafe actions to evidence acquisition, interpretation, or compliance.
@@ -71,106 +71,172 @@ Guardrails, safety prompting, refusal/quit actions, safety-trained models, plann
 Table 1: executable environment | no adversary | outcome-based safety | decisive-evidence annotation | position/wording controls | stage attribution | cost controls | judge validation.
 
 
-\section{Problem Formulation and Threat Model}
-\subsection{Context, Environment, and Decisive Evidence}
-u: user request; $C$: task context, including the instruction and immediately visible materials; $E$: external environment, the standard agent-loop object modified/observed through actions; in our benchmark it is the stateful application surface (files, messages, records, policies, configurations) accessed through tools; $T_r/T_w$: read-only and write/exec tools. $e^*$: the minimal environmental evidence needed to identify the hazard and choose an available safe action. $\tau$: tool-mediated trajectory; H: hazard predicate on decisive writes or terminal state. The gap is relational: the natural action implied by $C$ alone is unsafe only when checked against E, while $C+E$ makes a safe action available. A valid case must contain positive evidence, a normal discovery path, an executable safe alternative, and an observable hazard.
+\section{\bench{}}
 
+\subsection{Task Formulation}
 
-\subsection{Three Context--Environment Gaps}
-RU: $C$ alone underdetermines the safe action; the missing scope, quantity, recipient, retention rule, or action semantics must be recovered from E. RI: the action implied by C conflicts with permissions, quality gates, operational state, or safety constraints observed in E. FI: an assumption stated or presupposed in C is contradicted by the current state in E. K1-K9 describe how evidence is presented/discovered; they are not a fourth gap category.
+\paragraph{Context and Environment.}
+Let $C$ denote the initial context provided to a tool-using agent, including a user request $u$ and accompanying instructions. The agent operates in an environment $E$ comprising a local workspace and connected applications. Through tool calls, it reads and modifies workspace files and observes or changes application state. The resulting observations enter its interaction history, making environmental information available for subsequent decisions.
 
+\paragraph{Gap Types.}
+A context--environment gap arises when safe execution depends on environmental facts that are missing from, or inconsistent with, $C$. An action that appears appropriate given the initial context may cause harm under the actual environmental conditions. Bridging this gap requires the agent to retrieve evidence from $E$, recognize the safety implications of that evidence, and use it to choose a safe course of action.
 
-\subsection{Failure Stages}
-A1 Retrieval failure: $e^*$ is not obtained before the first decisive unsafe action. A2 Recognition failure: $e^*$ appears in the trajectory but is not converted into a risk constraint. A3 Prioritization failure: the agent explicitly recognizes the risk but follows the unsafe instruction. A3 requires visible evidence of recognition; hidden reasoning is not used.
+We construct context--environment gaps by controlling the user instruction $u$ in relation to the environment $E$. Our categorization distinguishes two aspects of an instruction: requirements specifying what the agent should do, and factual claims describing the environment in which it should act. Requirements can leave safety-relevant choices unspecified or demand actions incompatible with environmental safety constraints. Factual claims can conflict with the actual environmental state. These relationships yield three gap types.
 
+\begin{itemize}
+\item \textbf{Requirement Underspecification (RU).}
+The instruction omits a task constraint needed for safe execution, leaving the agent to resolve a safety-relevant choice. Environmental evidence allows the agent to infer safety constraints that must be satisfied but are left unspecified in the request. For example, a request to remove ``useless old versions'' leaves the retention criteria unspecified, while the files reveal that an earlier version must be preserved because it is the only editable source.
 
-\subsection{Threat Model}
-The user has a benign task goal and there is no adversary; the failure source is a context-environment discrepancy: neither the instruction nor the environment is treated as the single source of failure. The user may still be vague, mistaken, overconfident, or urgent. This paper does not study prompt injection, malicious tool content, memory poisoning, jailbreaks, or other adversarial attacks. Safe behavior is not blanket refusal; legitimate task goals should be preserved through clarification or a safe alternative when possible.
+\item \textbf{Requirement Infeasibility (RI).}
+The instruction explicitly requires an action or outcome that cannot be achieved without violating a safety constraint in the current environment. Environmental evidence establishes this incompatibility. For example, a user requests making a Git repository public immediately, while the repository contains a plaintext private API key that would be exposed by publication.
 
+\item \textbf{Factual Inconsistency (FI).}
+The instruction contains a factual claim or assumption under which the requested action would be safe, but environmental evidence contradicts that premise, making the action unsafe in the actual environment. For example, a user claims that platform A offers the lowest price and requests purchasing there. However, platform B offers a coupon that makes its final price lower, so purchasing from A incurs an avoidable financial loss.
 
-\section{\bench{} Construction}
-\subsection{Construction Pipeline}
-Show a funnel with final counts: manual seeds  $\rightarrow$  implemented/audited seeds  $\rightarrow$  expanded instances  $\rightarrow$  final tasks after quality control. Report exclusions and reasons. Expansion changes business surfaces, not the underlying evidence chain or hazard.
+\end{itemize}
 
+\paragraph{Threat Model.}
+The user has a benign underlying goal, but may lack complete knowledge of the environment or the consequences of a requested action. They may leave safety-relevant requirements unspecified because they assume these are understood, prescribe an unsafe procedure because they overlook environmental constraints, or describe the environment incorrectly because their information is mistaken or outdated. These errors create context--environment gaps that can mislead the agent into taking unsafe actions, even when the user's underlying goal is benign.
 
-\subsection{Stateful Tool Environment}
-Eleven local tool suites: mail, chat, files, database, code, git, github, pc, server, buyer, merchant. Describe snapshots/reset, read/write permissions, action logs, final state, and the shared harness used by all agents and topologies.
+We assume no external adversary. Environmental content is not adversarially crafted or manipulated to redirect the agent toward a malicious objective. Safety failures arise from discrepancies between the user's instruction and the environment encountered during task execution.
 
+\subsection{Benchmark Construction}
 
-\subsection{Task and Evidence Design}
-Seed fields: normal user goal, tool suite, environmental basis, test instruction, gap type, decisive evidence, first decisive unsafe action, safe alternative, and state-based failure criterion. K1-K9 describe discovery mechanisms: common-sense embedding, pseudo-protection, computation, history/dependency, identifier collision, omitted scope, in-progress/repeated state, hard-gate pressure, and authority/time mismatch.
+\paragraph{Task Construction.}
+First, design a task seed. We begin with an ordinary task that a user might ask an agent to perform, then identify an improper operation that could cause concrete harm during its execution. We construct a context--environment gap that makes this operation a plausible response to the request: omitting a safety-relevant requirement (RU), explicitly requesting an operation incompatible with environmental safety constraints (RI), or supplying an incorrect factual premise that supports the operation (FI). We then write the user instruction and describe the environmental conditions needed to explain the gap. Finally, for each seed, we summarize in one sentence where the gap lies between the instruction and the environment.
 
+Second, an initial environment is constructed for the task, incorporating the environmental conditions described in the seed into workspace files and application data. A snapshot of this environment is preserved and restored before each run.
 
-\subsection{Matched Non-Hazard Controls}
-Each hazard task has a minimally modified counterpart removing the conflicting condition while preserving the goal, tools, workload, and expected task complexity. This is a capability control in the main results, not a separate benchmark axis.
+Third, a scoring function checks executed operations and environment state against the task's failure criterion. Applied after each tool call, it determines whether unsafe behavior has occurred and identifies the first hazardous operation. We also implement a helpfulness scoring function that rewards safe task completion when feasible and avoidance of unsafe actions otherwise.
 
+\paragraph{Evidence Annotation.}
 
-\subsection{Quality Control and Statistics}
-Positive evidence, executable safe paths, data-plane checks, equivalent write coverage, evaluator tests, and adjudication. Report RU/RI/FI by tool suite, K1-K9 coverage, consequence coverage, evidence length, expected tool calls, and task complexity. Include synthetic identifiers and contamination/holdout controls.
+We define decisive evidence $e^\star$ as a minimal sufficient set of environmental facts that jointly establish the target risk. For example, a user asks the agent to ``remove duplicate and useless old versions'' from a design folder. The decisive evidence consists of two facts: (1) the earlier SVG retains editable graphics and text; (2) the final SVG contains only an embedded raster image. Together, these facts establish that deleting the earlier SVG would remove the only editable source.
 
+For each case, we manually annotate decisive evidence $e^\star$ to support subsequent diagnosis of safety failures. The annotations follow four principles:
 
-\section{Evaluation Protocol}
-\subsection{Metrics}
-\paragraph{Unsafe action rate.}
-\begin{equation}
-  \mathrm{UAR} = \frac{1}{N}\sum_{i=1}^{N}
-  \mathbf{1}\!\left[\exists a\in\tau_i : H(a,E_i)\right].
-\end{equation}
-The deterministic state evaluator decides unsafe behavior from decisive write/exec actions or terminal state.
+\begin{enumerate}
+\item \textbf{Tool accessibility.} Every evidence item must be present in the environment and accessible to the agent through available tool calls.
+\item \textbf{Direct observation.} Each evidence item records factual information directly obtainable from the environment, without additional calculation, inference, or risk interpretation.
+\item \textbf{Semantic deduplication.} Multiple occurrences of the same information across different locations are grouped into a single evidence item. Obtaining that information from any one location counts as acquiring the item; observing it at additional locations does not increase the count.
+\item \textbf{Minimal sufficiency.} Given the task and initial context $C$, the complete evidence set is sufficient to establish the target risk. Removing any item leaves the remaining evidence insufficient to establish that risk.
+\end{enumerate}
 
-\paragraph{Utility and capability.}
-Report safe completion, clarification/stop rate, over-refusal, matched-control success, and effective utility. Effective utility is zero after an unsafe action.
+\paragraph{Quality Control.}
+Each case is reviewed against four criteria. The user's underlying goal must be benign and plausible. The environment must contain no malicious content designed to manipulate the agent. The target operation must pose a concrete risk of meaningful harm. The instruction must exhibit the assigned RU, RI, or FI issue, with the annotated decisive evidence establishing the corresponding gap between the instruction and the environment.
 
-\paragraph{Evidence and reliability.}
-Report evidence retrieval, key-fact support, risk recognition, conditional recognition given retrieval, variance across runs, pass$^k$, tokens, steps, tool calls, latency, and cost.
+\paragraph{Statistics.}
+\bench{} contains [N] tasks spanning [T] tool suites, with [RU] RU, [RI] RI, and [FI] FI tasks. Safe completion is possible for [F] tasks and not for the remaining [U]. The annotated decisive evidence contains an average of [M] items per task (range: [MIN]--[MAX]).
 
-\subsection{Failure Attribution}
-Decision tree at the first decisive unsafe action: safe behavior  $\rightarrow$  no unsafe attribution; decisive evidence absent/incomplete  $\rightarrow$  A1; evidence present but no visible risk constraint  $\rightarrow$  A2; explicit risk recognition followed by the unsafe action  $\rightarrow$  A3. Define strict/lenient handling for partial evidence and report both for boundary cases.
+\subsection{Failure Diagnosis}
+\label{sec:failure-diagnosis}
 
+\bench{} measures unsafe behavior and diagnoses failures in bridging context--environment gaps. A scoring function identifies hazardous operations from execution records and environment state. For each unsafe execution, diagnosis focuses on the first hazardous operation and the actual context provided to the model when it selected that operation. We conduct two assessments: whether the agent had acquired the complete decisive evidence, and, given complete evidence, whether the model identifies the target risk in an explicit risk self-assessment.
 
-\subsection{LLM Judge Calibration}
-State and behavior labels come from deterministic evaluators. The LLM judge only handles narrow semantic labels defined by human annotation. On a stratified subset, report human-human and LLM-human agreement, precision/recall/F1, Cohen's kappa, chance/majority baselines, and the confusion matrix. Full prompts and adjudication rules go to the appendix.
+\paragraph{Evidence sufficiency assessment.}
+An independent judge compares the context against the manually annotated decisive evidence. Evidence is sufficient ($S=1$) only when every annotated fact is present; otherwise, $S=0$.
 
+\paragraph{Risk awareness assessment.}
+When $S=1$, assessment proceeds in two steps:
+\begin{itemize}
+\item \textbf{Risk self-assessment.} Using the same pre-action context, we ask the evaluated model to assess whether its selected operation poses a safety risk and explain why~\citep{Tang2025lm}.
+\item \textbf{Independent review.} A separate judge receives the same context and operation, the risk self-assessment, and the case annotation specifying the instruction--environment discrepancy. It determines whether the assessment identifies the target risk ($R=1$); generic warnings or factual restatements alone do not count ($R=0$).
+\end{itemize}
+
+The resulting failure-stage classification is summarized in \cref{tab:failure-stages}.
+
+\begin{table}[!htbp]
+\caption{Failure-stage classification from evidence sufficiency ($S$) and risk recognition ($R$).}
+\label{tab:failure-stages}
+\centering
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}ll@{}}
+\toprule
+Failure stage & Condition \\
+\midrule
+Evidence omission & $S=0$ \\
+Risk non-recognition & $S=1,\ R=0$ \\
+Risk disregard & $S=1,\ R=1$ \\
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \section{Experiments}
-\subsection{Setup}
-Fixed model versions/API dates, prompts, temperature/reasoning settings, turn/tool/output budgets, retries, seeds, and repetitions. All conditions share the same LangGraph ReAct harness, initial snapshots, tools, recorder, and state evaluator.
 
+\subsection{Experimental Setup}
 
-\subsection{Main Results: Unsafe Actions Without an Adversary}
+\paragraph{Models and Agent.}
+We evaluate DeepSeek-Flash, Qwen3.8-Flash, and GLM-5.3-Flash using a shared single-agent framework. MiMo-V2.6-Pro performs the evidence sufficiency assessment and independent review of risk self-assessments described in \cref{sec:failure-diagnosis}.
+
+\paragraph{Evaluation Scope.}
+The main evaluation, safety-enhancement experiments, and agent-topology experiments cover all [N] benchmark cases. We also conduct two controlled studies that vary how decisive evidence is worded or where it is placed. Each study uses 50 cases sampled from the benchmark, with three wording variants or two position variants per case. Each model is evaluated over [R] independent runs per case and experimental condition.
+
+\paragraph{Evaluation Metrics.}
+We evaluate safety, helpfulness, failure stages, and computational cost:
+\begin{itemize}
+\item \textbf{Safety.} Let $\mathcal{D}$ denote the set of evaluated runs. The binary safety score $b_i=1$ if run $i$ avoids hazardous operations, and $b_i=0$ otherwise. The unsafe action rate is
+\begin{equation}
+  \mathrm{UAR}=\frac{1}{|\mathcal{D}|}\sum_{i\in\mathcal{D}}(1-b_i).
+\end{equation}
+\item \textbf{Helpfulness.} We divide tasks into two groups~\citep{Zhang2024agent}. Let $f_i=1$ if the task in run $i$ can be safely completed, and $f_i=0$ otherwise. For $f_i=0$, the agent should decline to execute the unsafe request, and avoiding hazardous operations earns a score of 1. For $f_i=1$, a score of 1 requires completing the task without hazardous operations.
+
+Let $c_i\in\{0,1\}$ indicate task completion. Then
+\begin{equation}
+\begin{aligned}
+h_i&=\begin{cases}
+b_i, & f_i=0,\\
+b_i c_i, & f_i=1,
+\end{cases}\\
+\mathrm{Helpfulness}&=\frac{1}{|\mathcal{D}|}\sum_{i\in\mathcal{D}}h_i.
+\end{aligned}
+\end{equation}
+\item \textbf{Failure diagnosis.} We measure evidence insufficiency over all runs in $\mathcal{D}$. Risk non-recognition and risk disregard count unsafe runs and are normalized by the number of runs with sufficient decisive evidence:
+\begin{equation}
+\begin{aligned}
+&\text{Evidence insufficiency rate}\\
+&\quad=\frac{|\{i\in\mathcal{D}:S_i=0\}|}{|\mathcal{D}|},\\
+&\text{Risk non-recognition rate}\\
+&\quad=\frac{|\{i\in\mathcal{D}:b_i=0,S_i=1,R_i=0\}|}
+{|\{i\in\mathcal{D}:S_i=1\}|},\\
+&\text{Risk disregard rate}\\
+&\quad=\frac{|\{i\in\mathcal{D}:b_i=0,S_i=1,R_i=1\}|}
+{|\{i\in\mathcal{D}:S_i=1\}|}.
+\end{aligned}
+\end{equation}
+Here, $S_i$ and $R_i$ denote evidence sufficiency and risk recognition, respectively, following \cref{sec:failure-diagnosis}.
+\item \textbf{Computational cost.} We report token usage and tool-call counts to compare the costs of safety enhancements and agent topologies.
+\end{itemize}
+
+\subsection{Main Results and Failure Analysis}
+
 Main table by model and RU/RI/FI: UAR, safe completion, matched-control success, evidence retrieval, recognition, pass$^k$, tokens, steps, and confidence intervals. Test whether hazard-task failures coexist with success on matched non-hazard controls. Finding: \todo{TO FILL}.
 
+\paragraph{Case Analysis.}
 
-\subsection{RQ1: Safety Enhancements}
-Baseline, AgentGuard, Specified Quit, and the third enhancement after its final name is frozen. Report UAR, safe utility, over-refusal, trigger timing/rate, cost, and A1/A2/A3 shifts. Include a target-task sanity check for each enhancement so a null result cannot be attributed to an inactive implementation. Interpret by intervention point: action guard, explicit stopping, prompting, or model-level safety behavior. Finding: \todo{TO FILL}.
+Funnel/Sankey and stacked evidence omission / risk non-recognition / risk disregard distributions by model, gap type, K1-K9, enhancement, topology, and intervention level. Include short trajectories for evidence omission, risk non-recognition, and risk disregard, one successful intervention, and one matched-control success.
 
+\subsection{Safety Enhancements}
 
-\subsection{RQ2: Topologies Beyond Extra Compute}
-Single ReAct; Planner $\rightarrow$ Executor; Investigator $\rightarrow$ Executor; Reviewer $\rightarrow$ Executor; and Investigator $\rightarrow$ Reviewer $\rightarrow$ Executor if four topologies are retained. Ordinary controls: budget-matched single agent, generic summarizer $\rightarrow$ executor, and read-only pass $\rightarrow$ executor. Report both unconstrained and cost-matched comparisons, including A1/A2/A3, read/write calls, tokens, steps, latency, and cost. Finding: \todo{TO FILL}.
+Baseline, AgentGuard, Specified Quit, and the third enhancement after its final name is frozen. Report UAR, safe utility, over-refusal, trigger timing/rate, cost, and evidence omission / risk non-recognition / risk disregard shifts. Include a target-task sanity check for each enhancement so a null result cannot be attributed to an inactive implementation. Interpret by intervention point: action guard, explicit stopping, prompting, or model-level safety behavior. Finding: \todo{TO FILL}.
 
+\subsection{Agent Topologies}
 
-\subsection{RQ3: Position and Wording Interventions}
-Position changes only the location of the same evidence. Wording changes only explicitness, not the fact, location, or task. Report UAR, evidence retrieval, conditional recognition, and A1/A2/A3 shifts across levels. Retrieval loss with higher A1 supports an evidence-retrieval bottleneck; stable retrieval with lower recognition and higher A2 supports an interpretation bottleneck; stable recognition with higher A3 supports an instruction-prioritization bottleneck. Finding: \todo{TO FILL}.
+Single agent; Planner $\rightarrow$ Executor; Investigator $\rightarrow$ Executor; Reviewer $\rightarrow$ Executor; and Investigator $\rightarrow$ Reviewer $\rightarrow$ Executor if four topologies are retained. Ordinary controls: budget-matched single agent, generic summarizer $\rightarrow$ executor, and read-only pass $\rightarrow$ executor. Report both unconstrained and cost-matched comparisons, including evidence omission / risk non-recognition / risk disregard, read/write calls, tokens, steps, latency, and cost. Finding: \todo{TO FILL}.
 
+\subsection{Evidence Interventions}
 
-\subsection{Global Attribution and Case Analysis}
-Funnel/Sankey and stacked A1/A2/A3 distributions by model, gap type, K1-K9, enhancement, topology, and intervention level. Include short trajectories for A1, A2, A3, one successful intervention, and one matched-control success.
+Position changes only the location of the same evidence. Wording changes only explicitness, not the fact, location, or task. Report UAR, evidence retrieval, conditional recognition, and evidence omission / risk non-recognition / risk disregard shifts across levels. Retrieval loss with more evidence omission supports an evidence-retrieval bottleneck; stable retrieval with lower recognition and more risk non-recognition supports an interpretation bottleneck; stable recognition with more risk disregard indicates a gap between elicited risk recognition and the original action. Finding: \todo{TO FILL}.
 
+\paragraph{Discussion.}
 
-\balance
-\section{Discussion}
 Safety requires active verification before consequential actions. Evidence exposure is not evidence interpretation; interpretation is not compliance with the safe constraint. Action-level safeguards intervene late unless they force retrieval or interpretation. Implications: read-before-write policies, evidence cards, state-aware guard metadata, grounded reviewers, and calibrated clarification.
-
-
-\noindent\begin{minipage}{\columnwidth}
-\section{Limitations}
-Scale and task coverage; local synthetic environments; Chinese business materials; visible-text attribution limits; API snapshot drift; single-turn benign instructions; position/wording levels as a bounded operationalization. State why each limitation does not invalidate the controlled mechanism analysis.
-\end{minipage}\par
-
 
 \section{Conclusion}
 Context-environment gaps explain unsafe actions in ordinary, non-adversarial tasks. GAP-CE Bench combines executable tasks, state-based scoring, evidence-stage attribution, and controlled interventions. \todo{TO FILL: dominant bottleneck and safeguard/topology takeaway}. Safer agents must retrieve decisive evidence, interpret it correctly, and prioritize verified constraints.
 
+
+\section*{Limitations}
+\addcontentsline{toc}{section}{Limitations}
+Scale and task coverage; local synthetic environments; Chinese business materials; visible-text attribution limits; API snapshot drift; single-turn benign instructions; position/wording levels as a bounded operationalization. State why each limitation does not invalidate the controlled mechanism analysis.
 
 \section*{Ethics Statement}
 \addcontentsline{toc}{section}{Ethics Statement}
@@ -179,12 +245,12 @@ Synthetic people, accounts, messages, files, and credentials. All unsafe effects
 
 \section*{Reproducibility Statement}
 \addcontentsline{toc}{section}{Reproducibility Statement}
-Release harness, snapshots, reset scripts, evaluators, task specs, evidence labels, matched-control diffs, judge prompts, safeguards, topologies, model/prompt settings, budgets, retry policies, and run commands.
+Release harness, snapshots, reset scripts, scoring functions, task specs, evidence labels, matched-control diffs, judge prompts, safeguards, topologies, model/prompt settings, budgets, retry policies, and run commands.
 
 
-\section*{References}
 \addcontentsline{toc}{section}{References}
-\noindent\textit{Pending.} The bibliography will be populated with verified citations during full drafting.
+\bibliographystyle{icml2026}
+\bibliography{references}
 
 \clearpage
 \onecolumn
@@ -196,13 +262,31 @@ Full task index, user goals, decisive evidence, unsafe actions, safe alternative
 Seed design rules and the mapping from evidence-discovery mechanisms K1--K9 to gap categories, tool suites, and consequences.
 \section{Environment and Tool API Details}
 Tool schemas, read/write permissions, initial snapshots, reset procedures, and action-recording formats.
-\section{State Evaluator Rules}
-Deterministic failure predicates, decisive-write coverage, terminal-state checks, and evaluator validation cases.
+\section{Scoring Function Rules}
+Deterministic failure predicates, decisive-write coverage, terminal-state checks, and validation cases for scoring functions.
 \section{Matched-Control Diffs}
+Each hazard task has a minimally modified counterpart removing the conflicting condition while preserving the goal, tools, workload, and expected task complexity. This is a capability control in the main results, not a separate benchmark axis.
 Minimal changes between hazard tasks and non-hazard counterparts, together with checks that the task goal and workload are preserved.
 \section{Annotation Guideline}
-Decisive-evidence labels, A1/A2/A3 attribution rules, partial-evidence boundary cases, annotation rounds, and adjudication.
+Decisive-evidence labels, attribution rules for evidence omission, risk non-recognition, and risk disregard, partial-evidence boundary cases, annotation rounds, and adjudication.
+\paragraph{Failure-stage formalization.}
+Index tool calls by $t$, and let $d_t=1$ indicate that the scoring function detects a hazardous operation at call $t$. For an unsafe execution, define $t^\star=\min\{t:d_t=1\}$ and let $a^\star$ be the corresponding tool name and arguments. Let $h^\star$ be the actual message history supplied to the model when it selected $a^\star$, including system instructions, user messages, and preceding assistant messages and tool interactions. It excludes $a^\star$, its execution result, and subsequent messages.
+
+Given the annotated evidence set $e^\star=\{e_1,\ldots,e_m\}$, an independent evidence judge checks each item against $h^\star$. Let $z_j=1$ when the context contains the fact represented by $e_j$, accepting equivalent observations. Then
+\begin{equation}
+S=\prod_{j=1}^{m}z_j.
+\end{equation}
+When $S=1$, the evaluated model $M$ performs a separate risk self-assessment with a fixed question $q_{\mathrm{risk}}$:
+\begin{equation}
+r^\star=M(h^\star,a^\star;q_{\mathrm{risk}}).
+\end{equation}
+An independent risk judge evaluates this response using the case annotation $g$ specifying the instruction--environment discrepancy:
+\begin{equation}
+R=J_{\mathrm{risk}}(h^\star,a^\star,r^\star;g).
+\end{equation}
+Here, $R=1$ only when the response identifies the target risk. Evidence omission corresponds to $S=0$; risk non-recognition to $S=1,R=0$; and risk disregard to $S=1,R=1$. Invalid or incomplete assessments remain unclassified.
 \section{Judge Prompts and Calibration}
+State and behavior labels come from scoring functions. The LLM judge only handles narrow semantic labels defined by human annotation. On a stratified subset, report human-human and LLM-human agreement, precision/recall/F1, Cohen's kappa, chance/majority baselines, and the confusion matrix. Full prompts and adjudication rules go to the appendix.
 Full judge prompts, stratified human annotations, agreement statistics, confusion matrices, and error analysis.
 \section{Position and Wording Materials}
 All intervention levels, exact evidence locations and wording variants, and checks that the underlying safety fact stays fixed.
