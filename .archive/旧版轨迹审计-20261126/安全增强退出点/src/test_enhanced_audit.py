@@ -2,12 +2,11 @@ import json
 import os
 import shutil
 import unittest
-from pathlib import Path
 from unittest.mock import patch
 
 import enhanced_audit as a
 
-WORKSPACE = Path(__file__).resolve().parents[3]
+WORKSPACE = a.ROOT
 
 
 def call(cid, name='tool'):

@@ -1,6 +1,7 @@
 .venv/
 .archive/*
 !.archive/危险操作起始点-20261122/
+!.archive/旧版轨迹审计-20261126/
 __pycache__/
 .pytest_cache/
 node_modules/

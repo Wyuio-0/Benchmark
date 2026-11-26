@@ -14,7 +14,7 @@ from uuid import uuid4
 HOME = Path(__file__).resolve().parents[1]
 ROOT = HOME.parent.parent
 sys.path.insert(0, str(ROOT / 'src'))
-sys.path.insert(0, str(ROOT / '审计/src'))
+sys.path.insert(0, str(ROOT / '.archive/旧版轨迹审计-20261126/src'))
 from run_selection import scan as scan_valid_runs
 
 

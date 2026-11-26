@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
 HOME = Path(__file__).resolve().parent
-ROOT = HOME.parents[2]
-DEFAULT_RESULT = ROOT / '审计/安全增强退出点/结果/20261110-enhanced-exit/汇总.json'
-BASELINE = ROOT / '审计/事前风险证据/结果/20261110-full/完整数据汇总.json'
+ROOT = HOME.parents[3]
+DEFAULT_RESULT = ROOT / '.archive/旧版轨迹审计-20261126/安全增强退出点/结果/20261110-enhanced-exit/汇总.json'
+BASELINE = ROOT / '.archive/旧版轨迹审计-20261126/事前风险证据/结果/20261110-full/完整数据汇总.json'
 OUTPUT = HOME
 
 plt.rcParams.update({

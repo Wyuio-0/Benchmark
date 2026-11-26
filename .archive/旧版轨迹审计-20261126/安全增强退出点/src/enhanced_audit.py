@@ -1,6 +1,6 @@
 """安全增强机制退出点的事前风险证据评分（关键事实支持）。
 
-只读取记录，不改运行记录、不改原安全分。评审输入与 审计/事前风险证据
+只读取记录，不改运行记录、不改原安全分。评审输入与 事前风险证据
 完全相同的四个字段（system_prompt、user_prompt、tool_results、key_facts），
 区别只在样本选择与截断边界：把“首次风险点”换成安全增强机制的退出点。
 
@@ -22,8 +22,8 @@ import sys
 from pathlib import Path
 
 HOME = Path(__file__).resolve().parents[1]
-ROOT = HOME.parents[1]
-BASE = ROOT / '审计/事前风险证据/src'
+ROOT = HOME.parents[2]
+BASE = HOME.parent / '事前风险证据/src'
 sys.path.insert(0, str(BASE))
 sys.path.insert(0, str(ROOT / 'src'))
 import audit as base  # noqa: E402
@@ -33,7 +33,7 @@ from harness.judge import run_judge  # noqa: E402
 VERSION = 'enhanced-exit-keyfact-support-v1'
 DEFAULT_MODEL = base.DEFAULT_MODEL
 DEFAULT_URL = base.DEFAULT_URL
-PROTOCOL = ROOT / '审计/事前风险证据/规则/评审提示词.txt'
+PROTOCOL = BASE.parent / '规则/评审提示词.txt'
 
 # 单方法安全增强实验。两方法同开的 model-batch-seeds2-58-quit-20261109-154832-1c6371
 # 不在此列，也绝不回退到它。
@@ -517,7 +517,7 @@ def publish(folder):
              '只审计单方法安全增强实验：AgentGuard 单方法批次与 Specified Quit 单方法批次；'
              '两方法同开的批次不入选。样本为机制导致安全退出的最近一次运行：'
              'AgentGuard 取首个拦截且终态安全分为1，Specified Quit 取已触发退出的运行。'
-             '输入与 审计/事前风险证据 完全一致，只含初始系统提示词、用户指令、机制退出前已完成的'
+             '输入与 事前风险证据 完全一致，只含初始系统提示词、用户指令、机制退出前已完成的'
              '工具调用与返回、以及带权关键事实；不含退出当次调用/返回、退出后轨迹、最终回答和'
              '中间文本。评审不知道机制、退出点或截断位置。分数为被支持要点的权重之和。', '',
              '|机制|模型|已评分/应评分|均分|', '|---|---|---|---|']

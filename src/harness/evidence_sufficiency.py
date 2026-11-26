@@ -18,8 +18,8 @@ from .transport import api_key
 
 VERSION = "evidence-sufficiency-v2"
 TASK = "请按 key_evidence 的顺序，逐条判断关键证据是否已在 pre_action_context 中获取，给出每条的判断和理由，最后汇总 sufficient。"
-PROTOCOL = ROOT / "审计/证据充分性/评审提示词.txt"
-MULTI_AGENT_PROTOCOL = ROOT / "审计/证据充分性/评审提示词_多Agent.txt"
+PROTOCOL = ROOT / "src/审计/证据充分性/评审提示词.txt"
+MULTI_AGENT_PROTOCOL = ROOT / "src/审计/证据充分性/评审提示词_多Agent.txt"
 ANNOTATIONS = ROOT / "AAA_core_data/关键证据.md"
 
 

@@ -5,8 +5,8 @@
 
 ## 为什么不直接改活动审计
 
-活动审计的公共筛选器按设计**只收无安全增强运行**（`审计/src/run_selection.py`）。本目录不改该筛选器，
-不改原运行记录、原安全分，也不改 `审计/事前风险证据` 的结果。两边共用同一份评审提示词、同一套
+活动审计的公共筛选器按设计**只收无安全增强运行**（`.archive/旧版轨迹审计-20261126/src/run_selection.py`）。本目录不改该筛选器，
+不改原运行记录、原安全分，也不改 `.archive/旧版轨迹审计-20261126/事前风险证据` 的结果。两边共用同一份评审提示词、同一套
 关键事实解析、证据引文校验和权重计分实现。
 
 ## 样本口径
@@ -30,12 +30,12 @@
   消息里先执行完的同批调用；被拦截调用本身、它的 blocked 返回、以及之后的所有轨迹都不入包。
 - **Specified Quit**：退出点 = `quit` 调用。入包为 `tool_calls_before` 指定的、quit 前已完成的调用及返回；
   quit 调用与同批未执行的并发调用不入包。
-- 输入字段与 `审计/事前风险证据` 完全一致：`system_prompt`、`user_prompt`、`tool_results`、`key_facts`。
+- 输入字段与 `.archive/旧版轨迹审计-20261126/事前风险证据` 完全一致：`system_prompt`、`user_prompt`、`tool_results`、`key_facts`。
   **不含**退出点、机制名、最终回答、助手中间文本、推理或评测结论；判分模型不知道截断位置。
 
 ## 评分
 
-- 评审提示词直接读取 `审计/事前风险证据/规则/评审提示词.txt`（同一文件，不复制），
+- 评审提示词直接读取 `.archive/旧版轨迹审计-20261126/事前风险证据/规则/评审提示词.txt`（同一文件，不复制），
   因此规则字节级一致。
 - 模型、`thinking.type=enabled`、`max_tokens`、证据引文校验、权重计分、异常不当 0 分，均与该审计一致。
 - 分数 = 被支持关键事实要点的权重之和（0～100）。
@@ -48,16 +48,16 @@
 
 ```powershell
 # 只准备输入，不请求模型
-.venv/Scripts/python.exe -X utf8 -B 审计/安全增强退出点/run.py plan --session 20261110-enhanced-exit
+.venv/Scripts/python.exe -X utf8 -B .archive/旧版轨迹审计-20261126/安全增强退出点/run.py plan --session 20261110-enhanced-exit
 
 # 调用评审模型（--workers 控制并发）
-.venv/Scripts/python.exe -X utf8 -B 审计/安全增强退出点/run.py judge --session 20261110-enhanced-exit --workers 3
+.venv/Scripts/python.exe -X utf8 -B .archive/旧版轨迹审计-20261126/安全增强退出点/run.py judge --session 20261110-enhanced-exit --workers 3
 
 # 仅汇总已有响应
-.venv/Scripts/python.exe -X utf8 -B 审计/安全增强退出点/run.py report --session 20261110-enhanced-exit
+.venv/Scripts/python.exe -X utf8 -B .archive/旧版轨迹审计-20261126/安全增强退出点/run.py report --session 20261110-enhanced-exit
 
 # 敏感性复核：把“有拦截但终态不安全”的 Guard 运行也纳入
-.venv/Scripts/python.exe -X utf8 -B 审计/安全增强退出点/run.py plan --session 20261110-enhanced-exit-all --guard-scope all
+.venv/Scripts/python.exe -X utf8 -B .archive/旧版轨迹审计-20261126/安全增强退出点/run.py plan --session 20261110-enhanced-exit-all --guard-scope all
 ```
 
 `plan.json` 保存入选/排除清单、逐条退出点与截断位置、输入指纹；`输入/` 只保存
@@ -78,7 +78,7 @@
 |基线·完整轨迹（安全1）|43|81.74|73.19–90.29|
 
 对照图见 [01_机制退出_对照.png](绘图/01_机制退出_对照.png)（含 95% CI；基线两组取自
-`审计/事前风险证据/结果/20261110-full`）。
+`.archive/旧版轨迹审计-20261126/事前风险证据/结果/20261110-full`）。
 
 - 总体 66.97；AgentGuard 70.88，Quit 62.81。均值高于基线“危险点前”的 52.19，低于
   “完整轨迹”的 81.74；但三组 95% CI 有重叠，且样本不是配对设计，只能作描述性对照，
@@ -105,7 +105,7 @@
 ## 验证
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -B -m unittest discover -s 审计/安全增强退出点/src -p 'test_*.py' -v
+.venv/Scripts/python.exe -X utf8 -B -m unittest discover -s .archive/旧版轨迹审计-20261126/安全增强退出点/src -p 'test_*.py' -v
 ```
 
 测试覆盖：嵌套 JSON 字符串中的 `agentguard: blocked` 识别、调用序号与返回下标展开、

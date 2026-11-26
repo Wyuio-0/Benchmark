@@ -9,7 +9,7 @@ import re
 import sys
 
 HOME = Path(__file__).resolve().parents[1]
-ROOT = HOME.parents[1]
+ROOT = HOME.parents[2]
 sys.path.insert(0, str(HOME.parent / 'src'))
 sys.path.insert(0, str(ROOT / 'src'))
 from run_selection import scan

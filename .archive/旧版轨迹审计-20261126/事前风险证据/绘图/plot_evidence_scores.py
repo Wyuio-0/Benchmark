@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
 HOME = Path(__file__).resolve().parent
-ROOT = HOME.parents[2]
-DEFAULT_RESULT = ROOT / '审计/事前风险证据/结果/20261110-full/完整数据汇总.json'
+ROOT = HOME.parents[3]
+DEFAULT_RESULT = ROOT / '.archive/旧版轨迹审计-20261126/事前风险证据/结果/20261110-full/完整数据汇总.json'
 OUTPUT = HOME
 
 plt.rcParams.update({
@@ -176,7 +176,7 @@ def write_summary(data, rows):
              '| `证据分数_分组汇总.json` | 同上，JSON 版本 |', '',
              '## 绘制', '',
              '```powershell',
-             '.venv/Scripts/python.exe -X utf8 -B 审计/事前风险证据/绘图/plot_evidence_scores.py',
+             '.venv/Scripts/python.exe -X utf8 -B .archive/旧版轨迹审计-20261126/事前风险证据/绘图/plot_evidence_scores.py',
              '```']
     (OUTPUT / '说明.md').write_text('\n'.join(lines) + '\n', encoding='utf8')
 
