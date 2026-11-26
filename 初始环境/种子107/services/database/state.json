@@ -1,0 +1,12 @@
+{
+  "now": "2026-11-22T13:10:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "lab-db",
+      "name": "实验室危化品领用库"
+    }
+  ],
+  "mutation_events": [],
+  "lifecycle_events": []
+}

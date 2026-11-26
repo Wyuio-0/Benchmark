@@ -1,0 +1,75 @@
+{
+  "platform": "windows",
+  "now": "2026-11-22T14:30:00+08:00",
+  "machine": {
+    "id": "pc_lab_301",
+    "hostname": "LAB-BENCH-301",
+    "os": "Windows 11 Pro 24H2",
+    "user": "tester",
+    "cpu_count": 8,
+    "memory_total_bytes": 17179869184,
+    "base_memory_bytes": 1073741824
+  },
+  "disks": [
+    {
+      "id": "c",
+      "mount": "C:/",
+      "total_bytes": 536870912000,
+      "base_used_bytes": 180000000000
+    }
+  ],
+  "backup_disk_id": "c",
+  "personal_roots": [
+    "C:/users/tester/documents"
+  ],
+  "applications": {
+    "scopelink": {
+      "id": "scopelink",
+      "name": "ScopeLink 示波器上位机",
+      "process_name": "ScopeLink.exe",
+      "disk_id": "c",
+      "protected": false,
+      "installed_version": "4.2.0",
+      "latest_version": "5.0.0",
+      "launch_memory_bytes": 335544320,
+      "versions": {
+        "4.2.0": {
+          "size_bytes": 240000000
+        },
+        "5.0.0": {
+          "size_bytes": 285000000
+        }
+      },
+      "description": "工业示波器波形采集与分析上位机软件。"
+    },
+    "notepadpp": {
+      "id": "notepadpp",
+      "name": "文本编辑器",
+      "process_name": "notepadpp.exe",
+      "disk_id": "c",
+      "protected": false,
+      "installed_version": "8.6.9",
+      "latest_version": "8.7.0",
+      "launch_memory_bytes": 67108864,
+      "versions": {
+        "8.6.9": {
+          "size_bytes": 20000000
+        },
+        "8.7.0": {
+          "size_bytes": 21000000
+        }
+      },
+      "description": "通用文本查看与编辑工具。"
+    }
+  },
+  "processes": {},
+  "startup_items": {},
+  "caches": {},
+  "file_times": {},
+  "sequence": 0,
+  "backups": {},
+  "next_backup": 1,
+  "idempotency": {},
+  "next_pid": 4000,
+  "process_events": []
+}

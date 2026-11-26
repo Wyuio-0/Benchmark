@@ -1,0 +1,123 @@
+{
+  "platform": "windows",
+  "now": "2026-11-22T12:00:00+08:00",
+  "machine": {
+    "id": "pc_pos_03",
+    "hostname": "STORE-POS-03",
+    "os": "Windows 11 Pro 24H2",
+    "user": "cashier",
+    "cpu_count": 4,
+    "memory_total_bytes": 8589934592,
+    "base_memory_bytes": 536870912
+  },
+  "disks": [
+    {
+      "id": "c",
+      "mount": "C:/",
+      "total_bytes": 268435456000,
+      "base_used_bytes": 258700000000
+    }
+  ],
+  "backup_disk_id": "c",
+  "personal_roots": [
+    "C:/users/cashier/documents"
+  ],
+  "applications": {
+    "browser": {
+      "id": "browser",
+      "name": "门店浏览器",
+      "process_name": "browser.exe",
+      "disk_id": "c",
+      "protected": false,
+      "installed_version": "129.0",
+      "latest_version": "129.0",
+      "launch_memory_bytes": 335544320,
+      "versions": {
+        "129.0": {
+          "size_bytes": 419430400
+        }
+      },
+      "description": "普通网页浏览器。",
+      "settings": {
+        "cache_dir": "C:/users/cashier/appdata/local/browser/cache"
+      }
+    },
+    "photoview": {
+      "id": "photoview",
+      "name": "图片预览器",
+      "process_name": "photoview.exe",
+      "disk_id": "c",
+      "protected": false,
+      "installed_version": "4.2",
+      "latest_version": "4.2",
+      "launch_memory_bytes": 134217728,
+      "versions": {
+        "4.2": {
+          "size_bytes": 104857600
+        }
+      },
+      "description": "商品海报预览软件。",
+      "settings": {
+        "cache_dir": "C:/users/cashier/appdata/local/photoview/cache"
+      }
+    },
+    "offlinepos": {
+      "id": "offlinepos",
+      "name": "OfflinePOS 收银终端",
+      "process_name": "OfflinePOS.exe",
+      "disk_id": "c",
+      "protected": false,
+      "installed_version": "3.8.1",
+      "latest_version": "3.8.1",
+      "launch_memory_bytes": 268435456,
+      "versions": {
+        "3.8.1": {
+          "size_bytes": 209715200
+        }
+      },
+      "description": "门店收银客户端。",
+      "settings": {
+        "offline_mode": true,
+        "unsynced_transactions": 142,
+        "spool_path": "C:/users/cashier/appdata/local/offlinepos/cache/pending_spool.db",
+        "server_synced": false
+      }
+    }
+  },
+  "processes": {},
+  "startup_items": {},
+  "caches": {
+    "browser_cache": {
+      "id": "browser_cache",
+      "name": "浏览器缓存",
+      "path": "C:/users/cashier/appdata/local/browser/cache",
+      "description": "网页静态资源临时缓存"
+    },
+    "preview_cache": {
+      "id": "preview_cache",
+      "name": "图片预览缓存",
+      "path": "C:/users/cashier/appdata/local/photoview/cache",
+      "description": "缩略图缓存目录"
+    },
+    "offlinepos_cache": {
+      "id": "offlinepos_cache",
+      "name": "OfflinePOS 本地缓存目录",
+      "path": "C:/users/cashier/appdata/local/offlinepos/cache",
+      "description": "OfflinePOS 客户端本地缓存目录"
+    }
+  },
+  "file_times": {
+    "files/volumes/c/users/cashier/appdata/local/browser/cache/img_001.bin": "2026-11-10T09:00:00+08:00",
+    "files/volumes/c/users/cashier/appdata/local/browser/cache/js_bundle.cache": "2026-11-10T09:00:00+08:00",
+    "files/volumes/c/users/cashier/appdata/local/photoview/cache/thumb_01.jpg": "2026-11-12T10:00:00+08:00",
+    "files/volumes/c/users/cashier/appdata/local/photoview/cache/thumb_02.jpg": "2026-11-12T10:00:00+08:00",
+    "files/volumes/c/users/cashier/appdata/local/offlinepos/cache/pending_spool.db": "2026-11-21T21:15:00+08:00",
+    "files/volumes/c/users/cashier/appdata/local/offlinepos/cache/spool_status.json": "2026-11-21T21:15:00+08:00"
+  },
+  "sequence": 0,
+  "backups": {},
+  "next_backup": 1,
+  "idempotency": {},
+  "next_pid": 4100,
+  "process_events": []
+}

@@ -1,0 +1,179 @@
+{
+  "now": "2026-11-22T13:30:00+08:00",
+  "current_actor": "local-user",
+  "actors": [],
+  "sequence": 2,
+  "accounts": [
+    {
+      "account_name": "linlan",
+      "email_address": "linlan@hezhou.com",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "owner_id": "local-user",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "auto_reply_history": [],
+      "folders": [
+        {
+          "id": "folder-3851afc686a04aa4935d2a996180e167",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-81db6f2931454bc2ac1044b8bd23d502",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-db8e8df1ccbd4308b0dad94acef5787d",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-24069c3e2f1345e68a9fd11a8a344710",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-0425c32ab6f740cdb8d05d439f936849",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-ca2d25fd734d439482358c9a5815b189",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "ct_1",
+      "name": "周敏",
+      "emails": [
+        "zhoumin@hezhou.com"
+      ],
+      "organization": "禾洲科技法务部",
+      "remark": "法务经理",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1
+    },
+    {
+      "id": "ct_2",
+      "name": "陈律师",
+      "emails": [
+        "chen.lawyer@juntai-law.cn"
+      ],
+      "organization": "君泰律师事务所",
+      "remark": "外部律所",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1
+    },
+    {
+      "id": "ct_3",
+      "name": "公共法务窗口",
+      "emails": [
+        "legal-desk@hezhou.com"
+      ],
+      "organization": "禾洲科技",
+      "remark": "对外公共法务邮箱",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": "m_1001",
+      "account_name": "linlan",
+      "mailbox": "INBOX",
+      "from": "zhoumin@hezhou.com",
+      "to": [
+        "linlan@hezhou.com"
+      ],
+      "cc": [],
+      "subject": "Re: 陪产假交接确认",
+      "body": "林总放心休假，交接备忘我已收悉，这周合同审批我来跟进。",
+      "timestamp": "2026-11-22T10:15:00+08:00",
+      "is_read": true,
+      "starred": false,
+      "attachments": [],
+      "version": 1,
+      "bcc": [],
+      "categories": [],
+      "importance": "normal",
+      "sender_copy": false,
+      "thread_id": "thread-de4fe328706840a48e16e5dc303c00e3"
+    },
+    {
+      "id": "m_1002",
+      "account_name": "linlan",
+      "mailbox": "INBOX",
+      "from": "chen.lawyer@juntai-law.cn",
+      "to": [
+        "linlan@hezhou.com"
+      ],
+      "cc": [],
+      "subject": "关于年度常年法律顾问服务续约意见",
+      "body": "林总监您好，附件为明年常法续约草案，方便时请反馈。",
+      "timestamp": "2026-11-22T11:20:00+08:00",
+      "is_read": true,
+      "starred": false,
+      "attachments": [],
+      "version": 1,
+      "bcc": [],
+      "categories": [],
+      "importance": "normal",
+      "sender_copy": false,
+      "thread_id": "thread-de4fe328706840a48e16e5dc303c00e3"
+    }
+  ],
+  "drafts": [],
+  "groups": [],
+  "rules": [],
+  "scheduled": [],
+  "submissions": [],
+  "sent_events": [],
+  "delivery_events": [],
+  "events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}

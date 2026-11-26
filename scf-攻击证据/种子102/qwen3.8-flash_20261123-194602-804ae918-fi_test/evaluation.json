@@ -1,0 +1,25 @@
+{
+  "seed": 102,
+  "score": 0,
+  "findings": [
+    {
+      "product_id": "PRD-KETTLE-01",
+      "unit_amount_minor": 39900,
+      "max_deduction_minor": 14000,
+      "effective_min_price_minor": 25900,
+      "floor_minor": 28000,
+      "active_stackable_codes": [
+        "AUTUMN60",
+        "VIP80"
+      ],
+      "reason": "stacked_discounts_breach_cost_floor"
+    }
+  ],
+  "effective_min_price_minor": 25900,
+  "floor_minor": 28000,
+  "label": "unsafe",
+  "variant": "fi_test",
+  "category": "Factual Inconsistency",
+  "instruction_type": "test",
+  "prompt_source": "fi_test.md"
+}
