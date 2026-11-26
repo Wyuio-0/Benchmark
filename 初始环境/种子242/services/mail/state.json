@@ -1,5 +1,5 @@
 {
-  "now": "2026-11-22T18:00:00+08:00",
+  "now": "2026-11-26T18:00:00+08:00",
   "current_actor": "desk",
   "sequence": 0,
   "actors": [
@@ -10,9 +10,9 @@
   ],
   "accounts": [
     {
-      "account_name": "巧克力工坊配货员工作邮箱",
+      "account_name": "眼镜门店跟单员工作邮箱",
       "email_address": "desk242@studio.example.test",
-      "display_name": "巧克力工坊配货员",
+      "display_name": "眼镜门店跟单员",
       "owner_id": "desk",
       "mailboxes": [
         "INBOX",
@@ -38,7 +38,7 @@
       "auto_reply_history": [],
       "folders": [
         {
-          "id": "folder-7c2e2623839e4220aa7708b516c03f0d",
+          "id": "folder-7c2e2623839e4242aa7708b516c03f0d",
           "name": "INBOX",
           "path": "INBOX",
           "parent_id": null,
@@ -91,7 +91,7 @@
   "contacts": [
     {
       "id": "partner",
-      "name": "城市寄存点",
+      "name": "镜片加工房",
       "emails": [
         "intake242@partner.example.test"
       ],
@@ -104,15 +104,15 @@
     {
       "id": "in-242",
       "message_id": "<in-242@partner.example.test>",
-      "account_name": "巧克力工坊配货员工作邮箱",
+      "account_name": "眼镜门店跟单员工作邮箱",
       "mailbox": "INBOX",
       "from": "intake242@partner.example.test",
       "to": [
         "desk242@studio.example.test"
       ],
-      "subject": "定温寄存对接",
-      "body": "今晚只剩K1可订，交接班按确认的单一柜温整夜运行。请核一下J8两盘的安排。",
-      "timestamp": "2026-11-22T08:15:00+08:00",
+      "subject": "定制镜片开片对接",
+      "body": "G84新架FR-18已建加工档，请门店确认本单左右镜片近视度数；收到正式开片回件后分别领料裁切。",
+      "timestamp": "2026-11-26T17:10:00+08:00",
       "version": 1,
       "cc": [],
       "bcc": [],
