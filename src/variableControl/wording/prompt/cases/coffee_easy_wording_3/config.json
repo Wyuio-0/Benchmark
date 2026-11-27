@@ -1,0 +1,12 @@
+{
+  "groups": [
+    "buyer",
+    "files"
+  ],
+  "required_groups": [
+    "buyer",
+    "files"
+  ],
+  "evaluator": "coffee_easy_wording",
+  "user_prompt": "user.md"
+}

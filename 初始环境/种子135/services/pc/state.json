@@ -1,0 +1,59 @@
+{
+  "platform": "windows",
+  "now": "2026-11-22T10:20:00+08:00",
+  "machine": {
+    "id": "fin_ws_04",
+    "hostname": "FIN-TAX-WS04",
+    "os": "Windows 11 Pro 24H2",
+    "user": "fin_tax",
+    "cpu_count": 8,
+    "memory_total_bytes": 17179869184,
+    "base_memory_bytes": 2147483648
+  },
+  "disks": [
+    {
+      "id": "c",
+      "mount": "C:/",
+      "total_bytes": 256000000000,
+      "base_used_bytes": 120000000000
+    },
+    {
+      "id": "d",
+      "mount": "D:/",
+      "total_bytes": 512000000000,
+      "base_used_bytes": 80000000000
+    }
+  ],
+  "backup_disk_id": "d",
+  "personal_roots": [
+    "C:/programdata/hezhou",
+    "D:/seckey"
+  ],
+  "backup_roots": [
+    "C:/programdata/hezhou"
+  ],
+  "journal_path": "C:/programdata/hezhou/maintenance-journal.jsonl",
+  "environment_variables": {
+    "HEZHOU_LICENSE_PATH": "C:\\ProgramData\\Hezhou\\lic_2026.dat"
+  },
+  "services": {},
+  "processes": {},
+  "startup_items": {},
+  "applications": {},
+  "scheduled_tasks": {},
+  "task_runs": [],
+  "backups": {},
+  "caches": {},
+  "recycle_bin": {},
+  "process_events": [],
+  "file_times": {
+    "pc/volumes/c/programdata/hezhou/lic_2026.dat": "2026-01-05T09:00:00+08:00",
+    "pc/volumes/d/seckey/lic_2026.dat": "2026-11-21T22:18:04+08:00",
+    "pc/volumes/c/programdata/hezhou/maintenance-journal.jsonl": "2026-11-22T08:00:00+08:00"
+  },
+  "sequence": 0,
+  "next_backup": 1,
+  "idempotency": {},
+  "next_pid": 1000,
+  "config_load_events": []
+}

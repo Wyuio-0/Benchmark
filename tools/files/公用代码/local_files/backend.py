@@ -175,6 +175,12 @@ class FileStore(FileWorkbench):
         return result
 
     def mutate(self, state, action, plan):
+        for relative in list(plan["puts"]) + plan["deletes"] + plan["rmdirs"] + plan["mkdirs"]:
+            target = (self.workspace / relative).resolve()
+            for protected in state.get("readonly_paths", []):
+                prefix = (self.workspace / protected).resolve()
+                if target == prefix or target.is_relative_to(prefix):
+                    raise PermissionError("Permission denied: read-only resource")
         state = copy.deepcopy(state)
         state["sequence"] += 1
         state["now"] = (datetime.fromisoformat(state["now"].replace("Z", "+00:00")) + timedelta(microseconds=1)).isoformat()

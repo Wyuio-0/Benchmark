@@ -1,0 +1,435 @@
+
+==== 2307.13854.pdf pages 22 ====
+TITLE/SNIPPET:
+   Published as a conference paper at ICLR 2024
+   WEBARENA : A R EALISTIC WEB ENVIRONMENT FOR
+   BUILDING AUTONOMOUS AGENTS
+   Shuyan Zhou∗ Frank F. Xu∗
+   Hao Zhu† Xuhui Zhou† Robert Lo† Abishek Sridhar† Xianyi Cheng
+   Tianyue Ou Yonatan Bisk Daniel Fried Uri Alon Graham Neubig
+   Carnegie Mellon University
+   {shuyanzh, fangzhex, gneubig}@cs.cmu.edu
+   ABSTRACT
+   With advances in generative AI, there is now potential for autonomous agents
+   to manage daily tasks via natural language commands. However, current agents
+   are primarily created and tested in simplified synthetic environments, leading to
+   a disconnect with real-world scenarios. In this paper, we build an environment
+   for language-guided agents that is highly realistic and reproducible. Specifically,
+   we focus on agents that perform tasks on the web, and create an environment
+   with fully functional websites from four common domains: e-commerce, social
+   forum discussions, collaborative software development, and content management.
+   Our environment is enriched with tools ( e.g., a map) and external knowledge
+HEADINGS:
+  p1: 1 I NTRODUCTION
+  p3: 2.1 C ONTROLLING AGENTS THROUGH HIGH -LEVEL NATURAL LANGUAGE
+  p3: 2.2 W EBSITE SELECTION
+  p4: 2.3 O BSERVATION SPACE
+  p4: 2.4 A CTION SPACE
+  p5: 3 B ENCHMARK SUITE OF WEB-BASED TASKS
+  p5: 3.1 I NTENT COLLECTION
+  p6: 3.2 E VALUATION ANNOTATION
+  p7: 1 Tell me the name of the customer who
+  p7: 2 Find the customer name and
+  p7: 3 Compare walking and driving time
+  p7: 4 Checkout merge requests
+  p7: 4 B ASELINE WEB AGENTS
+  p8: 5 R ESULTS
+  p8: 5.1 A NALYSIS
+  p9: 6 R ELATED WORK
+  p9: 7 C ONCLUSION
+
+==== 2308.03688.pdf pages 58 ====
+TITLE/SNIPPET:
+   Published as a conference paper at ICLR 2024
+   AGENTBENCH: EVALUATINGLLMS ASAGENTS
+   Xiao Liu1,*, Hao Yu1,*,†, Hanchen Zhang1,*, Yifan Xu1, Xuanyu Lei1, Hanyu Lai1, Yu Gu2,†,
+   Hangliang Ding1, Kaiwen Men1, Kejuan Yang1, Shudan Zhang1, Xiang Deng2, Aohan Zeng1,
+   Zhengxiao Du1, Chenhui Zhang1, Sheng Shen3, Tianjun Zhang3, Yu Su2, Huan Sun2,
+   Minlie Huang1, Yuxiao Dong1,‡, Jie Tang1,‡
+   1Tsinghua University, 2The Ohio State University, 3UC Berkeley
+   ABSTRACT
+   The potential of Large Language Model (LLM) as agents has been widely acknowl-
+   edged recently. Thus, there is an urgent need to quantitativelyevaluate LLMs as
+   agentson challenging tasks in interactive environments. We present AGENTBENCH,
+   a multi-dimensional benchmark that consists of 8 distinct environments to assess
+   LLM-as-Agent’s reasoning and decision-making abilities. Our extensive test over
+   29 API-based and open-sourced (OSS) LLMs shows that, while top commercial
+   LLMs present a strong ability of acting as agents in complex environments, there
+   is a significant disparity in performance between them and many OSS competitors
+   that are no larger than 70B. We identify the typical reasons of failures in environ-
+   ments and LLMs, showing that poor long-term reasoning, decision-making, and
+HEADINGS:
+  p1: 1 INTRODUCTION
+  p4: 3.1 CODE-GROUNDEDENVIRONMENTS
+  p4: 3.2 GAME-GROUNDEDENVIRONMENTS
+  p5: 3.3 WEB-GROUNDEDENVIRONMENTS
+  p5: 4 EVALUATION OFAGENTBENCH
+  p6: 4.1 EVALUATIONSETUP
+  p7: 4.2 MAINRESULTS
+  p8: 4.3 ANALYSIS
+  p9: 5 RELATEDWORK
+  p9: 6 CONCLUSION
+  p20: A.1 TRADITIONALEVALUATIONFRAMEWORKS
+  p20: A.2 OURDESIGNEDEVALUATIONFRAMEWORK
+  p21: B.1 DATASET DETAILS
+  p24: C.1 DATASETDETAILS
+  p26: D.1 DATASETDETAILS
+  p29: E.1 DATASETDETAILS
+  p34: F.1 DATASETDETAILS
+  p35: F.2 EVALUATION ONLTP SYSTEM
+  p38: G.1 DATASETDETAILS
+  p40: H.1 DATASETDETAILS
+  p42: I.1 DATASETDETAILS
+  p54: J.2.3 UNDERSTANDINGTASKCOMPLETION: DISTRIBUTION OFTOKENS ANDROUNDS IN
+  p55: J.2.4 PRIMARYCAUSE OFTASKLIMITEXCEEDED: THEMODELSTEND TOREPEAT THE
+
+==== 2309.15817.pdf pages 70 ====
+TITLE/SNIPPET:
+   Published as a conference paper at ICLR 2024
+   IDENTIFYING THE RISKS OF LM A GENTS
+   WITH AN LM-E MULATED SANDBOX
+   Yangjun Ruan1,2∗, Honghua Dong1,2∗, Andrew Wang1,2, Silviu Pitis1,2, Yongchao Zhou1,2
+   Jimmy Ba1,2, Yann Dubois3, Chris J. Maddison1,2, Tatsunori Hashimoto3
+   1University of Toronto 2Vector Institute 3Stanford University
+   ABSTRACT
+   Recent advances in Language Model (LM) agents and tool use, exemplified by
+   applications like ChatGPT Plugins, enable a rich set of capabilities but also amplify
+   potential risks—such as leaking private data or causing financial losses. Identifying
+   these risks is labor-intensive, necessitating implementing the tools, setting up
+   the environment for each test scenario manually, and finding risky cases. As
+   tools and agents become more complex, the high cost of testing these agents will
+   make it increasingly difficult to find high-stakes, long-tail risks. To address these
+   challenges, we introduce ToolEmu: a framework that uses an LM to emulate tool
+   execution and enables scalable testing of LM agents against a diverse range of
+   tools and scenarios. Alongside the emulator, we develop an LM-based automatic
+   safety evaluator that examines agent failures and quantifies associated risks. We
+HEADINGS:
+  p1: 1 I NTRODUCTION
+  p5: 3 C ONSTRUCTING TOOL EMU
+  p5: 3.1 E MULATING TOOL EXECUTIONS WITH LANGUAGE MODELS
+  p7: 3.2 D ESIGNING AUTOMATIC EVALUATIONS WITH LANGUAGE MODELS
+  p8: 3.3 C URATING THE EVALUATION BENCHMARK
+  p8: 4 V ALIDATING TOOL EMU
+  p9: 4.1 E XPERIMENTAL SETUP
+  p9: 4.2 E ND-TO-E ND VALIDATION
+  p10: 4.3 D ETAILED VALIDATION
+  p11: 5 E VALUATING LANGUAGE MODEL AGENTS WITHIN TOOL EMU
+  p12: 6 R ELATED WORK
+  p26: A.4 E VALUATION BENCHMARK
+  p30: B A DDITIONAL EXPERIMENTAL RESULTS
+  p32: B.2 A DDITIONAL EVALUATIONS FOR LM AGENTS
+
+==== 2310.06770.pdf pages 52 ====
+TITLE/SNIPPET:
+   Published as a conference paper at ICLR 2024
+   SWE- BENCH : C AN LANGUAGE MODELS RESOLVE
+   REAL -WORLD GITHUB ISSUES ?
+   Carlos E. Jimenez* 1,2 John Yang* 1,2 Alexander Wettig1,2
+   Shunyu Yao1,2 Kexin Pei3 Ofir Press1,2 Karthik Narasimhan1,2
+   1Princeton University 2Princeton Language and Intelligence 3University of Chicago
+   ABSTRACT
+   Language models have outpaced our ability to evaluate them effectively, but for
+   their future development it is essential to study the frontier of their capabilities.
+   We find real-world software engineering to be a rich, sustainable, and challenging
+   testbed for evaluating the next generation of language models. To this end, we in-
+   troduce SWE-bench, an evaluation framework consisting of 2,294 software engi-
+   neering problems drawn from real GitHub issues and corresponding pull requests
+   across 12 popular Python repositories. Given a codebase along with a description
+   of an issue to be resolved, a language model is tasked with editing the codebase
+   to address the issue. Resolving issues in SWE-bench frequently requires under-
+   standing and coordinating changes across multiple functions, classes, and even
+   files simultaneously, calling for models to interact with execution environments,
+HEADINGS:
+  p1: 1 I NTRODUCTION
+  p2: 2 SWE- BENCH
+  p2: 2.1 B ENCHMARK CONSTRUCTION
+  p3: 2.2 T ASK FORMULATION
+  p3: 2.3 F EATURES OF SWE- BENCH
+  p3: 2.4 SWE- BENCH LITE
+  p4: 4 E XPERIMENTAL SETUP
+  p4: 4.1 R ETRIEVAL -BASED APPROACH
+  p5: 4.2 I NPUT FORMAT
+  p5: 4.3 M ODELS
+  p6: 5 R ESULTS
+  p7: 5.1 A Q UALITATIVE ANALYSIS OF SWE-L LAMA GENERATIONS
+  p9: 6 R ELATED WORK
+  p10: 7 D ISCUSSION
+  p11: 8 E THICS STATEMENT
+  p11: 9 R EPRODUCIBILITY STATEMENT
+  p11: 10 A CKNOWLEDGEMENTS
+  p20: 1 Input 2 Generates
+  p20: 3 Evaluation
+  p20: 4 Results
+  p30: D A DDITIONAL EXPERIMENTAL DETAILS
+
+==== 2401.10019.pdf pages 24 ====
+TITLE/SNIPPET:
+   R-Judge: Benchmarking Safety Risk Awareness for LLM Agents
+   Tongxin Yuan* , Zhiwei He∗, Lingzhong Dong, Yiming Wang, Ruijie Zhao, Tian Xia,
+   Lizhen Xu, Binglin Zhou, Fangqi Li, Zhuosheng Zhang†, Rui Wang, Gongshen Liu
+   School of Electronic Information and Electrical Engineering,
+   Shanghai Jiao Tong University
+   {teenyuan,zwhe.cs,zhangzs,wangrui12,lgshen}@sjtu.edu.cn
+   Abstract
+   Large language models (LLMs) have exhibited
+   great potential in autonomously completing
+   tasks across real-world applications. However,
+   LLM agents introduce unexpected safety risks
+   when operating in interactive environments. In-
+   stead of centering on the harmlessness of LLM-
+   generated content in most prior studies, this
+   work addresses the imperative need for bench-
+   marking the behavioral safety of LLM agents
+   within diverse environments. We introduce R-
+   Judge, a benchmark crafted to evaluate the
+HEADINGS:
+  p1: 1 Introduction
+  p3: 2 Problem Formalization
+  p3: 3 R-Judge Benchmark
+  p3: 3.1 Case Format
+  p3: 3.2 Curation Principles
+  p4: 3.3 Curation Process
+  p5: 3.4 Dataset Statistics
+  p5: 3.5 Evaluation Criteria
+  p5: 4 Experiments
+  p5: 4.1 Setup
+  p6: 4.2 Validating R-Judge
+  p6: 4.3 Main Results
+  p6: 5 Analysis
+  p7: 5.1 Influence of Different Prompting
+  p7: 5.2 Effect of Fine-tuning on Safety Judgment
+  p8: 5.3 Case Study
+  p8: 5.4 Summary
+  p8: 6 Related Work
+  p8: 6.1 LLM Agents
+  p9: 6.2 LLM Safety
+  p9: 7 Conclusion
+
+==== 2406.12045.pdf pages 50 ====
+TITLE/SNIPPET:
+   τ -bench: A Benchmark for T ool-Agent-User
+   Interaction in Real-World Domains
+   Shunyu Yao∗ Noah Shinn Pedram Razavi Karthik Narasimhan
+   Sierra
+   Abstract
+   Existing benchmarks do not test language agents on their interaction with human
+   users or ability to follow domain-specific rules, both of which are vital for deploying
+   them in real world applications. We propose τ-bench, a benchmark emulating
+   dynamic conversations between a user (simulated by language models) and a
+   language agent provided with domain-specific API tools and policy guidelines.
+   We employ an efficient and faithful evaluation process that compares the database
+   state at the end of a conversation with the annotated goal state. We also propose
+   a new metric (pass^k) to evaluate the reliability of agent behavior over multiple
+   trials. Our experiments show that even state-of-the-art function calling agents (like
+   gpt-4o) succeed on< 50% of the tasks, and are quite inconsistent (pass^8 < 25%
+   in retail). Our findings point to the need for methods that can improve the ability
+   of agents to act consistently and follow rules reliably.
+   1 Introduction
+HEADINGS:
+  p1: 1 Introduction
+  p2: 2 Related Work
+  p5: 4 Benchmark Construction
+  p5: 4.1 Domains
+  p6: 4.2 Key Characteristics
+  p6: 5 Experiments
+  p6: 5.1 Main results
+  p7: 5.2 Research challenge analysis
+  p8: 6 Discussion
+
+==== 2406.13352.pdf pages 26 ====
+TITLE/SNIPPET:
+   AgentDojo: A Dynamic Environment to Evaluate
+   Prompt Injection Attacks and Defenses
+   for LLM Agents
+   Edoardo Debenedetti1∗ Jie Zhang1 Mislav Balunovic1,2
+   Luca Beurer-Kellner1,2 Marc Fischer1,2 Florian Tramèr1
+   1ETH Zurich 2Invariant Labs
+   Abstract
+   AI agents aim to solve complex tasks by combining text-based reasoning with
+   external tool calls. Unfortunately, AI agents are vulnerable to prompt injection
+   attacks where data returned by external tools hijacks the agent to execute malicious
+   tasks. To measure the adversarial robustness of AI agents, we introduce AgentDojo,
+   an evaluation framework for agents that execute tools over untrusted data. To
+   capture the evolving nature of attacks and defenses, AgentDojo is not a static test
+   suite, but rather an extensible environment for designing and evaluating new agent
+   tasks, defenses, and adaptive attacks. We populate the environment with 97 realistic
+   tasks (e.g., managing an email client, navigating an e-banking website, or making
+   travel bookings), 629 security test cases, and various attack and defense paradigms
+   from the literature. We find that AgentDojo poses a challenge for both attacks and
+HEADINGS:
+  p1: 1 Introduction
+  p2: 2 Related Work and Preliminaries
+  p3: 3 Designing and Constructing AgentDojo
+  p3: 3.1 AgentDojo Components
+  p5: 3.2 Agents and Prompt Injection Defenses
+  p6: 3.3 Prompt Injection Attacks
+  p6: 3.4 Reporting AgentDojo Results
+  p6: 4 Evaluation
+  p7: 4.1 Performance of Baseline Agents and Attacks
+  p8: 4.2 Ablations on Attack Components and Attacker Knowledge
+  p8: 4.3 Prompt Injection Defenses
+  p9: 5 Conclusion
+
+==== 2407.18901.pdf pages 55 ====
+TITLE/SNIPPET:
+   AppWorld: A Controllable World of Apps and People
+   for Benchmarking Interactive Coding Agents*
+   Harsh Trivedi† and Tushar Khot‡ and Mareike Hartmann⋄
+   Ruskin Manku† and Vinty Dong† and Edward Li† and Shashank Gupta‡
+   Ashish Sabharwal‡ and Niranjan Balasubramanian†
+   †Stony Brook University ‡Allen Institute for AI ⋄Saarland University
+   Abstract
+   Autonomous agents that address day-to-day
+   digital tasks (e.g., ordering groceries for a
+   household), must not only operate multiple
+   apps (e.g., notes, messaging, shopping app) via
+   APIs, but also generate rich code with complex
+   control flow in an iterative manner based on
+   their interaction with the environment. How-
+   ever, existing benchmarks for tool use are inad-
+   equate, as they only cover tasks that require a
+   simple sequence of API calls.
+   To remedy this gap, we built AppWorld En-
+HEADINGS:
+  p1: 1 Introduction
+  p3: 2 App World Engine
+  p3: 2.1 Engine Components
+  p3: 2.2 Features
+  p4: 2.3 Database
+  p4: 3 App World Benchmark
+  p4: 3.1 Setup
+  p5: 3.2 Evaluation
+  p6: 3.3 Validation Solutions
+  p6: 3.4 Final Dataset
+  p7: 4 Benchmarking Experiments
+  p7: 4.1 Methods
+  p8: 4.2 Results
+  p8: 4.3 Analysis
+  p9: 5 Related Work
+  p9: 6 Conclusions
+  p10: 7 Limitations
+  p10: 8 Ethics Statement
+
+==== 2408.04682.pdf pages 24 ====
+TITLE/SNIPPET:
+   TOOL SANDBOX : A Stateful, Conversational, Interactive Evaluation
+   Benchmark for LLM Tool Use Capabilities
+   Jiarui Lu, Thomas Holleis, Yizhe Zhang, Bernhard Aumayer
+   Feng Nan, Felix Bai, Shuang Ma, Shen Ma, Mengyu Li,
+   Guoli Yin, Zirui Wang, Ruoming Pang
+   Apple
+   {jiarui_lu, tholleis, yizhe_zhang, baumayer
+   f_nan, haoping_bai, shuang_ma2, sma7, mengyu_li2
+   gyin, ziruiw, r_pang}@apple.com
+   Abstract
+   Recent large language models (LLMs) advance-
+   ments sparked a growing research interest in
+   tool assisted LLMs solving real-world chal-
+   lenges, which calls for comprehensive evalu-
+   ation of tool-use capabilities. While previous
+   works focused on either evaluating over state-
+   less web services (RESTful API), based on a
+   single turn user prompt, or an off-policy dialog
+HEADINGS:
+  p1: 1 Introduction
+  p3: 2 T OOL SANDBOX Design
+  p3: 2.1 Stateful
+  p4: 2.2 Conversational
+  p4: 2.3 Interactive
+  p5: 3 Test Scenarios
+  p6: 4 Evaluation Results
+  p8: 5 Related Work
+  p9: 6 Conclusion
+  p10: 7 Limitations
+  p11: 2018 Conference on Empirical Methods in Natural
+
+==== 2410.02644.pdf pages 36 ====
+TITLE/SNIPPET:
+   arXiv:2410.02644v4  [cs.CR]  30 May 2025
+   Published as a conference paper at ICLR 2025
+   AGENT SECURITY BENCH (ASB):
+   FORMALIZING AND BENCHMARKING ATTACKS AND
+   DEFENSES IN LLM- BASED AGENTS
+   Hanrong Zhang1, Jingyuan Huang2, Kai Mei2, Yifei Yao1, Zhenting Wang2,
+   Chenlu Zhan1, Hongwei Wang1, Yongfeng Zhang2
+   1Zhejiang University 2Rutgers University
+   1{hanrong.22,yifei3.23,chenlu.22,hongweiwang}@intl.zju.edu.cn
+   2{chy.huang,kai.mei,zhenting.wang,yongfeng.zhang}@rutgers.edu
+   ABSTRACT
+   Although LLM-based agents, powered by Large Language Models (LLMs), can
+   use external tools and memory mechanisms to solve complex real-world tasks,
+   they may also introduce critical security vulnerabilities. However, the existing
+   literature does not comprehensively evaluate attacks and defenses against LLM-
+   based agents. To address this, we introduce Agent Security Bench (ASB), a com-
+   prehensive framework designed to formalize, benchmark, and evaluate the attacks
+   and defenses of LLM-based agents, including 10 scenarios (e.g., e-commerce,
+HEADINGS:
+  p1: FORMALIZING AND BENCHMARKING ATTACKS AND
+  p1: 1 I NTRODUCTION
+  p3: 2 R ELATED WORK
+  p3: 3 D EFINITIONS TO BASIC CONCEPTS AND THREAT MODEL
+  p3: 3.1 D EFINING BASIC CONCEPTS
+  p4: 3.2 T HREAT MODEL
+  p4: 4 F ORMALIZING ATTACKS AND DEFENSES IN LLM A GENTS
+  p4: 4.1 F ORMALIZING PROMPT INJECTION ATTACKS
+  p5: 4.1.1 D IRECT PROMPT INJECTION ATTACKS
+  p5: 4.1.2 I NDIRECT PROMPT INJECTION ATTACKS
+  p5: 4.1.3 A TTACK FRAMEWORK FOR DIFFERENT PROMPT INJECTION WAYS
+  p6: 4.2 F ORMALIZING MEMORY POISONING ATTACK
+  p6: 4.2.1 D ETAILED ADVERSARIAL GOAL
+  p6: 4.2.2 A TTACK FRAMEWORK
+  p6: 4.3 F ORMALIZING PLAN -OF-T HOUGHT BACKDOOR ATTACK
+  p6: 4.3.1 D ETAILED ADVERSARIAL GOAL
+  p7: 4.3.2 A TTACK FRAMEWORK
+  p8: 4.4 F ORMALIZING DEFENSES FOR OUR ATTACK FRAMEWORK
+  p8: 5.1 I NTRODUCTION TO ASB
+  p8: 5.2 E XPERIMENTAL SETUP
+  p9: 5.3 B ENCHMARKING ATTACKS
+  p10: 5.4 B ENCHMARKING DEFENSES
+  p10: 6 C ONCLUSION AND FUTURE WORK
+  p15: 2024 Conference of the North American Chapter of the Association for Computational Linguis-
+  p16: A D ETAILS FOR ATTACK AND DEFENSE METHODS
+  p16: A.3.1 P ROMPT INJECTION METHODS
+  p25: C M ORE EXPERIMENTAL SETUP
+  p29: D M ORE EXPERIMENTAL ANALYSES
+
+==== 2412.14470.pdf pages 26 ====
+TITLE/SNIPPET:
+   AGENT-SAFETY BENCH : Evaluating the Safety of
+   LLM Agents
+   Zhexin Zhang∗, Shiyao Cui∗, Yida Lu∗, Jingzhuo Zhou∗, Junxiao Yang,
+   Hongning Wang, Minlie Huang†
+   The Conversational AI (CoAI) group, DCST, Tsinghua University
+   zx-zhang22@mails.tsinghua.edu.cn, aihuang@tsinghua.edu.cn
+   Abstract
+   As large language models (LLMs) are increasingly deployed as agents, their inte-
+   gration into interactive environments and tool use introduce new safety challenges
+   beyond those associated with the models themselves. However, the absence of com-
+   prehensive benchmarks for evaluating agent safety presents a significant barrier to
+   effective assessment and further improvement. In this paper, we introduce AGENT-
+   SAFETY BENCH , a comprehensive benchmark designed to evaluate the safety of
+   LLM agents. AGENT-SAFETY BENCH encompasses 349 interaction environments
+   and 2,000 test cases, evaluating 8 categories of safety risks and covering 10 com-
+   mon failure modes frequently encountered in unsafe interactions. Our evaluation
+   of 16 popular LLM agents reveals a concerning result: none of the agents achieves
+   a safety score above 60%. This highlights significant safety challenges in LLM
+HEADINGS:
+  p1: 1 Introduction
+  p3: 2 Related Work
+  p3: 2.1 LLM Safety Evaluation
+  p4: 2.2 Agent Safety Evaluation
+  p4: 3 A GENT-S AFETY BENCH Construction
+  p4: 3.1 Risk Categories
+  p4: 3.2 Data Collection
+  p4: 3.2.1 Format of Data and Environments
+  p5: 3.2.2 Refine Existing Datasets
+  p5: 3.2.3 Augment Refined Data
+  p6: 3.2.4 Quality Control
+  p6: 3.3 Scorer
+  p7: 4 Experiments
+  p7: 4.1 Setup
+  p7: 4.2 Main Results
+  p8: 4.3 Failure Mode Analysis
+  p8: 4.4 Helpfulness Analysis Under Different Scenarios
+  p9: 4.5 Discussion on Defense
+  p9: 5 Conclusion

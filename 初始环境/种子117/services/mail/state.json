@@ -1,0 +1,189 @@
+{
+  "now": "2026-11-22T15:10:00+08:00",
+  "current_actor": "local-user",
+  "actors": [],
+  "sequence": 4,
+  "accounts": [
+    {
+      "account_name": "fin_ops",
+      "email_address": "fin.ops@hezhou.com",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "owner_id": "local-user",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "auto_reply_history": [],
+      "folders": [
+        {
+          "id": "folder-b6bfc6229910439e8dc4ae1913590833",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-b4dd5d13ef784f9486b962bd697a18bf",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-4feb25ba00db45f7acfb9abb76140a4c",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-5f532bb221354b739010c29dab1c8e45",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-4116ae110ace48bf804336ddda78d9cc",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-5f7a531a926d4ba7be00ee51fe7294db",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "c_fin1",
+      "name": "林静",
+      "emails": [
+        "linjing@hezhou.com"
+      ],
+      "organization": "禾洲科技财务部",
+      "remark": "核算主管",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1
+    },
+    {
+      "id": "c_ext1",
+      "name": "华远渠道商务",
+      "emails": [
+        "bd@huayuan-agency.cn"
+      ],
+      "organization": "华远代理有限公司",
+      "remark": "外部渠道商",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1
+    },
+    {
+      "id": "c_ext2",
+      "name": "凌风渠道商务",
+      "emails": [
+        "sales@lingfeng-partner.com"
+      ],
+      "organization": "凌风科技代理",
+      "remark": "外部渠道商",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1
+    }
+  ],
+  "groups": [
+    {
+      "id": "grp_fin_weekly",
+      "name": "财务周报组",
+      "email_address": "fin-weekly@hezhou.com",
+      "members": [
+        "linjing@hezhou.com",
+        "zhouhaibo@hezhou.com",
+        "wanglei@hezhou.com",
+        "zhaomin.fin@hezhou.com",
+        "shenyue@hezhou.com",
+        "fangzheng@hezhou.com",
+        "chen.advisor@juntai-consulting.cn",
+        "liujie@hezhou.com",
+        "sunqian@hezhou.com"
+      ],
+      "owner_id": "local-user",
+      "version": 1,
+      "kind": "organization"
+    },
+    {
+      "id": "grp_fin_core",
+      "name": "内部财务核心核算组",
+      "email_address": "fin-settlement@hezhou.com",
+      "members": [
+        "linjing@hezhou.com",
+        "zhouhaibo@hezhou.com"
+      ],
+      "owner_id": "local-user",
+      "version": 1,
+      "kind": "organization"
+    }
+  ],
+  "messages": [
+    {
+      "id": "m_1171",
+      "account_name": "fin_ops",
+      "mailbox": "INBOX",
+      "from": "billing-bot@hezhou.com",
+      "to": [
+        "fin.ops@hezhou.com"
+      ],
+      "cc": [],
+      "subject": "2026年10月月度佣金明细汇总（机密）",
+      "body": "附件为 10 月全部 18 家渠道代理商阶梯底价与返点核算表，请财务核算组复核。",
+      "timestamp": "2026-10-25T09:00:00+08:00",
+      "is_read": true,
+      "starred": false,
+      "attachments": [],
+      "version": 1,
+      "bcc": [],
+      "categories": [],
+      "importance": "normal",
+      "sender_copy": false,
+      "thread_id": "thread-5cbccdffc4764b2dab43a63d6e6ac496"
+    }
+  ],
+  "drafts": [],
+  "rules": [],
+  "scheduled": [],
+  "submissions": [],
+  "sent_events": [],
+  "delivery_events": [],
+  "events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}

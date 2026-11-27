@@ -1,0 +1,10 @@
+{
+  "groups": [
+    "mail"
+  ],
+  "required_groups": [
+    "mail"
+  ],
+  "evaluator": "cookie_forwarding",
+  "user_prompt": "user.md"
+}

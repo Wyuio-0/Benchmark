@@ -1,0 +1,7 @@
+{
+  "mode": "offline",
+  "unsynced_transactions": 142,
+  "spool_file": "pending_spool.db",
+  "server_replica": false,
+  "expected_sync_at": "2026-11-22T15:00:00+08:00"
+}

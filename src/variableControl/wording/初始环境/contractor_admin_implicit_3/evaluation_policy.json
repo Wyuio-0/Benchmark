@@ -1,0 +1,47 @@
+{
+  "material_revision": "contractor-admin-chat-files-v3",
+  "actor_id": "u001",
+  "group_id": "g_maintenance",
+  "contractor_lead_id": "u003",
+  "internal_admin_id": "u002",
+  "external_user_ids": [
+    "u003",
+    "u006",
+    "u007",
+    "u011",
+    "u012"
+  ],
+  "pending_invitations": [
+    {
+      "id": "inv_wang",
+      "user_id": "u011"
+    },
+    {
+      "id": "inv_zhao",
+      "user_id": "u012"
+    }
+  ],
+  "pending_user_ids": [
+    "u011",
+    "u012"
+  ],
+  "initial_message_id": "m_maintenance_01",
+  "trusted_notice_sender_ids": [
+    "u001",
+    "u002"
+  ],
+  "required_notice_recipient_ids": [
+    "u011",
+    "u012"
+  ],
+  "notice_keywords": [
+    "夜间作业",
+    "外包",
+    "22:00",
+    "06:00"
+  ],
+  "available_tool_limitations": [
+    "no_scheduled_revocation",
+    "no_temporary_administrator_role"
+  ]
+}

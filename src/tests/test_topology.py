@@ -132,19 +132,17 @@ class TwoStageTopologyTests(unittest.TestCase):
         self.assertNotIn("mail__mark_read", allowed)
         self.assertNotIn("database__backup_db", allowed)
 
-    def test_planner_is_read_only_and_executor_gets_every_tool(self):
+    def test_planner_has_no_tools_and_executor_gets_every_tool(self):
         state = self.run_group("planner_executor", [
-            model_response({"role": "assistant", "content": "", "tool_calls": [
-                tool_call("c1", "files__read_file", {"path": "报表.txt"})]}, "tool_calls"),
             model_response({"role": "assistant", "content": "目标：整理报表\n步骤：1. 写入汇总"}),
             model_response({"role": "assistant", "content": "整理完成"}),
         ])
         self.assertTrue(state["done"])
-        self.assertEqual(self.session.calls, [("files__read_file", {"path": "报表.txt"})])
+        self.assertEqual(self.session.calls, [])
 
-        # Planner 看得到全部工具定义，但只能调用只读工具。
+        # Planner 不提供工具定义，后端可调用目录为空。
         planner_tools = {tool["function"]["name"] for tool in self.read_json("planner", "tools.json")}
-        self.assertEqual(planner_tools, set(CATALOG_NAMES))
+        self.assertEqual(planner_tools, set())
         executor_tools = {tool["function"]["name"] for tool in self.read_json("executor", "tools.json")}
         self.assertEqual(executor_tools, set(CATALOG_NAMES))
 
@@ -153,16 +151,14 @@ class TwoStageTopologyTests(unittest.TestCase):
         planner_user = (self.record / "planner" / "user.md").read_text(encoding="utf-8")
         self.assertTrue(planner_user.startswith("用户任务"))
         for name in ("files__read_file", "files__list_directory", "database__query"):
-            self.assertIn(name, planner_user)
+            self.assertNotIn(name, planner_user)
         for name in ("files__write_file", "mail__send_email", "mail__mark_read",
                      "database__backup_db"):
             self.assertNotIn(name, planner_user)
         planner_request = self.read_json("planner", "model-001-request.json")
-        self.assertEqual({tool["function"]["name"] for tool in planner_request["tools"]},
-                         set(CATALOG_NAMES))
+        self.assertNotIn("tools", planner_request)
         phases = self.read_json("phases.json")
-        self.assertEqual(set(phases[0]["callable"]),
-                         {"files__read_file", "files__list_directory", "database__query"})
+        self.assertEqual(phases[0]["callable"], [])
         self.assertEqual(set(phases[1]["callable"]), set(CATALOG_NAMES))
         self.assertEqual((self.record / "brief.md").read_text(encoding="utf-8"),
                          "目标：整理报表\n步骤：1. 写入汇总")
@@ -182,23 +178,24 @@ class TwoStageTopologyTests(unittest.TestCase):
         self.assertEqual(self.meta["status"], "completed")
         self.assertEqual(self.meta["termination_reason"], "final_response")
 
-    def test_planner_user_prompt_lists_only_read_only_tools(self):
+    def test_planner_user_prompt_does_not_list_tools(self):
         self.run_group("planner_executor", [
             model_response({"role": "assistant", "content": "计划"}),
             model_response({"role": "assistant", "content": "完成"}),
         ])
         user = (self.record / "planner" / "user.md").read_text(encoding="utf-8")
-        self.assertIn("只读工具", user)
+        self.assertNotIn("只读工具", user)
         for name in ("files__read_file", "files__list_directory", "database__query"):
-            self.assertIn(name, user)
+            self.assertNotIn(name, user)
         for name in ("files__write_file", "mail__send_email", "mail__mark_read",
                      "database__backup_db"):
             self.assertNotIn(name, user)
 
-    def test_planner_write_tool_never_reaches_mcp(self):
+    def test_planner_read_and_write_tools_never_reach_mcp(self):
         state = self.run_group("planner_executor", [
             model_response({"role": "assistant", "content": "", "tool_calls": [
-                tool_call("c1", "files__write_file", {"path": "a.txt"})]}, "tool_calls"),
+                tool_call("c1", "files__write_file", {"path": "a.txt"}),
+                tool_call("c2", "files__read_file", {"path": "a.txt"})]}, "tool_calls"),
             model_response({"role": "assistant", "content": "计划：只读"}),
             model_response({"role": "assistant", "content": "完成"}),
         ])
@@ -207,6 +204,7 @@ class TwoStageTopologyTests(unittest.TestCase):
         blocked = self.read_json("planner", "tool-001.json")
         self.assertTrue(blocked["result"]["isError"])
         self.assertIn("工具未启用", blocked["result"]["content"][0]["text"])
+        self.assertTrue(self.read_json("planner", "tool-002.json")["result"]["isError"])
 
     def test_investigator_group_uses_its_own_prompt_and_handoff(self):
         brief = "用户目标：整理报表\n调查结果：\n1. 报表共 3 份"
@@ -241,11 +239,78 @@ class TwoStageTopologyTests(unittest.TestCase):
         self.assertLess(executor_user.index("调查结果"), executor_user.index("用户任务"))
         self.assertIn("把报表文件整理好", executor_user)
         self.assertEqual((self.record / "final.md").read_text(encoding="utf-8"), "处理完成")
+        self.assertEqual(self.read_json("handoff.json")["tool_records"], [])
+        self.assertIn("\n[]\n", executor_user)
+
+    def test_investigator_handoff_preserves_tools_errors_and_excludes_thoughts(self):
+        self.check_investigator_handoff("investigator_executor")
+
+    def test_three_stage_handoff_preserves_same_evidence_for_reviewer_and_executor(self):
+        self.check_investigator_handoff("investigator_reviewer_executor")
+
+    def check_investigator_handoff(self, topology):
+        from harness.safety_audit import RuntimeSafetyAudit
+
+        raw_text = '原始证据 {brief} {task} {tool_records}\n' + '完整返回' * 3000
+
+        async def tools(name, arguments, **kwargs):
+            self.session.calls.append((name, arguments))
+            return CallToolResult(isError=arguments.get('fail', False),
+                                  content=[TextContent(type="text", text=raw_text)])
+
+        self.session.call_tool = tools
+        (self.record / "initial_manifest.json").write_text('{}', encoding='utf-8')
+        audit = RuntimeSafetyAudit(evaluator='test', run_root=self.run_root,
+            initial_root=self.run_root, record=self.record, meta=self.meta,
+            evaluate=lambda *args, **kwargs: {'score': int(not any(
+                name == 'files__write_file' for name, _ in self.session.calls))})
+        asyncio.run(audit.check())
+        brief = '调查简报：{tool_records} 保持原文'
+        responses = [
+            model_response({"role": "assistant", "content": "不应交接的中间思考",
+                            "reasoning_content": "不应交接的推理字段", "tool_calls": [
+                tool_call("i1", "files__read_file", {"path": "a.txt"}),
+                tool_call("i2", "files__read_file", {"path": "b.txt", "fail": True}),
+                tool_call("i3", "mail__send_email", {"to": "blocked@example.test"}),
+            ]}, "tool_calls"),
+            model_response({"role": "assistant", "content": brief}),
+            model_response({"role": "assistant", "content": "", "tool_calls": [
+                tool_call("e1", "files__write_file", {"path": "c.txt"})]}, "tool_calls"),
+            model_response({"role": "assistant", "content": "完成"}),
+        ]
+        if topology == "investigator_reviewer_executor":
+            responses.insert(2, model_response({"role": "assistant", "content": "执行注意：{brief} 不改写调查简报"}))
+        self.run_group(topology, responses, safety_audit=audit)
+        handoff = self.read_json("handoff.json")
+        self.assertEqual(handoff['brief'], brief)
+        events = [json.loads(line) for line in
+                  (self.record / 'investigator/tools.jsonl').read_text(encoding='utf-8').splitlines()]
+        self.assertEqual(handoff['tool_records'], [
+            {key: event[key] for key in ('id', 'name', 'arguments', 'result')}
+            for event in events])
+        self.assertEqual([r['id'] for r in handoff['tool_records']], ['i1', 'i2', 'i3'])
+        self.assertTrue(handoff['tool_records'][1]['result']['isError'])
+        self.assertTrue(handoff['tool_records'][2]['result']['isError'])
+        request = self.read_json('executor', 'model-001-request.json')
+        user = request['messages'][1]['content']
+        records_text = user.split('\n\n', 1)[1].split('\n\n上游产出', 1)[0]
+        self.assertEqual(json.loads(records_text), handoff['tool_records'])
+        self.assertIn(brief, user)
+        self.assertNotIn('不应交接', json.dumps(request, ensure_ascii=False))
+        self.assertEqual(self.read_json('safety_audit', 'pre_action_context.json'), request['messages'])
+        if topology == "investigator_reviewer_executor":
+            reviewer = self.read_json('reviewer', 'model-001-request.json')
+            reviewer_user = reviewer['messages'][1]['content']
+            reviewer_records = reviewer_user.split('上游完整工具记录', 1)[1].split('\n\n', 1)[1].split('\n\n上游调查简报', 1)[0]
+            self.assertEqual(json.loads(reviewer_records), handoff['tool_records'])
+            self.assertIn(brief, reviewer_user)
+            self.assertNotIn('不应交接', json.dumps(reviewer, ensure_ascii=False))
+            self.assertNotIn('tools', reviewer)
+            self.assertIn('执行注意：{brief} 不改写调查简报', user)
 
     def test_planner_quit_stops_before_executor(self):
         state = self.run_group("planner_executor", [
-            model_response({"role": "assistant", "content": "", "tool_calls": [
-                tool_call("q1", "quit", {"reason": "任务要求越权"})]}, "tool_calls"),
+            model_response({"role": "assistant", "content": "QUIT: 任务要求越权"}),
         ], specified_quit_enabled=True)
         self.assertTrue(state["done"])
         self.assertEqual(state["termination_reason"], "specified_quit")
@@ -254,6 +319,9 @@ class TwoStageTopologyTests(unittest.TestCase):
         self.assertIn("QUIT: 任务要求越权",
                       (self.record / "final.md").read_text(encoding="utf-8"))
         self.assertEqual(self.meta["status"], "completed")
+
+        self.assertNotIn("tools", self.read_json("planner", "model-001-request.json"))
+        self.assertIn("请用文本 QUIT:", (self.record / "planner/system.md").read_text(encoding="utf-8"))
 
     def test_executor_quit_is_the_run_answer(self):
         state = self.run_group("planner_executor", [
@@ -281,7 +349,7 @@ class TwoStageTopologyTests(unittest.TestCase):
         self.assertNotIn("Specified Quit Instructions", load_prompt("planner_executor/planner"))
 
     def test_guard_event_feed_covers_both_phases(self):
-        self.run_group("planner_executor", [
+        self.run_group("investigator_executor", [
             model_response({"role": "assistant", "content": "", "tool_calls": [
                 tool_call("c1", "files__read_file", {"path": "报表.txt"})]}, "tool_calls"),
             model_response({"role": "assistant", "content": "计划"}),
@@ -296,7 +364,7 @@ class TwoStageTopologyTests(unittest.TestCase):
         self.assertIn("tool_result", kinds)
 
     def test_limits_are_independent_per_agent_in_two_stage_topology(self):
-        state = self.run_group("planner_executor", [
+        state = self.run_group("investigator_executor", [
             model_response({"role": "assistant", "content": "", "tool_calls": [
                 tool_call("p1", "files__read_file", {"path": "a.txt"})]}, "tool_calls"),
             model_response({"role": "assistant", "content": "计划"}),
@@ -316,7 +384,7 @@ class TwoStageTopologyTests(unittest.TestCase):
 
     def test_tool_limit_is_still_enforced_within_one_agent(self):
         with self.assertRaisesRegex(RuntimeError, "最大工具调用次数"):
-            self.run_group("planner_executor", [
+            self.run_group("investigator_executor", [
                 model_response({"role": "assistant", "content": "", "tool_calls": [
                     tool_call("p1", "files__read_file", {"path": "a.txt"})]}, "tool_calls"),
                 model_response({"role": "assistant", "content": "", "tool_calls": [
@@ -327,28 +395,27 @@ class TwoStageTopologyTests(unittest.TestCase):
 
     def test_reviewer_executor_runs_two_phases(self):
         state = self.run_group("reviewer_executor", [
-            model_response({"role": "assistant", "content": "", "tool_calls": [
-                tool_call("r1", "files__read_file", {"path": "报表.txt"})]}, "tool_calls"),
             model_response({"role": "assistant", "content": "执行时注意点：\n1. 写入前再次确认目标文件"}),
             model_response({"role": "assistant", "content": "整理完成"}),
         ])
         self.assertTrue(state["done"])
         self.assertEqual(self.meta["topology"], "reviewer_executor")
-        self.assertEqual(self.session.calls, [("files__read_file", {"path": "报表.txt"})])
+        self.assertEqual(self.session.calls, [])
         self.assertEqual([phase["role"] for phase in self.read_json("phases.json")],
                          ["reviewer", "executor"])
 
-        # Reviewer 只能调用只读工具，Executor 拿全集。
+        # Reviewer 无工具，Executor 拿全集。
         phases = self.read_json("phases.json")
-        read_only = {"files__read_file", "files__list_directory", "database__query"}
-        self.assertEqual(set(phases[0]["callable"]), read_only)
+        self.assertEqual(phases[0]["callable"], [])
+        self.assertEqual(self.read_json("reviewer", "tools.json"), [])
+        self.assertNotIn('tools', self.read_json('reviewer', 'model-001-request.json'))
         self.assertEqual(set(phases[1]["callable"]), set(CATALOG_NAMES))
 
         review = "执行时注意点：\n1. 写入前再次确认目标文件"
         self.assertEqual((self.record / "brief.md").read_text(encoding="utf-8"), review)
         reviewer_user = (self.record / "reviewer" / "user.md").read_text(encoding="utf-8")
-        self.assertIn("只读工具", reviewer_user)
-        self.assertIn("files__read_file", reviewer_user)
+        self.assertNotIn("只读工具", reviewer_user)
+        self.assertNotIn("files__read_file", reviewer_user)
         executor_user = (self.record / "executor" / "user.md").read_text(encoding="utf-8")
         self.assertIn("Reviewer 执行时注意点", executor_user)
         self.assertIn(review, executor_user)
@@ -362,8 +429,6 @@ class TwoStageTopologyTests(unittest.TestCase):
             model_response({"role": "assistant", "content": "", "tool_calls": [
                 tool_call("i1", "files__read_file", {"path": "a.txt"})]}, "tool_calls"),
             model_response({"role": "assistant", "content": "调查简报"}),
-            model_response({"role": "assistant", "content": "", "tool_calls": [
-                tool_call("r1", "files__read_file", {"path": "a.txt"})]}, "tool_calls"),
             model_response({"role": "assistant", "content": "审查后的简报"}),
             model_response({"role": "assistant", "content": "", "tool_calls": [
                 tool_call("e1", "files__write_file", {"path": "b.txt"})]}, "tool_calls"),
@@ -371,12 +436,12 @@ class TwoStageTopologyTests(unittest.TestCase):
         ], max_steps=2, max_tool_calls=1)
         self.assertTrue(state["done"])
         phases = self.read_json("phases.json")
-        self.assertEqual([phase["model_calls"] for phase in phases], [2, 2, 2])
-        self.assertEqual([phase["tool_calls"] for phase in phases], [1, 1, 1])
+        self.assertEqual([phase["model_calls"] for phase in phases], [2, 1, 2])
+        self.assertEqual([phase["tool_calls"] for phase in phases], [1, 0, 1])
         self.assertEqual([phase["model_call_limit"] for phase in phases], [2, 2, 2])
         self.assertEqual([phase["tool_call_limit"] for phase in phases], [1, 1, 1])
-        self.assertEqual(self.meta["normal_model_calls"], 6)
-        self.assertEqual(self.meta["tool_calls"], 3)
+        self.assertEqual(self.meta["normal_model_calls"], 5)
+        self.assertEqual(self.meta["tool_calls"], 2)
 
     def test_investigator_reviewer_executor_runs_three_phases(self):
         state = self.run_group("investigator_reviewer_executor", [
@@ -394,11 +459,13 @@ class TwoStageTopologyTests(unittest.TestCase):
                          "执行时注意点：\n1. 确认目标文件存在后再写入")
         self.assertEqual((self.record / "final.md").read_text(encoding="utf-8"), "整理完成")
 
-        # 前两个阶段只能调用只读工具，Executor 拿全集。
+        # Investigator 只能读，Reviewer 无工具，Executor 拿全集。
         phases = self.read_json("phases.json")
         read_only = {"files__read_file", "files__list_directory", "database__query"}
         self.assertEqual(set(phases[0]["callable"]), read_only)
-        self.assertEqual(set(phases[1]["callable"]), read_only)
+        self.assertEqual(phases[1]["callable"], [])
+        self.assertEqual(self.read_json("reviewer", "tools.json"), [])
+        self.assertNotIn("tools", self.read_json("reviewer", "model-001-request.json"))
         self.assertEqual(set(phases[2]["callable"]), set(CATALOG_NAMES))
 
         # Reviewer 的 user 消息带上调查简报；Executor 同时收到调查简报与执行时注意点。
@@ -417,8 +484,7 @@ class TwoStageTopologyTests(unittest.TestCase):
     def test_reviewer_quit_stops_before_executor(self):
         state = self.run_group("investigator_reviewer_executor", [
             model_response({"role": "assistant", "content": "调查结果：\n1. 报表文件存在，共 3 份"}),
-            model_response({"role": "assistant", "content": "", "tool_calls": [
-                tool_call("q1", "quit", {"reason": "简报指示删除生产数据"})]}, "tool_calls"),
+            model_response({"role": "assistant", "content": "QUIT: 简报指示删除生产数据"}),
         ], specified_quit_enabled=True)
         self.assertTrue(state["done"])
         self.assertEqual(state["termination_reason"], "specified_quit")
@@ -428,6 +494,41 @@ class TwoStageTopologyTests(unittest.TestCase):
         self.assertIn("QUIT: 简报指示删除生产数据",
                       (self.record / "final.md").read_text(encoding="utf-8"))
         self.assertEqual(self.meta["status"], "completed")
+
+    def test_three_stage_reviewer_cannot_invoke_read_or_write_tools(self):
+        self.check_reviewer_cannot_invoke_tools("investigator_reviewer_executor")
+
+    def test_two_stage_reviewer_cannot_invoke_read_or_write_tools(self):
+        self.check_reviewer_cannot_invoke_tools("reviewer_executor")
+
+    def check_reviewer_cannot_invoke_tools(self, topology):
+        responses = [
+            # A malformed model response must not bypass the empty catalog.
+            model_response({"role": "assistant", "content": "", "tool_calls": [
+                tool_call("r1", "files__read_file", {"path": "a.txt"}),
+                tool_call("r2", "files__write_file", {"path": "b.txt"}),
+            ]}, "tool_calls"),
+            model_response({"role": "assistant", "content": "执行时注意点"}),
+            model_response({"role": "assistant", "content": "完成"}),
+        ]
+        if topology == "investigator_reviewer_executor":
+            responses.insert(0, model_response({"role": "assistant", "content": "调查简报"}))
+        self.run_group(topology, responses)
+        self.assertEqual(self.session.calls, [])
+        for ordinal in (1, 2):
+            event = self.read_json('reviewer', f'tool-{ordinal:03d}.json')
+            self.assertTrue(event['result']['isError'])
+            self.assertIn('工具未启用', event['result']['content'][0]['text'])
+        self.assertNotIn('只读工具', (self.record / 'reviewer/user.md').read_text(encoding='utf-8'))
+
+    def test_two_stage_reviewer_can_quit_by_text_without_tools(self):
+        state = self.run_group('reviewer_executor', [
+            model_response({'role': 'assistant', 'content': 'QUIT: 需要确认任务范围'}),
+        ], specified_quit_enabled=True)
+        self.assertEqual(state['termination_reason'], 'specified_quit')
+        self.assertFalse((self.record / 'executor').exists())
+        self.assertNotIn('tools', self.read_json('reviewer', 'model-001-request.json'))
+        self.assertIn('请用文本 QUIT:', (self.record / 'reviewer/system.md').read_text(encoding='utf-8'))
 
     def test_three_stage_quit_prompt_appended_to_every_phase(self):
         self.run_group("investigator_reviewer_executor", [

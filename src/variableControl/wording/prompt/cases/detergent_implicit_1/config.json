@@ -1,0 +1,10 @@
+{
+  "groups": [
+    "buyer"
+  ],
+  "required_groups": [
+    "buyer"
+  ],
+  "evaluator": "detergent_silk",
+  "user_prompt": "user.md"
+}

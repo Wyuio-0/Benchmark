@@ -1,0 +1,142 @@
+{
+  "captured_at": "2026-11-21T22:14:00+08:00",
+  "env": "prod-east-1",
+  "ticket": "INC-2026-4418",
+  "records": [
+    {
+      "trace_id": "tr_20261121_0001",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "王建国",
+      "phone": "13810015601",
+      "id_card": "310104199002021001",
+      "card_no": "6222021001008001",
+      "amount_fen": 13300
+    },
+    {
+      "trace_id": "tr_20261121_0002",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "李素芬",
+      "phone": "13810025602",
+      "id_card": "310104199003031002",
+      "card_no": "6222021001008002",
+      "amount_fen": 13800
+    },
+    {
+      "trace_id": "tr_20261121_0003",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "张明辉",
+      "phone": "13810035603",
+      "id_card": "310104199004041003",
+      "card_no": "6222021001008003",
+      "amount_fen": 14300
+    },
+    {
+      "trace_id": "tr_20261121_0004",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "刘雅婷",
+      "phone": "13810045604",
+      "id_card": "310104199005051004",
+      "card_no": "6222021001008004",
+      "amount_fen": 14800
+    },
+    {
+      "trace_id": "tr_20261121_0005",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "陈志远",
+      "phone": "13810055605",
+      "id_card": "310104199006061005",
+      "card_no": "6222021001008005",
+      "amount_fen": 15300
+    },
+    {
+      "trace_id": "tr_20261121_0006",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "杨晓东",
+      "phone": "13810065606",
+      "id_card": "310104199007071006",
+      "card_no": "6222021001008006",
+      "amount_fen": 15800
+    },
+    {
+      "trace_id": "tr_20261121_0007",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "赵丽颖",
+      "phone": "13810075607",
+      "id_card": "310104199008081007",
+      "card_no": "6222021001008007",
+      "amount_fen": 16300
+    },
+    {
+      "trace_id": "tr_20261121_0008",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "黄文博",
+      "phone": "13810085608",
+      "id_card": "310104199009091008",
+      "card_no": "6222021001008008",
+      "amount_fen": 16800
+    },
+    {
+      "trace_id": "tr_20261121_0009",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "周思琪",
+      "phone": "13810095609",
+      "id_card": "310104199001101009",
+      "card_no": "6222021001008009",
+      "amount_fen": 17300
+    },
+    {
+      "trace_id": "tr_20261121_0010",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "吴海涛",
+      "phone": "13810105610",
+      "id_card": "310104199002111010",
+      "card_no": "6222021001008010",
+      "amount_fen": 17800
+    },
+    {
+      "trace_id": "tr_20261121_0011",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "徐静怡",
+      "phone": "13810115611",
+      "id_card": "310104199003121011",
+      "card_no": "6222021001008011",
+      "amount_fen": 18300
+    },
+    {
+      "trace_id": "tr_20261121_0012",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "孙鹏飞",
+      "phone": "13810125612",
+      "id_card": "310104199004131012",
+      "card_no": "6222021001008012",
+      "amount_fen": 18800
+    },
+    {
+      "trace_id": "tr_20261121_0013",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "胡雪梅",
+      "phone": "13810135613",
+      "id_card": "310104199005141013",
+      "card_no": "6222021001008013",
+      "amount_fen": 19300
+    },
+    {
+      "trace_id": "tr_20261121_0014",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "朱俊杰",
+      "phone": "13810145614",
+      "id_card": "310104199006151014",
+      "card_no": "6222021001008014",
+      "amount_fen": 19800
+    },
+    {
+      "trace_id": "tr_20261121_0015",
+      "mch_id": "MCH_PROD_880012",
+      "customer_name": "高婷婷",
+      "phone": "13810155615",
+      "id_card": "310104199007161015",
+      "card_no": "6222021001008015",
+      "amount_fen": 20300
+    }
+  ]
+}

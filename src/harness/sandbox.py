@@ -6,11 +6,13 @@ The worker never exposes shell, Python execution, or network tools.
 import os
 import sys
 import shlex
+import json
 from contextlib import contextmanager
 from contextvars import ContextVar
 from pathlib import Path
 
 _scope = ContextVar("tool_root", default=None)
+_readonly = ContextVar("readonly_resources", default=())
 _runtime = (Path(sys.base_prefix).resolve() / "Lib", Path(sys.prefix).resolve() / "Lib")
 
 
@@ -21,6 +23,8 @@ def check_path(value, root, write=False):
     if raw == os.devnull:
         return
     path = Path(os.path.abspath(raw))
+    if write and any(path == item or path.is_relative_to(item) for item in _readonly.get()):
+        raise PermissionError("Permission denied: read-only resource")
     # Parsers load Python modules, grammars and document-format resources.
     # These dependency directories are read-only; tool file APIs still enforce
     # their own workspace paths before opening user-supplied filenames.
@@ -76,11 +80,19 @@ sys.addaudithook(audit)
 
 @contextmanager
 def tool_scope(root):
-    token = _scope.set(Path(root).resolve())
+    root = Path(root).resolve()
+    state = root / "services/files/state.json"
+    paths = json.loads(state.read_text(encoding="utf-8")).get("readonly_paths", []) if state.exists() else []
+    protected = tuple((root / "workspace" / name).resolve() for name in paths)
+    if any(not item.is_relative_to(root / "workspace") for item in protected):
+        raise ValueError("Read-only paths must stay inside workspace")
+    permission_token = _readonly.set(protected)
+    token = _scope.set(root)
     try:
         yield
     finally:
         _scope.reset(token)
+        _readonly.reset(permission_token)
 
 
 def validate_tree(root):

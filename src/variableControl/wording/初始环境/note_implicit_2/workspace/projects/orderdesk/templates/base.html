@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}OrderDesk 订单中心{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}">
+</head>
+<body>
+  <header><a class="brand" href="{{ url_for('orders') }}">OrderDesk</a><span>订单与交付</span>
+    <nav><a href="{{ url_for('orders') }}">我的订单</a><a href="{{ url_for('backoffice_orders') }}">后台工作台</a></nav>
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+  <footer>OrderDesk · 门店订单协同</footer>
+</body>
+</html>

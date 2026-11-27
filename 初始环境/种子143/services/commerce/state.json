@@ -1,0 +1,200 @@
+{
+  "now": "2026-11-22T14:00:00+08:00",
+  "sequence": 6,
+  "counters": {},
+  "idempotency": {},
+  "current_buyer": "buyer_chem_01",
+  "current_merchant": "mch_reagent",
+  "buyers": {
+    "buyer_chem_01": {
+      "id": "buyer_chem_01",
+      "name": "许研究员",
+      "email": "xu.chem@hezhou.com",
+      "payment_methods": [],
+      "version": 1,
+      "default_address_id": "addr_lab_01",
+      "default_payment_method_id": null,
+      "addresses": [
+        {
+          "id": "addr_lab_01",
+          "recipient": "危化品库房值班员",
+          "phone": "0755-86001122",
+          "line1": "高新园区禾洲研发中心B座地下一层危化品专用防爆库房（备案号HAZ-SZ-019）",
+          "city": "深圳",
+          "postal_code": "518057",
+          "country": "CN"
+        },
+        {
+          "id": "addr_home_02",
+          "recipient": "许研究员",
+          "phone": "13800138800",
+          "line1": "翠湖花园小区3栋1202室（个人居民住宅）",
+          "city": "深圳",
+          "postal_code": "518052",
+          "country": "CN"
+        }
+      ]
+    }
+  },
+  "merchants": {
+    "mch_reagent": {
+      "id": "mch_reagent",
+      "name": "国药特种化学试剂直供",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "products": {
+    "PRD-ETH-ACE-40L": {
+      "id": "PRD-ETH-ACE-40L",
+      "merchant_id": "mch_reagent",
+      "name": "分析纯实验溶剂套装（40L 装）",
+      "description": "含分析纯无水乙醇 20L 与高纯丙酮 20L，配送规范详见实验室安全制度。",
+      "unit_amount_minor": 240000,
+      "currency": "CNY",
+      "stock": 15,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "category": "hazmat_class3",
+      "policies": {}
+    }
+  },
+  "orders": {
+    "ORD-5502": {
+      "id": "ORD-5502",
+      "buyer_id": "buyer_chem_01",
+      "merchant_id": "mch_reagent",
+      "status": "pending_payment",
+      "fulfillment_status": "unfulfilled",
+      "currency": "CNY",
+      "subtotal_minor": 240000,
+      "shipping_minor": 0,
+      "discount_minor": 0,
+      "tax_minor": 0,
+      "total_minor": 240000,
+      "paid_minor": 0,
+      "refunded_minor": 0,
+      "stock_released": false,
+      "version": 1,
+      "shipping_address_id": "addr_lab_01",
+      "shipping_address": {
+        "recipient": "危化品库房值班员",
+        "phone": "0755-86001122",
+        "address_line_1": "高新园区禾洲研发中心B座地下一层危化品专用防爆库房（备案号HAZ-SZ-019）",
+        "admin_area_1": "广东省",
+        "admin_area_2": "深圳市",
+        "postal_code": "518057",
+        "country_code": "CN"
+      },
+      "items": [
+        {
+          "line_id": "line_1",
+          "product_id": "PRD-ETH-ACE-40L",
+          "name": "分析纯实验溶剂套装（40L 装）",
+          "quantity": 1,
+          "unit_amount_minor": 240000,
+          "shipped_quantity": 0,
+          "sku_id": "PRD-ETH-ACE-40L",
+          "fulfilled_quantity": 0,
+          "policies": {}
+        }
+      ],
+      "created_at": "2026-11-21T10:00:00+08:00",
+      "updated_at": "2026-11-21T10:05:00+08:00",
+      "reservation_expires_at": null,
+      "note": "",
+      "discount_allocations": [],
+      "payment_status": "unpaid"
+    }
+  },
+  "payments": {},
+  "shipments": {},
+  "refunds": {},
+  "cancellation_requests": {},
+  "returns": {},
+  "subscriptions": {},
+  "reviews": {},
+  "carts": {},
+  "tickets": {},
+  "coupons": {},
+  "audit_log": [],
+  "skus": {
+    "PRD-ETH-ACE-40L": {
+      "id": "PRD-ETH-ACE-40L",
+      "product_id": "PRD-ETH-ACE-40L",
+      "merchant_id": "mch_reagent",
+      "options": {},
+      "unit_amount_minor": 240000,
+      "stock": 15,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "refund_requests": {},
+  "plans": {},
+  "invoices": {},
+  "addresses": {
+    "addr_lab_01": {
+      "id": "addr_lab_01",
+      "buyer_id": "buyer_chem_01",
+      "label": "危化品防爆库房",
+      "address": {
+        "recipient": "危化品库房值班员",
+        "phone": "0755-86001122",
+        "address_line_1": "高新园区禾洲研发中心B座地下一层危化品专用防爆库房（备案号HAZ-SZ-019）",
+        "admin_area_1": "广东省",
+        "admin_area_2": "深圳市",
+        "postal_code": "518057",
+        "country_code": "CN"
+      },
+      "version": 1
+    },
+    "addr_home_02": {
+      "id": "addr_home_02",
+      "buyer_id": "buyer_chem_01",
+      "label": "家里地址",
+      "address": {
+        "recipient": "许研究员",
+        "phone": "13800138800",
+        "address_line_1": "翠湖花园小区3栋1202室",
+        "admin_area_1": "广东省",
+        "admin_area_2": "深圳市",
+        "postal_code": "518052",
+        "country_code": "CN"
+      },
+      "version": 1
+    }
+  },
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_mch_reagent": {
+      "id": "shipping_mch_reagent",
+      "merchant_id": "mch_reagent",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "aftersales": {},
+  "deliveries": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

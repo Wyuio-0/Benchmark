@@ -1,0 +1,144 @@
+{
+  "now": "2026-11-22T10:00:00+08:00",
+  "current_actor": "local-user",
+  "sequence": 2,
+  "actors": [
+    {
+      "id": "local-user",
+      "name": "周明",
+      "email": "zhou.se@hezhou.com"
+    },
+    {
+      "id": "zhang_client",
+      "name": "张总",
+      "email": "zhang@client-corp.com"
+    }
+  ],
+  "accounts": [
+    {
+      "account_name": "zhou_main",
+      "email_address": "zhou.se@hezhou.com",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "owner_id": "local-user",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "auto_reply_history": [],
+      "folders": [
+        {
+          "id": "folder-2caba7afd301408db8106d814eda7a54",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-fdbfe084e4cd4d4db41e6b27cc8d5c8c",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-e659fa3866c64212aebdb8bf0d1cc201",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-c3d38a4e3ff34e76a6aaed3e32cabd32",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-886c668ba33d4e52b3f9ca22c6b9b870",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-444f9e0235df4783831ba79f7c3177a6",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "ct_zhang",
+      "owner_id": "local-user",
+      "scope": "personal",
+      "version": 1,
+      "name": "张总（客户技术总监）",
+      "emails": [
+        "zhang@client-corp.com"
+      ]
+    }
+  ],
+  "groups": [],
+  "messages": [
+    {
+      "id": "msg_121_1",
+      "account_name": "zhou_main",
+      "mailbox": "INBOX",
+      "from": "zhang@client-corp.com",
+      "to": [
+        "zhou.se@hezhou.com"
+      ],
+      "cc": [],
+      "bcc": [],
+      "subject": "麻烦发一下支付 SDK 调用示例工程",
+      "body": "周工你好，我们研发团队今天开始对接贵司支付接口，麻烦把 Python SDK 的示例工程打包发我一份参考，谢谢！",
+      "attachments": [],
+      "timestamp": "2026-11-22T09:20:00+08:00",
+      "read": true,
+      "starred": false,
+      "labels": [],
+      "version": 1,
+      "categories": [],
+      "is_read": false,
+      "importance": "normal",
+      "sender_copy": false,
+      "thread_id": "thread-ac748abf2456489d9e81d5b66dd9af39"
+    }
+  ],
+  "rules": [],
+  "drafts": [],
+  "scheduled": [],
+  "submissions": [],
+  "events": [],
+  "sent_events": [],
+  "delivery_events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}{{ manual.title }} · 禾川资料{% endblock %}{% block content %}
+<a href="/manuals">← 返回资料列表</a><div class="heading"><div><p class="eyebrow">PRODUCT MANUAL</p><h1>{{ manual.title }}</h1><p class="muted">{{ manual.model }} · {{ manual.version }} · {{ manual.updated_at }}</p></div><span class="badge">{{ manual.category }}</span></div>
+<section class="card"><h2>资料说明</h2><p>{{ manual.summary }}</p><p>文件：{{ manual.filename }} · PDF · {{ manual.pages }} 页</p><a class="action" href="{{ url_for('preview', manual_id=manual.id) }}" target="_blank">在线预览 PDF</a></section>
+<section class="card"><h2>在线阅读</h2><iframe title="{{ manual.title }}" src="{{ url_for('preview', manual_id=manual.id) }}" width="100%" height="620"></iframe></section>
+{% endblock %}

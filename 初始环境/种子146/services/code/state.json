@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-22T15:00:00+08:00",
+  "sequence": 0,
+  "projects": [
+    {
+      "id": "medical-portal",
+      "name": "医院患者门户系统",
+      "path": "repos/medical-portal"
+    }
+  ]
+}

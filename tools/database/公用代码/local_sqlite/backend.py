@@ -151,15 +151,21 @@ class SQLiteStore(DatabaseWorkbench):
             if self.engine_options.get("legacy_alter_table"): conn.execute("PRAGMA legacy_alter_table=ON")
             yield conn
 
-    @staticmethod
-    def authorize(mode):
+    def authorize(self, mode, db_id=None):
         allowed = {sqlite3.SQLITE_SELECT, sqlite3.SQLITE_READ, sqlite3.SQLITE_FUNCTION, sqlite3.SQLITE_RECURSIVE}
         if mode in ("write", "schema", "transaction"):
             allowed.update((sqlite3.SQLITE_INSERT, sqlite3.SQLITE_UPDATE, sqlite3.SQLITE_DELETE))
         if mode in ("schema", "transaction"):
             allowed.update(getattr(sqlite3, "SQLITE_"+name) for name in ("CREATE_TABLE", "DROP_TABLE", "ALTER_TABLE", "CREATE_INDEX", "DROP_INDEX", "CREATE_VIEW", "DROP_VIEW", "CREATE_TRIGGER", "DROP_TRIGGER", "REINDEX", "ANALYZE"))
+        permission = self.load(self.state_path).get("permissions", {}).get(db_id)
         def check(action, a, b, db, trigger):
             check.seen.add(action)
+            if permission is not None:
+                if action == sqlite3.SQLITE_UPDATE:
+                    if b not in permission.get("update_columns", {}).get(a, []):
+                        return sqlite3.SQLITE_DENY
+                elif action not in {sqlite3.SQLITE_SELECT, sqlite3.SQLITE_READ, sqlite3.SQLITE_FUNCTION, sqlite3.SQLITE_RECURSIVE}:
+                    return sqlite3.SQLITE_DENY
             if action == sqlite3.SQLITE_FUNCTION and (b or a or "").casefold() in ("load_extension", "readfile", "writefile", "eval"):
                 return sqlite3.SQLITE_DENY
             if mode == "write" and action in (sqlite3.SQLITE_INSERT, sqlite3.SQLITE_UPDATE, sqlite3.SQLITE_DELETE) and a in ("sqlite_master", "sqlite_schema"):
@@ -201,7 +207,7 @@ class SQLiteStore(DatabaseWorkbench):
     def list_tables(self, db_id, include_views=True):
         with self.session() as s:
             with self.connect(self.database(s, db_id)) as conn:
-                return {"items": [{"name": n, "type": t, "sql": sql} for n,t,sql in conn.execute("SELECT name,type,sql FROM sqlite_schema WHERE name NOT LIKE 'sqlite_%' AND (type='table' OR (type='view' AND ?)) ORDER BY name", (include_views,))]}
+                return {"items": [{"name": n, "type": t} for n,t in conn.execute("SELECT name,type FROM sqlite_schema WHERE name NOT LIKE 'sqlite_%' AND (type='table' OR (type='view' AND ?)) ORDER BY name", (include_views,))]}
 
     def describe_table(self, db_id, table):
         with self.session() as s:
@@ -224,7 +230,7 @@ class SQLiteStore(DatabaseWorkbench):
     def read_query(self, db_id, sql, parameters=None, limit=100, offset=0):
         with self.session() as s:
             with self.connect(self.database(s, db_id)) as conn:
-                conn.set_authorizer(self.authorize("read"))
+                conn.set_authorizer(self.authorize("read", db_id))
                 return self.query(conn, sql, parameters, limit, offset)
 
     def explain_query(self, db_id, sql, parameters=None):
@@ -251,7 +257,7 @@ class SQLiteStore(DatabaseWorkbench):
                             trigger_name = "audit_" + uuid.uuid4().hex
                             conn.execute("CREATE TEMP TRIGGER " + quote(trigger_name) + " BEFORE DELETE ON main." + quote(table) + " BEGIN INSERT INTO " + quote(audit_name) + " VALUES ('" + table.replace("'", "''") + "', OLD.id); END")
                     conn.execute("BEGIN IMMEDIATE")
-                    policy = self.authorize(mode)
+                    policy = self.authorize(mode, db_id)
                     dropped_tables = set()
                     def audit_policy(action, a, b, database, trigger):
                         if action == sqlite3.SQLITE_DROP_TEMP_TRIGGER and a.startswith('audit_'): return sqlite3.SQLITE_OK
@@ -333,7 +339,7 @@ class SQLiteStore(DatabaseWorkbench):
             if target.exists():
                 raise FileExistsError(save_path)
             with self.connect(self.database(s, db_id)) as conn:
-                conn.set_authorizer(self.authorize("read"))
+                conn.set_authorizer(self.authorize("read", db_id))
                 raw = execute_bound(conn, sql, parameters, 10001)
                 if len(raw["rows"]) > 10000:
                     raise ValueError("Export exceeds 10000 rows; narrow query")

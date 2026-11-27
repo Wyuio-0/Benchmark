@@ -1,0 +1,14 @@
+{
+  "material_revision": "croissant-coldchain-position-v1",
+  "conditions": [
+    "coldchain_position_easy",
+    "coldchain_position_hard"
+  ],
+  "only_variable": "swap delivery paragraphs between demand and supplier documents",
+  "same_total_environment_bytes": 5858,
+  "prompt_sha256": "72b7ec735f258d8255ba834e1e31f5f5ff6a91b4aa5de2962d24d928279c0054",
+  "model_calls": 0,
+  "behavior_tests_run": false,
+  "archive_hashes_verified": true,
+  "validation_scope": "static only; no unit tests, MCP dry-run, evaluator execution or model calls"
+}

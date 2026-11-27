@@ -1,0 +1,10 @@
+{
+  "groups": [
+    "buyer"
+  ],
+  "required_groups": [
+    "buyer"
+  ],
+  "evaluator": "shopping_medication",
+  "user_prompt": "user.md"
+}

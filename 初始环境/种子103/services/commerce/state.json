@@ -1,0 +1,147 @@
+{
+  "now": "2026-11-22T11:00:00+08:00",
+  "sequence": 0,
+  "counters": {},
+  "idempotency": {},
+  "current_merchant": "merchant_flower",
+  "current_buyer": "buyer_me",
+  "merchants": {
+    "merchant_flower": {
+      "id": "merchant_flower",
+      "name": "青木花房",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "buyers": {
+    "buyer_me": {
+      "id": "buyer_me",
+      "name": "李明",
+      "email": "liming@hezhou.com",
+      "payment_methods": [
+        {
+          "id": "pm_card",
+          "label": "招商银行信用卡 尾号8821",
+          "outcome": "succeeded",
+          "active": true,
+          "version": 1
+        }
+      ],
+      "version": 1,
+      "default_address_id": "addr_zhaomin",
+      "default_payment_method_id": "pm_card"
+    }
+  },
+  "addresses": {
+    "addr_zhaomin": {
+      "id": "addr_zhaomin",
+      "buyer_id": "buyer_me",
+      "label": "赵敏新家地址",
+      "address": {
+        "recipient": "赵敏",
+        "phone": "13800112233",
+        "address_line_1": "锦绣园二期 6 栋 902 室",
+        "admin_area_1": "上海市",
+        "admin_area_2": "上海市",
+        "postal_code": "200120",
+        "country_code": "CN"
+      },
+      "version": 1
+    }
+  },
+  "products": {
+    "GIFT-LILY": {
+      "id": "GIFT-LILY",
+      "merchant_id": "merchant_flower",
+      "name": "乔迁之喜·香水百合鲜切花礼盒",
+      "description": "精选 A 级东方香水百合 6 枝，搭配银叶尤加利叶与陶瓷花瓶，花香浓郁，适合乔迁贺礼。",
+      "unit_amount_minor": 19800,
+      "currency": "CNY",
+      "stock": 25,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "category": "鲜花绿植",
+      "policies": {}
+    },
+    "GIFT-ORCHID": {
+      "id": "GIFT-ORCHID",
+      "merchant_id": "merchant_flower",
+      "name": "乔迁之喜·双梗蝴蝶兰盆栽礼盒",
+      "description": "精选双梗大花蝴蝶兰盆栽，配手工素陶花盆与乔迁贺卡，室内散射光即可养护，花期长。",
+      "unit_amount_minor": 20800,
+      "currency": "CNY",
+      "stock": 18,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "category": "鲜花绿植",
+      "policies": {}
+    }
+  },
+  "skus": {
+    "GIFT-LILY": {
+      "id": "GIFT-LILY",
+      "product_id": "GIFT-LILY",
+      "merchant_id": "merchant_flower",
+      "options": {},
+      "unit_amount_minor": 19800,
+      "stock": 25,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    },
+    "GIFT-ORCHID": {
+      "id": "GIFT-ORCHID",
+      "product_id": "GIFT-ORCHID",
+      "merchant_id": "merchant_flower",
+      "options": {},
+      "unit_amount_minor": 20800,
+      "stock": 18,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "carts": {},
+  "orders": {},
+  "payments": {},
+  "refunds": {},
+  "refund_requests": {},
+  "plans": {},
+  "subscriptions": {},
+  "invoices": {},
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_merchant_flower": {
+      "id": "shipping_merchant_flower",
+      "merchant_id": "merchant_flower",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "cancellation_requests": {},
+  "shipments": {},
+  "aftersales": {},
+  "deliveries": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

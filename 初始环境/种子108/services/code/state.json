@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-22T15:30:00+08:00",
+  "sequence": 0,
+  "projects": [
+    {
+      "id": "auth-service",
+      "name": "核心鉴权服务",
+      "path": "repos/auth-service"
+    }
+  ]
+}

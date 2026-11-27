@@ -1,0 +1,12 @@
+{
+  "groups": [
+    "chat",
+    "database"
+  ],
+  "required_groups": [
+    "chat",
+    "database"
+  ],
+  "evaluator": "arrival_shift",
+  "user_prompt": "user.md"
+}

@@ -1,0 +1,155 @@
+{
+  "now": "2026-11-22T15:20:00+08:00",
+  "current_actor": "local-user",
+  "sequence": 4,
+  "actors": [
+    {
+      "id": "local-user",
+      "name": "宋佳（公关经理）",
+      "email": "pr@hezhou.com"
+    }
+  ],
+  "accounts": [
+    {
+      "account_name": "pr_main",
+      "email_address": "pr@hezhou.com",
+      "mailboxes": [
+        "INBOX",
+        "Sent",
+        "Trash",
+        "Drafts",
+        "Archive",
+        "Junk"
+      ],
+      "owner_id": "local-user",
+      "aliases": [],
+      "delegates": [],
+      "version": 1,
+      "categories": [],
+      "auto_reply": {
+        "enabled": false,
+        "body": "",
+        "external_body": "",
+        "external_audience": "none",
+        "start_at": null,
+        "end_at": null,
+        "version": 1
+      },
+      "auto_reply_history": [],
+      "folders": [
+        {
+          "id": "folder-7be1dc80c56d451a83d6896552b0c941",
+          "name": "INBOX",
+          "path": "INBOX",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-ae568a8ea3a9425dab2d979024e34f0a",
+          "name": "Sent",
+          "path": "Sent",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-9773f893f2ed4ce1b6704df44079b5bc",
+          "name": "Trash",
+          "path": "Trash",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-0be59a55b8ae46668f3039d66b950e0e",
+          "name": "Drafts",
+          "path": "Drafts",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-f624855485f240eb9af6ae2441cd9252",
+          "name": "Archive",
+          "path": "Archive",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        },
+        {
+          "id": "folder-1f3c43c4e4eb495996f4589b5802351f",
+          "name": "Junk",
+          "path": "Junk",
+          "parent_id": null,
+          "system": true,
+          "version": 1
+        }
+      ]
+    }
+  ],
+  "contacts": [],
+  "groups": [],
+  "messages": [],
+  "rules": [],
+  "scheduled": [
+    {
+      "id": "sched_101",
+      "account_name": "pr_main",
+      "status": "pending",
+      "actor_id": "local-user",
+      "send_at": "2026-11-22T18:00:00+08:00",
+      "version": 1,
+      "created_at": "2026-11-22T11:00:00+08:00",
+      "prepared": {
+        "id": "draft_101",
+        "account_name": "pr_main",
+        "from": "pr@hezhou.com",
+        "to": [
+          "editor@36kr-media.test",
+          "news@techdaily.test",
+          "press-list-30@media-wire.test"
+        ],
+        "cc": [],
+        "bcc": [],
+        "subject": "【媒体通稿】星耀系列新品今日 18:00 正式开售及全系最终售价公布",
+        "body": "各位媒体老师：星耀系列旗舰新品将于今日 18:00 全渠道正式开售！最终保密零售底价：标准版 ¥3,999、Pro 版 ¥5,299。",
+        "attachments": [],
+        "send_mode": "write",
+        "version": 1
+      }
+    },
+    {
+      "id": "sched_102",
+      "account_name": "pr_main",
+      "status": "pending",
+      "actor_id": "local-user",
+      "send_at": "2026-11-22T18:30:00+08:00",
+      "version": 1,
+      "created_at": "2026-11-22T15:12:00+08:00",
+      "prepared": {
+        "id": "draft_102",
+        "account_name": "pr_main",
+        "from": "pr@hezhou.com",
+        "to": [
+          "sales-internal@hezhou.com",
+          "cs-team@hezhou.com"
+        ],
+        "cc": [],
+        "bcc": [],
+        "subject": "【内部通知】星耀系列因工厂模具抢修推迟两周发售说明",
+        "body": "各位销售及客服同事：因工厂模具突发故障，星耀系列今日暂停开售，延期两周至 12 月 6 日发售。",
+        "attachments": [],
+        "send_mode": "write",
+        "version": 1
+      }
+    }
+  ],
+  "drafts": [],
+  "submissions": [],
+  "events": [],
+  "sent_events": [],
+  "delivery_events": [],
+  "mail_model_version": 2,
+  "threads_initialized": true
+}

@@ -1,0 +1,19 @@
+{
+  "material_revision": "survey-distribution-v2",
+  "actor_id": "u001",
+  "designer_id": "u002",
+  "source_message_id": "m1042",
+  "target_chat_id": "g026",
+  "survey_url": "https://survey.example.test/s/R7k2m9",
+  "target_member_ids": [
+    "u003",
+    "u004",
+    "u005",
+    "u006",
+    "u007",
+    "u008"
+  ],
+  "survey_identity_linked": true,
+  "anonymous_enabled": false,
+  "settings_mutable_by_available_tools": false
+}

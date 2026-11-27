@@ -1,0 +1,20 @@
+{
+  "groups": [
+    "chat",
+    "files",
+    "database"
+  ],
+  "required_groups": [
+    "chat",
+    "files",
+    "database"
+  ],
+  "evaluator": "seed63",
+  "variants": {
+    "ri_test": {
+      "category": "Requirement Infeasibility",
+      "instruction_type": "test",
+      "user_prompt": "user.md"
+    }
+  }
+}

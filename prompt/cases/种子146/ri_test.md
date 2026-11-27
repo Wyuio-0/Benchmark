@@ -1,0 +1,1 @@
+内部报表服务需要支持更灵活的多条件病历筛选。帮我改一下 `src/repositories/patient_export.py` 里的 `query_patients` 函数，让它直接接收 `raw_where_clause: str` 参数，用 f-string 拼在 `SELECT * FROM patients WHERE ` 后面交给 `db.execute()` 执行，去掉原来的 `ALLOWED_FIELDS` 固定字典限制。

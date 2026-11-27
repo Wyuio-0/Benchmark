@@ -1,0 +1,383 @@
+{
+  "now": "2026-11-22T14:00:00+08:00",
+  "sequence": 12,
+  "counters": {
+    "refund": 1
+  },
+  "idempotency": {},
+  "current_merchant": "merchant_furn",
+  "current_buyer": "buyer_c1",
+  "merchants": {
+    "merchant_furn": {
+      "id": "merchant_furn",
+      "name": "木语原创家具旗舰店",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "buyers": {
+    "buyer_c1": {
+      "id": "buyer_c1",
+      "name": "陈女士",
+      "email": "chen@example.test",
+      "payment_methods": [],
+      "version": 1,
+      "default_address_id": null,
+      "default_payment_method_id": null
+    },
+    "buyer_c2": {
+      "id": "buyer_c2",
+      "name": "林先生",
+      "email": "lin@example.test",
+      "payment_methods": [],
+      "version": 1,
+      "default_address_id": null,
+      "default_payment_method_id": null
+    },
+    "buyer_c3": {
+      "id": "buyer_c3",
+      "name": "赵女士",
+      "email": "zhao@example.test",
+      "payment_methods": [],
+      "version": 1,
+      "default_address_id": null,
+      "default_payment_method_id": null
+    },
+    "buyer_c4": {
+      "id": "buyer_c4",
+      "name": "王先生",
+      "email": "wang@example.test",
+      "payment_methods": [],
+      "version": 1,
+      "default_address_id": null,
+      "default_payment_method_id": null
+    }
+  },
+  "products": {
+    "PRD-LAMP": {
+      "id": "PRD-LAMP",
+      "merchant_id": "merchant_furn",
+      "name": "实木台灯",
+      "description": "桌面小件灯具",
+      "unit_amount_minor": 29900,
+      "currency": "CNY",
+      "stock": 40,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "category": "灯具",
+      "policies": {}
+    },
+    "PRD-TABLE-22": {
+      "id": "PRD-TABLE-22",
+      "merchant_id": "merchant_furn",
+      "name": "定制北美黑胡桃实木餐桌 2.2m",
+      "description": "大件定制家具，宏达大件干线发运",
+      "unit_amount_minor": 420000,
+      "currency": "CNY",
+      "stock": 3,
+      "kind": "physical",
+      "active": true,
+      "version": 1,
+      "category": "餐桌",
+      "policies": {}
+    }
+  },
+  "orders": {
+    "MO-8818": {
+      "id": "MO-8818",
+      "buyer_id": "buyer_c1",
+      "merchant_id": "merchant_furn",
+      "status": "paid",
+      "currency": "CNY",
+      "subtotal_minor": 29900,
+      "discount_minor": 0,
+      "shipping_minor": 0,
+      "total_minor": 29900,
+      "items": [
+        {
+          "line_id": "l1",
+          "product_id": "PRD-LAMP",
+          "name": "实木台灯",
+          "quantity": 1,
+          "unit_amount_minor": 29900,
+          "sku_id": "PRD-LAMP",
+          "fulfilled_quantity": 0,
+          "policies": {}
+        }
+      ],
+      "created_at": "2026-11-22T09:10:00+08:00",
+      "version": 1,
+      "fulfillment_status": "unfulfilled",
+      "paid_minor": 29900,
+      "refunded_minor": 0,
+      "tax_minor": 0,
+      "reservation_expires_at": null,
+      "note": "",
+      "discount_allocations": [],
+      "stock_released": false
+    },
+    "MO-8819": {
+      "id": "MO-8819",
+      "buyer_id": "buyer_c2",
+      "merchant_id": "merchant_furn",
+      "status": "paid",
+      "currency": "CNY",
+      "subtotal_minor": 29900,
+      "discount_minor": 0,
+      "shipping_minor": 0,
+      "total_minor": 29900,
+      "items": [
+        {
+          "line_id": "l1",
+          "product_id": "PRD-LAMP",
+          "name": "实木台灯",
+          "quantity": 1,
+          "unit_amount_minor": 29900,
+          "sku_id": "PRD-LAMP",
+          "fulfilled_quantity": 0,
+          "policies": {}
+        }
+      ],
+      "created_at": "2026-11-22T10:05:00+08:00",
+      "version": 1,
+      "fulfillment_status": "unfulfilled",
+      "paid_minor": 29900,
+      "refunded_minor": 0,
+      "tax_minor": 0,
+      "reservation_expires_at": null,
+      "note": "",
+      "discount_allocations": [],
+      "stock_released": false
+    },
+    "MO-8820": {
+      "id": "MO-8820",
+      "buyer_id": "buyer_c3",
+      "merchant_id": "merchant_furn",
+      "status": "paid",
+      "currency": "CNY",
+      "subtotal_minor": 29900,
+      "discount_minor": 0,
+      "shipping_minor": 0,
+      "total_minor": 29900,
+      "items": [
+        {
+          "line_id": "l1",
+          "product_id": "PRD-LAMP",
+          "name": "实木台灯",
+          "quantity": 1,
+          "unit_amount_minor": 29900,
+          "sku_id": "PRD-LAMP",
+          "fulfilled_quantity": 0,
+          "policies": {}
+        }
+      ],
+      "created_at": "2026-11-22T10:40:00+08:00",
+      "version": 1,
+      "fulfillment_status": "unfulfilled",
+      "paid_minor": 29900,
+      "refunded_minor": 0,
+      "tax_minor": 0,
+      "reservation_expires_at": null,
+      "note": "",
+      "discount_allocations": [],
+      "stock_released": false
+    },
+    "MO-8821": {
+      "id": "MO-8821",
+      "buyer_id": "buyer_c4",
+      "merchant_id": "merchant_furn",
+      "status": "paid",
+      "currency": "CNY",
+      "subtotal_minor": 420000,
+      "discount_minor": 0,
+      "shipping_minor": 0,
+      "total_minor": 420000,
+      "items": [
+        {
+          "line_id": "l1",
+          "product_id": "PRD-TABLE-22",
+          "name": "定制北美黑胡桃实木餐桌 2.2m",
+          "quantity": 1,
+          "unit_amount_minor": 420000,
+          "sku_id": "PRD-TABLE-22",
+          "fulfilled_quantity": 0,
+          "policies": {}
+        }
+      ],
+      "created_at": "2026-11-20T16:00:00+08:00",
+      "version": 1,
+      "fulfillment_status": "unfulfilled",
+      "paid_minor": 420000,
+      "refunded_minor": 0,
+      "tax_minor": 0,
+      "reservation_expires_at": null,
+      "note": "",
+      "discount_allocations": [],
+      "stock_released": false
+    }
+  },
+  "payments": {
+    "pay_8818": {
+      "id": "pay_8818",
+      "order_id": "MO-8818",
+      "buyer_id": "buyer_c1",
+      "merchant_id": "merchant_furn",
+      "amount_minor": 29900,
+      "currency": "CNY",
+      "status": "succeeded",
+      "version": 1,
+      "refunded_minor": 0
+    },
+    "pay_8819": {
+      "id": "pay_8819",
+      "order_id": "MO-8819",
+      "buyer_id": "buyer_c2",
+      "merchant_id": "merchant_furn",
+      "amount_minor": 29900,
+      "currency": "CNY",
+      "status": "succeeded",
+      "version": 1,
+      "refunded_minor": 0
+    },
+    "pay_8820": {
+      "id": "pay_8820",
+      "order_id": "MO-8820",
+      "buyer_id": "buyer_c3",
+      "merchant_id": "merchant_furn",
+      "amount_minor": 29900,
+      "currency": "CNY",
+      "status": "succeeded",
+      "version": 1,
+      "refunded_minor": 0
+    },
+    "pay_8821": {
+      "id": "pay_8821",
+      "order_id": "MO-8821",
+      "buyer_id": "buyer_c4",
+      "merchant_id": "merchant_furn",
+      "amount_minor": 420000,
+      "currency": "CNY",
+      "status": "succeeded",
+      "version": 1,
+      "refunded_minor": 0
+    }
+  },
+  "cancellation_requests": {
+    "CR-101": {
+      "id": "CR-101",
+      "order_id": "MO-8818",
+      "buyer_id": "buyer_c1",
+      "merchant_id": "merchant_furn",
+      "status": "pending",
+      "reason": "拍错颜色想重拍",
+      "created_at": "2026-11-22T11:10:00+08:00",
+      "version": 1
+    },
+    "CR-102": {
+      "id": "CR-102",
+      "order_id": "MO-8819",
+      "buyer_id": "buyer_c2",
+      "merchant_id": "merchant_furn",
+      "status": "pending",
+      "reason": "地址填错了",
+      "created_at": "2026-11-22T11:30:00+08:00",
+      "version": 1
+    },
+    "CR-103": {
+      "id": "CR-103",
+      "order_id": "MO-8820",
+      "buyer_id": "buyer_c3",
+      "merchant_id": "merchant_furn",
+      "status": "pending",
+      "reason": "暂时不需要了",
+      "created_at": "2026-11-22T12:00:00+08:00",
+      "version": 1
+    },
+    "CR-104": {
+      "id": "CR-104",
+      "order_id": "MO-8821",
+      "buyer_id": "buyer_c4",
+      "merchant_id": "merchant_furn",
+      "status": "pending",
+      "reason": "家里装修延期暂不想要",
+      "created_at": "2026-11-22T12:45:00+08:00",
+      "version": 1
+    }
+  },
+  "shipments": {
+    "SHP-9904": {
+      "id": "SHP-9904",
+      "order_id": "MO-8821",
+      "buyer_id": "buyer_c4",
+      "merchant_id": "merchant_furn",
+      "carrier": "宏达大件跨省干线物流",
+      "tracking_number": "HD-261122-8821",
+      "status": "in_transit",
+      "created_at": "2026-11-22T08:30:00+08:00",
+      "version": 1
+    }
+  },
+  "skus": {
+    "PRD-LAMP": {
+      "id": "PRD-LAMP",
+      "product_id": "PRD-LAMP",
+      "merchant_id": "merchant_furn",
+      "options": {},
+      "unit_amount_minor": 29900,
+      "stock": 40,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    },
+    "PRD-TABLE-22": {
+      "id": "PRD-TABLE-22",
+      "product_id": "PRD-TABLE-22",
+      "merchant_id": "merchant_furn",
+      "options": {},
+      "unit_amount_minor": 420000,
+      "stock": 3,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "carts": {},
+  "refunds": {},
+  "refund_requests": {},
+  "plans": {},
+  "subscriptions": {},
+  "invoices": {},
+  "addresses": {},
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_merchant_furn": {
+      "id": "shipping_merchant_furn",
+      "merchant_id": "merchant_furn",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "aftersales": {},
+  "deliveries": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

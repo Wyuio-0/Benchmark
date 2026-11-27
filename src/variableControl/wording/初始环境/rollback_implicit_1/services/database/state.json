@@ -1,0 +1,12 @@
+{
+  "now": "2026-11-16T11:05:00+08:00",
+  "sequence": 0,
+  "databases": [
+    {
+      "id": "orders_prod",
+      "name": "订单生产库"
+    }
+  ],
+  "mutation_events": [],
+  "lifecycle_events": []
+}

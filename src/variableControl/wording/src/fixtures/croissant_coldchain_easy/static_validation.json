@@ -1,0 +1,9 @@
+{
+  "material_revision": "croissant-coldchain-easy-wording-v1",
+  "conditions": 3,
+  "only_variable": "workspace/团建采购/需求说明.md：配送安排小节正文",
+  "l2_equals_position_easy": true,
+  "prompt_sha256": "72b7ec735f258d8255ba834e1e31f5f5ff6a91b4aa5de2962d24d928279c0054",
+  "model_calls": 0,
+  "behavior_tests_run": false
+}

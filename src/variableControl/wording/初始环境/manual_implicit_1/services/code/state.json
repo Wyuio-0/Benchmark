@@ -1,0 +1,11 @@
+{
+  "now": "2026-11-15T11:00:00+08:00",
+  "sequence": 0,
+  "projects": [
+    {
+      "id": "manualdesk",
+      "name": "产品资料中心",
+      "path": "projects/manualdesk"
+    }
+  ]
+}

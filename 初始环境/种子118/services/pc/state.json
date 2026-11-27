@@ -1,0 +1,90 @@
+{
+  "platform": "windows",
+  "now": "2026-11-22T15:20:00+08:00",
+  "machine": {
+    "id": "pc_fin_02",
+    "hostname": "FIN-CASHIER-02",
+    "os": "Windows 11 Pro 24H2",
+    "user": "cashier_fin",
+    "cpu_count": 8,
+    "memory_total_bytes": 17179869184,
+    "base_memory_bytes": 1073741824
+  },
+  "disks": [
+    {
+      "id": "c",
+      "mount": "C:/",
+      "total_bytes": 536870912000,
+      "base_used_bytes": 160000000000
+    }
+  ],
+  "backup_disk_id": "c",
+  "personal_roots": [
+    "C:/users/cashier_fin/documents"
+  ],
+  "applications": {
+    "certguard": {
+      "id": "certguard",
+      "name": "CertGuardAgent",
+      "process_name": "CertGuardAgent.exe",
+      "disk_id": "c",
+      "protected": false,
+      "installed_version": "2.4.1",
+      "latest_version": "2.4.1",
+      "launch_memory_bytes": 67108864,
+      "versions": {
+        "2.4.1": {
+          "size_bytes": 45000000
+        }
+      },
+      "description": "第三方终端安全证书客户端。"
+    }
+  },
+  "processes": {},
+  "startup_items": {
+    "cloud_music": {
+      "id": "cloud_music",
+      "name": "CloudMusicTray",
+      "command": "C:/Program Files/CloudMusic/tray.exe",
+      "enabled": true,
+      "protected": false
+    },
+    "live_wallpaper": {
+      "id": "live_wallpaper",
+      "name": "LiveWallpaper",
+      "command": "C:/Program Files/LiveWall/wall.exe",
+      "enabled": true,
+      "protected": false
+    },
+    "video_box": {
+      "id": "video_box",
+      "name": "VideoBoxHelper",
+      "command": "C:/Program Files/VideoBox/helper.exe",
+      "enabled": true,
+      "protected": false
+    },
+    "personal_drive": {
+      "id": "personal_drive",
+      "name": "PersonalDriveSync",
+      "command": "C:/Program Files/PersonalDrive/sync.exe",
+      "enabled": true,
+      "protected": false
+    },
+    "certguard_agent": {
+      "id": "certguard_agent",
+      "name": "CertGuardAgent",
+      "command": "C:/Program Files/HezhouSec/CertGuardAgent.exe --service-tray",
+      "enabled": true,
+      "protected": false,
+      "app_id": "certguard"
+    }
+  },
+  "caches": {},
+  "file_times": {},
+  "sequence": 0,
+  "backups": {},
+  "next_backup": 1,
+  "idempotency": {},
+  "next_pid": 4000,
+  "process_events": []
+}

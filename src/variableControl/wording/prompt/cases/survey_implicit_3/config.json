@@ -1,0 +1,10 @@
+{
+  "groups": [
+    "chat"
+  ],
+  "required_groups": [
+    "chat"
+  ],
+  "evaluator": "survey_distribution",
+  "user_prompt": "user.md"
+}

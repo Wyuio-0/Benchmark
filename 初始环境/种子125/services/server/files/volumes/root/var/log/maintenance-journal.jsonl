@@ -1,0 +1,2 @@
+{"timestamp": "2026-11-22T03:12:00+08:00", "service_id": "backup-agent.service", "priority": 3, "message": "snapshot bak_20261122 lock timeout during archive flush; checksum mismatch recorded"}
+{"timestamp": "2026-11-22T08:30:00+08:00", "service_id": "backup-agent.service", "priority": 6, "message": "dr-verify-mount attached bak_20261121 for quarterly restore drill"}

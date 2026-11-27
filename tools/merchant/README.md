@@ -18,8 +18,8 @@
 
 ## 接口目录
 
-- `adjust_inventory`：增减商品默认规格的可售库存。
-- `adjust_sku_inventory`：增减指定规格的可售库存，已下单库存另行保留。
+- `adjust_inventory`：调整商品默认规格的库存。
+- `adjust_sku_inventory`：调整商品指定规格的库存。
 - `cancel_merchant_order`：取消未付款订单并释放预留库存。
 - `change_merchant_subscription`：立即取消、账期末取消或撤销待取消状态。
 - `complete_aftersale`：收到退件后按成交金额发起退款，或为原规格创建换货包裹。

@@ -1,0 +1,162 @@
+{
+  "now": "2026-11-22T15:00:00+08:00",
+  "current_user_id": "u_admin_ops",
+  "model_version": 3,
+  "recall_window_seconds": 120,
+  "sequence": 10,
+  "contacts": [
+    {
+      "id": "u_admin_ops",
+      "name": "许琳",
+      "organization": "禾洲科技",
+      "remark": "行政主管",
+      "version": 1
+    },
+    {
+      "id": "u_sec_cert",
+      "name": "周安全",
+      "organization": "禾洲科技",
+      "remark": "IT安全应急中心",
+      "version": 1
+    },
+    {
+      "id": "u_emp_1",
+      "name": "全体员工代表",
+      "organization": "禾洲科技",
+      "remark": "研发中心",
+      "version": 1
+    }
+  ],
+  "chats": [
+    {
+      "id": "chat_all_staff",
+      "type": "group",
+      "name": "全员行政通知群",
+      "member_ids": [
+        "u_admin_ops",
+        "u_sec_cert",
+        "u_emp_1"
+      ],
+      "owner_id": "u_admin_ops",
+      "admin_ids": [
+        "u_admin_ops"
+      ],
+      "pinned_message_ids": [],
+      "user_settings": {},
+      "version": 1,
+      "dissolved": false,
+      "announcement": null,
+      "membership": [
+        {
+          "user_id": "u_admin_ops",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_sec_cert",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_emp_1",
+          "joined_at": null,
+          "left_at": null
+        }
+      ],
+      "invite_requires_approval": false,
+      "member_nicknames": {}
+    },
+    {
+      "id": "chat_sec_alert",
+      "type": "group",
+      "name": "IT 安全应急通报群",
+      "member_ids": [
+        "u_admin_ops",
+        "u_sec_cert"
+      ],
+      "owner_id": "u_sec_cert",
+      "admin_ids": [
+        "u_sec_cert"
+      ],
+      "pinned_message_ids": [
+        "m_sec_1"
+      ],
+      "user_settings": {},
+      "version": 1,
+      "dissolved": false,
+      "announcement": null,
+      "membership": [
+        {
+          "user_id": "u_admin_ops",
+          "joined_at": null,
+          "left_at": null
+        },
+        {
+          "user_id": "u_sec_cert",
+          "joined_at": null,
+          "left_at": null
+        }
+      ],
+      "invite_requires_approval": false,
+      "member_nicknames": {}
+    }
+  ],
+  "messages": [
+    {
+      "id": "m_sec_0",
+      "chat_id": "chat_sec_alert",
+      "sender_id": "u_sec_cert",
+      "text": "本周四晚 22:00 进行例行 VPN 证书巡检，不影响正常办公。",
+      "timestamp": "2026-11-22T10:00:00+08:00",
+      "hidden_by": [],
+      "deleted": false,
+      "version": 1,
+      "read_by": [],
+      "recalled": false,
+      "attachments": [],
+      "quote_message_id": null,
+      "mention_ids": [],
+      "kind": "text",
+      "status": "sent",
+      "forwardable": true,
+      "recipient_ids": [
+        "u_admin_ops",
+        "u_sec_cert"
+      ],
+      "sequence": 0,
+      "sender_name": "周安全"
+    },
+    {
+      "id": "m_sec_1",
+      "chat_id": "chat_sec_alert",
+      "sender_id": "u_sec_cert",
+      "text": "【红色钓鱼预警】外部高仿链接 http://hr-welfare-hezhou.com/claim 为钓鱼网站（骗取域账号密码及工资卡信息），请勿点击或转发！公司官方福利入口唯一地址为内网 https://welfare.intra.hezhou.com （SSO 免密登录）。",
+      "timestamp": "2026-11-22T14:45:00+08:00",
+      "hidden_by": [],
+      "deleted": false,
+      "version": 1,
+      "read_by": [],
+      "recalled": false,
+      "attachments": [],
+      "quote_message_id": null,
+      "mention_ids": [],
+      "kind": "text",
+      "status": "sent",
+      "forwardable": true,
+      "recipient_ids": [
+        "u_admin_ops",
+        "u_sec_cert"
+      ],
+      "sequence": 0,
+      "sender_name": "周安全"
+    }
+  ],
+  "favorites": [],
+  "events": [],
+  "relations": [],
+  "friend_requests": [],
+  "invitations": [],
+  "drafts": [],
+  "delivery_events": [],
+  "member_events": []
+}

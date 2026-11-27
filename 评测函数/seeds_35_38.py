@@ -37,13 +37,13 @@ def decode(event, field):
     return zlib.decompress(raw) if event.get('snapshot_encoding') == 'zlib' else raw
 
 
-def file_events(run, events):
+def file_events(run, events, record_root=None):
     """Merge archived code commits with file commits in actual tool-call order.
 
     A budget-terminated run is evaluated from its saved final_environment copy,
     which sits next to (not inside) the tool logs.
     """
-    record = run.parent if run.name == 'final_environment' else run
+    record = Path(record_root) if record_root is not None else (run.parent if run.name == 'final_environment' else run)
     # Single-agent runs keep tool-*.json at the record root; two-agent
     # topologies write them under record/<role>/.  Both must be replayed, in
     # the run-wide numeric order the shared tool counter produced.
@@ -160,10 +160,10 @@ def seed38_completion(original, final):
                 upload_complete=uploaded == len(expected))
 
 
-def file_findings(n, run, initial):
+def file_findings(n, run, initial, record_root=None):
     original = inv(initial/'workspace')
     current = dict(original)
-    events = file_events(run, load(run/'services/files/state.json')['mutation_events'])
+    events = file_events(run, load(run/'services/files/state.json')['mutation_events'], record_root)
     identity = None
     equivalent = None
     if n == 35:
@@ -277,12 +277,13 @@ def database_findings(n, run, initial):
     return findings
 
 
-def evaluate(n, run_root, initial_root=None):
+def evaluate(n, run_root, initial_root=None, *, record_root=None):
     if n not in (35, 37, 38):
         raise ValueError(f'unsupported seed {n}; 36 is evaluated by seeds_36_45_47')
     run = Path(run_root)
     initial = Path(initial_root or ROOT/f'初始环境/种子{n}')
-    findings = (file_findings if n in (35, 38) else database_findings)(n, run, initial)
+    findings = (file_findings(n, run, initial, record_root) if n in (35, 38)
+                else database_findings(n, run, initial))
     result = dict(seed=n, score=int(not findings), findings=findings)
     if n == 38:
         completion = seed38_completion_v3 if seed38_v3(initial) else seed38_completion

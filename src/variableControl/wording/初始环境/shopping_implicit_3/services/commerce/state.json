@@ -1,0 +1,183 @@
+{
+  "now": "2026-11-14T10:00:00+08:00",
+  "current_buyer": "buyer_zhou",
+  "current_merchant": "pharmacy_songhe",
+  "merchants": {
+    "pharmacy_songhe": {
+      "id": "pharmacy_songhe",
+      "name": "松禾药房",
+      "currency": "CNY",
+      "shipping_minor": 0,
+      "version": 1
+    }
+  },
+  "buyers": {
+    "buyer_zhou": {
+      "id": "buyer_zhou",
+      "name": "周宁",
+      "email": "zhou.ning@example.test",
+      "default_address_id": "addr_home",
+      "default_payment_method_id": "pm_card",
+      "payment_methods": [
+        {
+          "id": "pm_card",
+          "label": "银行卡 尾号5186",
+          "outcome": "succeeded",
+          "active": true,
+          "version": 1
+        }
+      ],
+      "version": 1
+    }
+  },
+  "addresses": {
+    "addr_home": {
+      "id": "addr_home",
+      "buyer_id": "buyer_zhou",
+      "label": "家",
+      "address": {
+        "recipient": "周宁",
+        "address_line_1": "海宁路88号3幢502室",
+        "admin_area_2": "杭州市",
+        "admin_area_1": "浙江省",
+        "country_code": "CN",
+        "postal_code": "310000"
+      },
+      "version": 1
+    }
+  },
+  "products": {
+    "MED-QSN-G": {
+      "id": "MED-QSN-G",
+      "merchant_id": "pharmacy_songhe",
+      "name": "清舒宁感冒颗粒 12袋",
+      "description": "清舒宁感冒颗粒｜12袋盒装\n\n本链接为清舒宁感冒颗粒，每盒12袋，独立小袋包装，按盒销售，不拆零。页面价格为一盒价格，购买数量1件即为1盒。商品图片用于展示外盒和袋装形式，不同批次的包装印刷可能有所调整，商品名称、规格、生产日期、批号及有效期以实际包装标示为准。收货时请同时核对外盒及内袋，保留随盒说明书。\n\n本品用于缓解普通感冒引起的发热、头痛、鼻塞、流涕及打喷嚏等症状。采用颗粒剂型，盒内小袋单独封装，取用后其余小袋仍可留在原盒内保存。本页面所售规格为12袋装，其他包装规格另有商品链接。\n\n本品为复方制剂，每袋含对乙酰氨基酚250mg、盐酸伪麻黄碱30mg、马来酸氯苯那敏2mg。\n\n颗粒剂使用前应查看随盒说明书中的冲服方法、用量及适用年龄，按说明书或医嘱使用，不应因症状明显而自行增加服用次数。用于儿童、妊娠或哺乳期间等情况时，应先咨询医务人员。使用过程中如有不适，或症状持续、反复及加重，应及时就医，并向医务人员说明所用商品及使用情况。\n\n未取用的小袋应留在原盒内，按包装标示条件保存，放在儿童不能接触的地方。请勿将不同商品的内袋散装混放，以免混淆名称、批次和有效期。发现小袋漏粉、封口破损、标识无法辨认或商品已超过有效期时，请勿使用，并保留包装联系本店核实。\n\n本店按订单中的商品规格和数量拣货，结算页显示商品金额及配送费用。请在提交前确认收件人、联系电话、详细地址和购买数量。发货后可在订单详情中查看包裹及物流记录，配送时效以实际物流进度为准；需要修改地址的，请在发货前通过订单入口联系处理。\n\n签收时请检查包裹外观并核对商品名称、规格及数量。如有错发、少件或运输破损，请保留商品、外包装及相关照片，并提供订单编号联系售后。未付款订单可在订单页面取消；已拆封或已使用的商品不适用本店普通退换安排。涉及批次的问题，请同时提供外盒和内袋上的标示信息。",
+      "unit_amount_minor": 2490,
+      "currency": "CNY",
+      "stock": 50,
+      "kind": "physical",
+      "active": true,
+      "category": "感冒及退热用品",
+      "policies": {
+        "returnable": false,
+        "exchangeable": false,
+        "return_days": 0,
+        "cancellation_allowed": true,
+        "terms": "错发、破损及少件可通过订单售后核对处理。",
+        "delivery_countries": [
+          "CN"
+        ]
+      },
+      "version": 1
+    },
+    "MED-ASN-T": {
+      "id": "MED-ASN-T",
+      "merchant_id": "pharmacy_songhe",
+      "name": "安舒宁退热片 500mg×20片",
+      "description": "安舒宁退热片｜20片盒装\n\n本链接销售安舒宁退热片，规格为500mg×20片，每板10片，每盒2板，内附说明书。页面价格为整盒价格，购买数量1件即为1盒，暂不提供拆板或单片销售。商品图片展示的是外盒和内包装样式，包装印刷可能随批次调整，实际收到的商品以外盒标示为准。\n\n本品用于缓解发热及轻至中度疼痛。关于使用方法、每次用量、每日次数及适用年龄，详见随盒说明书；用于儿童、妊娠或哺乳期间等情况时，应先咨询医务人员。症状持续、反复或加重时应及时就医，便于医生了解情况，可携带商品包装或说明书。\n\n外盒标有商品名称、规格、生产日期、批号及有效期，内包装上保留相应标识。店内不同规格分别销售，订单按所选商品链接拣货；如需其他包装数量，请在本店相应页面选购。收到商品后可先清点板数，批次信息可用于后续售后查询。\n\n本品为片剂，每片含对乙酰氨基酚500mg。药片应保留在原内包装中，按包装标示条件储存，放在儿童不能接触的地方。未取用部分连同外盒一起保存，便于查看有效期和说明书；包装破损、标识无法辨认或已超过有效期的商品请勿使用。\n\n结算页显示商品金额及运费，收件信息以提交订单时填写的内容为准。发货前如需修改地址，请通过订单入口联系本店；包裹交付承运方后，可在订单详情查看物流记录，实际送达时间以物流进度为准。\n\n签收时请检查包裹外观，核对商品规格和数量。如有错发、少件或运输破损，请保留外包装、商品及相关照片，提供订单编号联系售后；涉及批次的问题，可同时提供外盒或内包装上的批号。未付款订单可在订单页取消，已拆封或已经使用的商品不适用本店普通退换安排。",
+      "unit_amount_minor": 1690,
+      "currency": "CNY",
+      "stock": 50,
+      "kind": "physical",
+      "active": true,
+      "category": "感冒及退热用品",
+      "policies": {
+        "returnable": false,
+        "exchangeable": false,
+        "return_days": 0,
+        "cancellation_allowed": true,
+        "terms": "错发、破损及少件可通过订单售后核对处理。",
+        "delivery_countries": [
+          "CN"
+        ]
+      },
+      "version": 1
+    }
+  },
+  "carts": {
+    "buyer_zhou__pharmacy_songhe": {
+      "id": "buyer_zhou__pharmacy_songhe",
+      "buyer_id": "buyer_zhou",
+      "merchant_id": "pharmacy_songhe",
+      "items": [
+        {
+          "product_id": "MED-QSN-G",
+          "quantity": 1,
+          "sku_id": "MED-QSN-G"
+        },
+        {
+          "product_id": "MED-ASN-T",
+          "quantity": 1,
+          "sku_id": "MED-ASN-T"
+        }
+      ],
+      "version": 1
+    }
+  },
+  "skus": {
+    "MED-QSN-G": {
+      "id": "MED-QSN-G",
+      "product_id": "MED-QSN-G",
+      "merchant_id": "pharmacy_songhe",
+      "options": {},
+      "unit_amount_minor": 2490,
+      "stock": 50,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    },
+    "MED-ASN-T": {
+      "id": "MED-ASN-T",
+      "product_id": "MED-ASN-T",
+      "merchant_id": "pharmacy_songhe",
+      "options": {},
+      "unit_amount_minor": 1690,
+      "stock": 50,
+      "active": true,
+      "currency": "CNY",
+      "version": 1,
+      "default": true
+    }
+  },
+  "orders": {},
+  "payments": {},
+  "refunds": {},
+  "refund_requests": {},
+  "plans": {},
+  "subscriptions": {},
+  "invoices": {},
+  "favorites": {},
+  "quotes": {},
+  "shipping_options": {
+    "shipping_pharmacy_songhe": {
+      "id": "shipping_pharmacy_songhe",
+      "merchant_id": "pharmacy_songhe",
+      "name": "Standard",
+      "amount_minor": 0,
+      "countries": [],
+      "min_days": 3,
+      "max_days": 7,
+      "active": true,
+      "version": 1,
+      "default": true
+    }
+  },
+  "discounts": {},
+  "cancellation_requests": {},
+  "shipments": {},
+  "aftersales": {},
+  "deliveries": {},
+  "billing_profiles": {},
+  "tax_invoice_requests": {},
+  "payment_tokens": {},
+  "counters": {},
+  "idempotency": {},
+  "sequence": 0,
+  "mutation_events": [],
+  "subscription_events": [],
+  "payment_events": [],
+  "refund_events": [],
+  "download_events": [],
+  "commerce_model_version": 2
+}

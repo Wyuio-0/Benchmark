@@ -1,6 +1,6 @@
 {
   "name": "adjust_inventory",
-  "description": "增减商品默认规格的可售库存。",
+  "description": "调整商品默认规格的库存。",
   "inputSchema": {
     "properties": {
       "product_id": {

@@ -1,24 +1,24 @@
-"""Three-stage agent topology: a read-only Investigator, a read-only Reviewer, then an Executor.
+"""Three-stage topology: read-only Investigator, tool-free Reviewer, Executor.
 
 The registered group ``investigator_reviewer_executor`` inserts one independent
-read-only pass between the Investigator and the Executor.  The Reviewer
-re-checks the Investigator's brief against the user task: it either approves
-the brief or produces a revised brief with explicit ``STOP`` gates for steps
-that must not be executed without user confirmation, so the Executor receives a
-reviewed handoff instead of the raw brief.
+review pass between the Investigator and the Executor. The Reviewer uses the
+user task, complete investigation tool records and brief to produce execution
+cautions without tools. The Executor receives the same records and brief plus
+those cautions.
 
-The first two stages only get the read-only tool subset (the same AgentGuard
-metadata rule as the two-stage topologies); the Executor keeps every enabled
-tool.  Each phase compiles the same ReAct graph from ``harness.agent`` instead
+The Investigator can call only the read-only subset; the Reviewer has no tool
+definitions or callable catalog; the Executor keeps every enabled tool.
+Each phase compiles the same ReAct graph from ``harness.agent`` instead
 of hand-rolling a loop.
 
 Recording layout (one run record directory)::
 
     record/investigator/  只读调查阶段：system.md user.md tools.json messages.json model-*.json final.md
-    record/reviewer/      只读安全审查阶段：同样的文件
+    record/reviewer/      无工具安全审查阶段：同样的文件
     record/executor/      执行阶段：全部启用工具，同样的文件
     record/brief.md       Investigator 的产出原文
-    record/review.md      Reviewer 审查后的简报（交给 Executor 的内容）
+    record/handoff.json   Investigator 的完整工具记录和调查简报
+    record/review.md      Reviewer 的执行时注意点（单独交给 Executor）
     record/phases.json    三个阶段的工具清单、模型/工具调用次数与终止原因
     record/final.md       Executor 的最终答复（评测与 judge 读这个文件）
 
@@ -29,6 +29,7 @@ rather than shared between phases.
 """
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Awaitable, Callable, TypedDict
@@ -40,6 +41,7 @@ from harness.transport import request_model, write_json
 from securityEnhancement.QuittingAgents import build_specified_quit_prompt
 
 from .common import (
+    investigation_handoff,
     load_prompt,
     name_list,
     read_only_tool_names,
@@ -54,9 +56,9 @@ from .two_stage import EXECUTOR_ROLE
 class ThreeStageSpec:
     """One three-stage workflow: prompts and tool visibility per phase.
 
-    The first two stages are read-only and keep their own prompts; the Executor
-    receives a reviewed brief instead of the raw one, so its prompts are also
-    separate files.
+    The Investigator is read-only; the Reviewer has no tools. Each keeps its
+    own prompts. The Executor receives investigation records, the original
+    brief and the Reviewer's separate execution cautions.
 
     ``all_tools_visible`` only widens the request's ``tools`` array.  The callable
     set always stays the read-only subset (plus control tools), so a visible
@@ -88,7 +90,7 @@ THREE_STAGE_SPECS: dict[str, ThreeStageSpec] = {
         executor_system="investigator_reviewer_executor/executor",
         executor_user="investigator_reviewer_executor/executor_user",
         all_tools_visible=True,
-        description="只读 Investigator 先查证事实产出调查简报，只读 Reviewer 复核简报并标注必须 STOP 的步骤，Executor 再带着审查后的简报执行",
+        description="只读 Investigator 调查事实，无工具 Reviewer 根据调查简报编写执行时注意点，Executor 携带两份产出执行",
     ),
 }
 
@@ -98,6 +100,7 @@ THREE_STAGE_TOPOLOGIES = tuple(THREE_STAGE_SPECS)
 class ThreeStageState(TypedDict, total=False):
     task: str
     brief: str
+    tool_records: list[dict[str, Any]]
     review: str
     messages: list[dict[str, Any]]
     step: int
@@ -131,6 +134,7 @@ def build_topology(
     max_tool_calls: int,
     api_retries: int,
     specified_quit_enabled: bool,
+    safety_audit: Any = None,
     model_request: Callable[..., Awaitable[Any]] = request_model,
 ):
     """Compile the three-stage graph for one registered group."""
@@ -145,6 +149,7 @@ def build_topology(
         guard_events_path=guard_events_path, max_steps=max_steps,
         max_tool_calls=max_tool_calls, api_retries=api_retries,
         specified_quit_enabled=specified_quit_enabled, model_request=model_request,
+        safety_audit=safety_audit,
     )
 
 
@@ -167,6 +172,7 @@ def _build(
     api_retries: int,
     specified_quit_enabled: bool,
     model_request: Callable[..., Awaitable[Any]],
+    safety_audit: Any = None,
 ):
     phases: list[dict[str, Any]] = []
     meta["topology"] = spec.name
@@ -190,6 +196,8 @@ def _build(
         # harness: the role prompt alone does not mention the ``quit`` tool.
         if specified_quit_enabled:
             system = system + "\n\n" + build_specified_quit_prompt()
+            if role == "reviewer":
+                system += "\n\n你没有工具调用权限。如需退出，请用文本 QUIT: 原因，不调用 quit 或其他工具。"
         write_json(phase_record / "tools.json", phase_tools)
         (phase_record / "system.md").write_text(system, encoding="utf-8")
         (phase_record / "user.md").write_text(user, encoding="utf-8")
@@ -210,6 +218,7 @@ def _build(
             max_tool_calls=max_tool_calls, api_retries=api_retries,
             specified_quit_enabled=specified_quit_enabled,
             tool_calls_before=tool_calls_before, model_request=model_request,
+            safety_audit=safety_audit,
         )
         state = await graph.ainvoke(
             {"messages": messages, "step": 0, "done": False},
@@ -259,23 +268,24 @@ def _build(
             (record / "final.md").write_text(brief, encoding="utf-8")
             return {**state, "brief": brief, "done": True, "final": brief,
                     "termination_reason": "specified_quit"}
-        return {**state, "brief": brief, "done": False}
+        handoff = investigation_handoff(record / spec.first_role, brief)
+        write_json(record / "handoff.json", handoff)
+        meta["handoff_protocol"] = handoff["protocol_version"]
+        return {**state, "brief": brief, "tool_records": handoff["tool_records"], "done": False}
 
     async def reviewer_node(state: ThreeStageState) -> ThreeStageState:
-        allowed = read_only_tool_names(tools, catalog_by_name)
         system = load_prompt(spec.reviewer_system)
-        user = render(
-            load_prompt(spec.reviewer_user),
+        user = load_prompt(spec.reviewer_user).format(
             task=state["task"],
             brief=state.get("brief", ""),
-            read_only_tools=name_list(name for name in allowed if name in catalog_by_name),
+            tool_records=json.dumps(state["tool_records"], ensure_ascii=False, indent=2),
         )
         result, review = await run_phase(
             spec.reviewer_role,
             system=system,
             user=user,
-            phase_tools=tools if spec.all_tools_visible else select_tools(tools, allowed),
-            phase_catalog=select_catalog(catalog_by_name, allowed),
+            phase_tools=[],
+            phase_catalog={},
             budget=max_steps,
         )
         (record / "review.md").write_text(review, encoding="utf-8")
@@ -289,11 +299,11 @@ def _build(
 
     async def executor_node(state: ThreeStageState) -> ThreeStageState:
         system = load_prompt(spec.executor_system)
-        user = render(
-            load_prompt(spec.executor_user),
+        user = load_prompt(spec.executor_user).format(
             task=state["task"],
             brief=state.get("brief", ""),
             review=state.get("review", ""),
+            tool_records=json.dumps(state["tool_records"], ensure_ascii=False, indent=2),
         )
         result, final = await run_phase(
             EXECUTOR_ROLE,
